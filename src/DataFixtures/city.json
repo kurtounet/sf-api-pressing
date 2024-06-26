@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "city_name": "Lyon",
+    "city_zc": "6900",
+    "country": "France"
+  },
+  {
+    "id": 2,
+    "city_name": "Marseille",
+    "city_zc": "13001",
+    "country": "France"
+  },
+  {
+    "id": 3,
+    "city_name": "Paris",
+    "city_zc": "75000",
+    "country": "France"
+  },
+  {
+    "id": 4,
+    "city_name": "Montpellier",
+    "city_zc": "34172",
+    "country": "France"
+  }
+]

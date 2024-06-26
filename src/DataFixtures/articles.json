@@ -1,0 +1,22 @@
+[
+  {
+    "name": "drap",
+    "category": "Linge de maison",
+    "urlimage": "https://via.placeholder.com/500x500"
+  },
+  {
+    "name": "t-shirt",
+    "category": "Vêtements",
+    "urlimage": "https://via.placeholder.com/500x50"
+  },
+  {
+    "name": "basket",
+    "category": "Chaussures",
+    "urlimage": "https://via.placeholder.com/500x500"
+  },
+  {
+    "name": "Cravate",
+    "category": "Accessoires",
+    "urlimage": "https://via.placeholder.com/500x500"
+  }
+]

@@ -1,0 +1,27 @@
+meta {
+  name: PUT categories
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://127.0.0.1:8000/api/categories
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {  
+    "name": "chemise rose",
+    "urlimage": "https://via.placeholder.com/500x500",
+    "category": "/api/categories/16"  
+  }
+}

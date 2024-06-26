@@ -1,0 +1,30 @@
+meta {
+  name: PATCH commande
+  type: http
+  seq: 5
+}
+
+patch {
+  url: https://127.0.0.1:8000/api/commandes/1
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/merge-patch+json
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "@context": "/api/contexts/Article",
+    "@id": "/api/articles/17",
+    "@type": "Article",
+    "name": "chemise rose56",
+    "urlimage": "https://via.placeholder.com/500x500",
+    "category": "/api/categories/16"
+  }
+}

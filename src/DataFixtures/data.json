@@ -1,0 +1,105 @@
+{
+    "categories": [
+        {
+            "name": "Costumes et Tailleurs",
+            "items": [
+                "Costumes hommes",
+                "Costumes femmes",
+                "Vestes",
+                "Pantalons de costume",
+                "Jupes de tailleur"
+            ]
+        },
+        {
+            "name": "Chemises et Blouses",
+            "items": [
+                "Chemises formelles",
+                "Chemises décontractées",
+                "Blouses"
+            ]
+        },
+        {
+            "name": "Robes et Jupes",
+            "items": [
+                "Robes de soirée",
+                "Robes de mariée",
+                "Robes de cocktail",
+                "Jupes"
+            ]
+        },
+        {
+            "name": "Pantalons et Shorts",
+            "items": [
+                "Pantalons habillés",
+                "Pantalons décontractés",
+                "Shorts"
+            ]
+        },
+        {
+            "name": "Vestes et Manteaux",
+            "items": [
+                "Manteaux d'hiver",
+                "Vestes en cuir",
+                "Parkas",
+                "Vestes légères"
+            ]
+        },
+        {
+            "name": "Tenues de soirée et de cérémonie",
+            "items": [
+                "Robes de soirée",
+                "Costumes de soirée",
+                "Tenues de mariage",
+                "Robes de bal"
+            ]
+        },
+        {
+            "name": "Vêtements de travail",
+            "items": [
+                "Uniformes",
+                "Blouses médicales",
+                "Tenues de chantier"
+            ]
+        },
+        {
+            "name": "Vêtements de sport",
+            "items": [
+                "Tenues de sport",
+                "Survêtements"
+            ]
+        },
+        {
+            "name": "Textiles de maison",
+            "items": [
+                "Rideaux",
+                "Draps",
+                "Couvertures",
+                "Housses de coussin"
+            ]
+        },
+        {
+            "name": "Accessoires",
+            "items": [
+                "Cravates",
+                "Écharpes",
+                "Gants",
+                "Chapeaux"
+            ]
+        },
+        {
+            "name": "Vêtements délicats",
+            "items": [
+                "Lingerie",
+                "Vêtements en soie",
+                "Vêtements en cachemire"
+            ]
+        },
+        {
+            "name": "Articles spéciaux",
+            "items": [
+                "Tapis",
+                "Peluches"
+            ]
+        }
+    ]
+}

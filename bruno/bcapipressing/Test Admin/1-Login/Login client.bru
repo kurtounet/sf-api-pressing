@@ -1,0 +1,22 @@
+meta {
+  name: Login client
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://127.0.0.1:8000/api/login_check
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "emma.wilson@gmail.com",
+    "password": "Emma"
+  }
+}
+
+assert {
+  : 
+}

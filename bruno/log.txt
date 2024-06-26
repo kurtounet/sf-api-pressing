@@ -1,0 +1,8 @@
+
+-> dossier
+    26/06/24
+    login:
+        ROLE_ADMIN
+        ROLE_MANAGER
+        ROLE_CLIENT
+        ROLE_EMPLOYEE

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "article": 2,
+    "service": 1,
+    "material": 1,
+    "commande": 1,
+    "user": 1,
+    "itemEtat": 1,
+    "serviceStatus": 1,
+    "detailItem": "Détail spécifique de l'article.",
+    "price": 15.99
+  },
+  {
+    "id": 2,
+    "article": 2,
+    "service": 1,
+    "material": 1,
+    "commande": 1,
+    "user": 2,
+    "itemEtat": 1,
+    "serviceStatus": 1,
+    "detailItem": "Détail spécifique de l'article.",
+    "price": 15.99
+  },
+  {
+    "id": 3,
+    "article": 2,
+    "service": 1,
+    "material": 1,
+    "commande": 1,
+    "user": 3,
+    "itemEtat": 1,
+    "serviceStatus": 1,
+    "detailItem": "Détail spécifique de l'article.",
+    "price": 15.99
+  }
+]

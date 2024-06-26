@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Carte de crédit"
+  },
+  {
+    "id": 2,
+    "name": "Espèces"
+  },
+  {
+    "id": 3,
+    "name": "Chèque"
+  },
+  {
+    "id": 4,
+    "name": "Virement bancaire"
+  },
+  {
+    "id": 5,
+    "name": "Paiement mobile"
+  },
+  {
+    "id": 6,
+    "name": "PayPal"
+  },
+  {
+    "id": 7,
+    "name": "Cryptomonnaie"
+  }
+]

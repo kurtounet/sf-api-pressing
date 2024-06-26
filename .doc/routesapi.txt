@@ -1,0 +1,350 @@
+Article
+
+
+GET
+/api/articles
+Retrieves the collection of Article resources.
+
+
+POST
+/api/articles
+Creates a Article resource.
+
+
+GET
+/api/articles/{id}
+Retrieves a Article resource.
+
+
+PUT
+/api/articles/{id}
+Replaces the Article resource.
+
+
+DELETE
+/api/articles/{id}
+Removes the Article resource.
+
+
+PATCH
+/api/articles/{id}
+Updates the Article resource.
+
+Category
+
+
+GET
+/api/categories
+Retrieves the collection of Category resources.
+
+
+POST
+/api/categories
+Creates a Category resource.
+
+
+GET
+/api/categories/{id}
+Retrieves a Category resource.
+
+
+PUT
+/api/categories/{id}
+Replaces the Category resource.
+
+
+DELETE
+/api/categories/{id}
+Removes the Category resource.
+
+
+PATCH
+/api/categories/{id}
+Updates the Category resource.
+
+Commande
+
+
+GET
+/api/commandes
+Retrieves the collection of Commande resources.
+
+
+POST
+/api/commandes
+Creates a Commande resource.
+
+
+GET
+/api/commandes/{id}
+Retrieves a Commande resource.
+
+
+PUT
+/api/commandes/{id}
+Replaces the Commande resource.
+
+
+DELETE
+/api/commandes/{id}
+Removes the Commande resource.
+
+
+PATCH
+/api/commandes/{id}
+Updates the Commande resource.
+
+ItemEtat
+
+
+GET
+/api/item_etats
+Retrieves the collection of ItemEtat resources.
+
+
+POST
+/api/item_etats
+Creates a ItemEtat resource.
+
+
+GET
+/api/item_etats/{id}
+Retrieves a ItemEtat resource.
+
+
+PUT
+/api/item_etats/{id}
+Replaces the ItemEtat resource.
+
+
+DELETE
+/api/item_etats/{id}
+Removes the ItemEtat resource.
+
+
+PATCH
+/api/item_etats/{id}
+Updates the ItemEtat resource.
+
+Item
+
+
+GET
+/api/items
+Retrieves the collection of Item resources.
+
+
+POST
+/api/items
+Creates a Item resource.
+
+
+GET
+/api/items/{id}
+Retrieves a Item resource.
+
+
+PUT
+/api/items/{id}
+Replaces the Item resource.
+
+
+DELETE
+/api/items/{id}
+Removes the Item resource.
+
+
+PATCH
+/api/items/{id}
+Updates the Item resource.
+
+Login Check
+
+
+POST
+/api/login_check
+Creates a user token.
+
+Material
+
+
+GET
+/api/materials
+Retrieves the collection of Material resources.
+
+
+POST
+/api/materials
+Creates a Material resource.
+
+
+GET
+/api/materials/{id}
+Retrieves a Material resource.
+
+
+PUT
+/api/materials/{id}
+Replaces the Material resource.
+
+
+DELETE
+/api/materials/{id}
+Removes the Material resource.
+
+
+PATCH
+/api/materials/{id}
+Updates the Material resource.
+
+Meansofpayment
+
+
+GET
+/api/meansofpayments
+Retrieves the collection of Meansofpayment resources.
+
+
+POST
+/api/meansofpayments
+Creates a Meansofpayment resource.
+
+
+GET
+/api/meansofpayments/{id}
+Retrieves a Meansofpayment resource.
+
+
+PUT
+/api/meansofpayments/{id}
+Replaces the Meansofpayment resource.
+
+
+DELETE
+/api/meansofpayments/{id}
+Removes the Meansofpayment resource.
+
+
+PATCH
+/api/meansofpayments/{id}
+Updates the Meansofpayment resource.
+
+ServiceStatus
+
+
+GET
+/api/service_statuses
+Retrieves the collection of ServiceStatus resources.
+
+
+POST
+/api/service_statuses
+Creates a ServiceStatus resource.
+
+
+GET
+/api/service_statuses/{id}
+Retrieves a ServiceStatus resource.
+
+
+PUT
+/api/service_statuses/{id}
+Replaces the ServiceStatus resource.
+
+
+DELETE
+/api/service_statuses/{id}
+Removes the ServiceStatus resource.
+
+
+PATCH
+/api/service_statuses/{id}
+Updates the ServiceStatus resource.
+
+Service
+
+
+GET
+/api/services
+Retrieves the collection of Service resources.
+
+
+POST
+/api/services
+Creates a Service resource.
+
+
+GET
+/api/services/{id}
+Retrieves a Service resource.
+
+
+PUT
+/api/services/{id}
+Replaces the Service resource.
+
+
+DELETE
+/api/services/{id}
+Removes the Service resource.
+
+
+PATCH
+/api/services/{id}
+Updates the Service resource.
+
+User
+
+
+GET
+/api/users
+Retrieves the collection of User resources.
+
+
+POST
+/api/users
+Creates a User resource.
+
+
+GET
+/api/users/{id}
+Retrieves a User resource.
+
+
+PUT
+/api/users/{id}
+Replaces the User resource.
+
+
+DELETE
+/api/users/{id}
+Removes the User resource.
+
+
+PATCH
+/api/users/{id}
+Updates the User resource.
+
+
+Schemas
+ArticleExpand allobject
+Article.jsonldExpand allobject
+CategoryExpand allobject
+Category.jsonldExpand allobject
+CommandeExpand allobject
+Commande.jsonldExpand allobject
+ItemExpand allobject
+Item.jsonldExpand allobject
+ItemEtatExpand allobject
+ItemEtat.jsonldExpand allobject
+MaterialExpand allobject
+Material.jsonldExpand allobject
+MeansofpaymentExpand allobject
+Meansofpayment.jsonldExpand allobject
+ServiceExpand allobject
+Service.jsonldExpand allobject
+ServiceStatusExpand allobject
+ServiceStatus.jsonldExpand allobject
+UserExpand allobject
+User.jsonldExpand allobject
+Available formats: jsonld jsonopenapi html

@@ -1,0 +1,15 @@
+meta {
+  name: GET commande id
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://127.0.0.1:8000/api/commandes/1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "sub_category_name": "haut",
+    "category_id": 1
+  },
+  {
+    "id": 2,
+    "sub_category_name": "bas",
+    "category_id": 2
+  }
+]

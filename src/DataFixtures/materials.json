@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "Coton",
+    "coeff": 1
+  },
+  {
+    "id": 2,
+    "name": "Polyester",
+    "coeff": 1.2
+  },
+  {
+    "id": 3,
+    "name": "Soie",
+    "coeff": 1.4
+  },
+  {
+    "id": 4,
+    "name": "Cachemire",
+    "coeff": 1.6
+  },
+  {
+    "id": 5,
+    "name": "Laine",
+    "coeff": 1.8
+  },
+  {
+    "id": 6,
+    "name": "Nylon",
+    "coeff": 2
+  },
+  {
+    "id": 7,
+    "name": "Spandex",
+    "coeff": 2.2
+  },
+  {
+    "id": 8,
+    "name": "Denim",
+    "coeff": 2.4
+  },
+  {
+    "id": 9,
+    "name": "Velours",
+    "coeff": 2.6
+  },
+  {
+    "id": 10,
+    "name": "Satin",
+    "coeff": 2.8
+  },
+  {
+    "id": 11,
+    "name": "Lin",
+    "coeff": 3
+  },
+  {
+    "id": 12,
+    "name": "Jersey",
+    "coeff": 3.2
+  },
+  {
+    "id": 13,
+    "name": "Mousseline",
+    "coeff": 3.4
+  },
+  {
+    "id": 14,
+    "name": "Tweed",
+    "coeff": 3.6
+  },
+  {
+    "id": 15,
+    "name": "Velours côtelé",
+    "coeff": 3.8
+  },
+  {
+    "id": 16,
+    "name": "Acrylique",
+    "coeff": 4
+  },
+  {
+    "id": 17,
+    "name": "Viscose",
+    "coeff": 4.2
+  },
+  {
+    "id": 18,
+    "name": "Élasthanne",
+    "coeff": 4.4
+  },
+  {
+    "id": 19,
+    "name": "Tulle",
+    "coeff": 4.6
+  },
+  {
+    "id": 20,
+    "name": "Dentelle",
+    "coeff": 4.8
+  }
+]

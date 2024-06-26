@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "En attente"
+  },{
+    "id": 2,
+    "name": "En cours"
+  },{
+    "id": 3,
+    "name": "Terminé"
+  }
+]

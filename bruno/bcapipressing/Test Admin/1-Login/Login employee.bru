@@ -1,0 +1,18 @@
+meta {
+  name: Login employee
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://127.0.0.1:8000/api/login_check
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "john.smith@gmail.com",
+    "password": "John"
+  }
+}

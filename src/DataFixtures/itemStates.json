@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "state": "normale",
+    "coeff": 1.0
+  },
+  {
+    "id": 2,
+    "state": "légerement sale",
+    "coeff": 2.0
+  },
+  {
+    "id": 3,
+    "state": "moyenne sale ",
+    "coeff": 3.0
+  },
+  {
+    "id": 4,
+    "state": "Trés sale",
+    "coeff": 4.0
+  }
+]

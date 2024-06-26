@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "name": "Nettoyage à sec",
+    "price": 15.99,
+    "image": "nettoyage_sec.jpg",
+    "description": "<p>Nettoyage à sec pour vêtements délicats.</p>"
+  },
+  {
+    "id": 2,
+    "name": "Lavage et pliage",
+    "price": 10.5,
+    "image": "lavage_pliage.jpg",
+    "description": "<p>Service de lavage, séchage et pliage.</p>"
+  },
+  {
+    "id": 3,
+    "name": "Repassage",
+    "price": 5,
+    "image": "repassage.jpg",
+    "description": "<p>Repassage professionnel pour vos vêtements.</p>"
+  },
+  {
+    "id": 4,
+    "name": "Restauration de vêtement",
+    "price": 25,
+    "image": "restauration_vetement.jpg",
+    "description": "<p>Restauration et réparation de vêtements endommagés.</p>"
+  },
+  {
+    "id": 5,
+    "name": "Traitement anti-tache",
+    "price": 12,
+    "image": "traitement_anti_tache.jpg",
+    "description": "<p>Élimination des taches difficiles.</p>"
+  },
+  {
+    "id": 6,
+    "name": "Imperméabilisation",
+    "price": 20,
+    "image": "impermeabilisation.jpg",
+    "description": "<p>Services d'imperméabilisation pour vêtements et tissus.</p>"
+  },
+  {
+    "id": 7,
+    "name": "Teinture textile",
+    "price": 30,
+    "image": "teinture_textile.jpg",
+    "description": "<p>Teinture professionnelle pour changer ou restaurer la couleur.</p>"
+  },
+  {
+    "id": 8,
+    "name": "Nettoyage de tapis",
+    "price": 35,
+    "image": "nettoyage_tapis.jpg",
+    "description": "<p>Nettoyage en profondeur de différents types de tapis.</p>"
+  },
+  {
+    "id": 9,
+    "name": "Nettoyage de rideaux",
+    "price": 40,
+    "image": "nettoyage_rideaux.jpg",
+    "description": "<p>Nettoyage et rafraîchissement de rideaux.</p>"
+  },
+  {
+    "id": 10,
+    "name": "Nettoyage de cuir",
+    "price": 50,
+    "image": "nettoyage_cuir.jpg",
+    "description": "<p>Soins spécialisés pour articles en cuir.</p>"
+  },
+  {
+    "id": 11,
+    "name": "Nettoyage de daim",
+    "price": 55,
+    "image": "nettoyage_daim.jpg",
+    "description": "<p>Nettoyage et soin pour articles en daim.</p>"
+  },
+  {
+    "id": 12,
+    "name": "Lustrage de chaussures",
+    "price": 8,
+    "image": "lustrage_chaussures.jpg",
+    "description": "<p>Lustrage professionnel pour chaussures.</p>"
+  },
+  {
+    "id": 13,
+    "name": "Nettoyage de sacs à main",
+    "price": 45,
+    "image": "nettoyage_sacs.jpg",
+    "description": "<p>Nettoyage et restauration de sacs à main.</p>"
+  },
+  {
+    "id": 14,
+    "name": "Nettoyage de vêtements de sport",
+    "price": 18,
+    "image": "nettoyage_sport.jpg",
+    "description": "<p>Nettoyage spécialisé pour équipements sportifs.</p>"
+  },
+  {
+    "id": 15,
+    "name": "Nettoyage de fourrure",
+    "price": 70,
+    "image": "nettoyage_fourrure.jpg",
+    "description": "<p>Nettoyage délicat pour vêtements en fourrure.</p>"
+  },
+  {
+    "id": 16,
+    "name": "Services de blanchisserie pour hôtels",
+    "price": 100,
+    "image": "blanchisserie_hotels.jpg",
+    "description": "<p>Services de blanchisserie complets pour hôtels.</p>"
+  },
+  {
+    "id": 17,
+    "name": "Nettoyage de couettes et oreillers",
+    "price": 25,
+    "image": "nettoyage_couettes.jpg",
+    "description": "<p>Nettoyage de couettes, oreillers et literie.</p>"
+  },
+  {
+    "id": 18,
+    "name": "Nettoyage de robes de mariée",
+    "price": 150,
+    "image": "nettoyage_robes_mariée.jpg",
+    "description": "<p>Nettoyage et conservation de robes de mariée.</p>"
+  },
+  {
+    "id": 19,
+    "name": "Repassage de draps et nappes",
+    "price": 10,
+    "image": "repassage_draps.jpg",
+    "description": "<p>Repassage de draps, nappes et grandes pièces de linge.</p>"
+  },
+  {
+    "id": 20,
+    "name": "Désinfection et stérilisation",
+    "price": 20,
+    "image": "desinfection_sterilisation.jpg",
+    "description": "<p>Services de désinfection et stérilisation pour vêtements et textiles.</p>"
+  }
+]

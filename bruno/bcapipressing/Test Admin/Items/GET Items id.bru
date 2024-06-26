@@ -1,0 +1,15 @@
+meta {
+  name: GET Items id
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://127.0.0.1:8000/api/Items/1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
