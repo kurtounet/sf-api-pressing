@@ -32,16 +32,6 @@ class Service
   private ?string $image = null;
 
 
-  /**
-   * @var Collection<int, Material>
-   */
-  #[ORM\ManyToMany(targetEntity: Material::class, mappedBy: 'Service')]
-  private Collection $materials;
-
-  public function __construct()
-  {
-    $this->materials = new ArrayCollection();
-  }
 
   public function getId(): ?int
   {
@@ -96,34 +86,4 @@ class Service
     return $this;
   }
 
-
-
-
-
-  /**
-   * @return Collection<int, Material>
-   */
-  public function getMaterials(): Collection
-  {
-    return $this->materials;
-  }
-
-  public function addMaterial(Material $material): static
-  {
-    if (!$this->materials->contains($material)) {
-      $this->materials->add($material);
-      $material->addService($this);
-    }
-
-    return $this;
-  }
-
-  public function removeMaterial(Material $material): static
-  {
-    if ($this->materials->removeElement($material)) {
-      $material->removeService($this);
-    }
-
-    return $this;
-  }
 }

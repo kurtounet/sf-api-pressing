@@ -33,11 +33,7 @@ class Commande
 
   #[ORM\ManyToOne(inversedBy: 'meansPayment')]
   private ?user $user = null;
-
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  private ?Meansofpayment $meansPayment = null;
-
+ 
 
 
 
@@ -105,18 +101,7 @@ class Commande
 
     return $this;
   }
-
-  public function getMeansPayment(): ?Meansofpayment
-  {
-    return $this->meansPayment;
-  }
-
-  public function setMeansPayment(?Meansofpayment $meansPayment): static
-  {
-    $this->meansPayment = $meansPayment;
-
-    return $this;
-  }
+  
 
 
 

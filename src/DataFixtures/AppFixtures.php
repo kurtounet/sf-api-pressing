@@ -72,7 +72,7 @@ class AppFixtures extends Fixture
             $manager->persist($item);
         }
         echo 'SERVICES STATUS OK' . "\n";
-
+/*
         //ITEMS STATES
         $content = file_get_contents(self::PATH . 'itemStates.json');
         // echo $content . "\n";
@@ -108,7 +108,7 @@ class AppFixtures extends Fixture
             $manager->persist($item);
         }
         echo 'FIXTURES MEANS OF PAYMENT ok' . "\n";
-
+*/
         //USERS
         $file_content = file_get_contents(self::PATH . 'users.json');
         $users = json_decode($file_content, true);
@@ -207,8 +207,8 @@ class AppFixtures extends Fixture
                 ->setUser($clients[rand(0, count($clients) - 1)])
                 ->setFilingDate(new \DateTime($item['filingDate']))
                 ->setReturnDate(new \DateTime($item['returnDate']))
-                ->setPaymentDate(new \DateTime($item['paymentDate']))
-                ->setMeansPayment($allMeansOfPayment[rand(0, count($allMeansOfPayment) - 1)]);
+                ->setPaymentDate(new \DateTime($item['paymentDate']));
+                //->setMeansPayment($allMeansOfPayment[rand(0, count($allMeansOfPayment) - 1)]);
             // ->setCreatedAt($faker->dateTimeBetween('-2 years'))
             // ->setUpdatedAt(new \DateTime('now'));
             $manager->persist($commande);
@@ -240,10 +240,10 @@ class AppFixtures extends Fixture
             $newItem = new Item();
             $newItem->setArticle($allArticles[rand(0, count($allArticles) - 1)]);
             $newItem->setService($allServices[rand(0, count($allServices) - 1)]);
-            $newItem->setMaterial($allMaterials[rand(0, count($allMaterials) - 1)]);
+           // $newItem->setMaterial($allMaterials[rand(0, count($allMaterials) - 1)]);
             $newItem->setCommande($allCommandes[rand(0, count($allCommandes) - 1)]);
             $newItem->setUser($clients[rand(0, count($clients) - 1)]);
-            $newItem->setItemEtat($allItemEtats[rand(0, count($allItemEtats) - 1)]);
+          //  $newItem->setItemEtat($allItemEtats[rand(0, count($allItemEtats) - 1)]);
             $newItem->setServiceStatus($allServiceStatus[rand(0, count($allServiceStatus) - 1)]);
             $newItem->setDetailItem(" Rien a signalé");
             $newItem->setPrice(rand(0, 15) . '.' . rand(0, 99));

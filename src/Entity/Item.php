@@ -25,17 +25,12 @@ class Item
   #[ORM\JoinColumn(nullable: false)]
   private ?service $service = null;
 
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  private ?material $material = null;
+ 
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
   private ?user $user = null;
 
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  private ?itemEtat $itemEtat = null;
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
@@ -81,18 +76,7 @@ class Item
 
     return $this;
   }
-
-  public function getMaterial(): ?material
-  {
-    return $this->material;
-  }
-
-  public function setMaterial(?material $material): static
-  {
-    $this->material = $material;
-
-    return $this;
-  }
+ 
 
   public function getUser(): ?user
   {
@@ -105,18 +89,7 @@ class Item
 
     return $this;
   }
-
-  public function getItemEtat(): ?itemEtat
-  {
-    return $this->itemEtat;
-  }
-
-  public function setItemEtat(?itemEtat $itemEtat): static
-  {
-    $this->itemEtat = $itemEtat;
-
-    return $this;
-  }
+ 
 
   public function getCommande(): ?Commande
   {
