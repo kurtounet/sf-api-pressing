@@ -33,17 +33,19 @@ liste 3 services
 > routes: /api/user/{id}  
   
 ### Page liste commande
+> controller
 > route personnalisé : /api/commande/user/{id}
+
 ### Page dépôt
 >### Processuse de dépot:
     >- 1 Choix du service 
-    >   - route:GET /api/service
+    >   - route:GET /api/services
     >- 2 Choix des article ManyToMany entre SERVICE et ARTICLE
-    >   - routes:GET /api/article 
+    >   - routes:GET /api/articles 
     >- 3 Choix du quantité 
-    >   - route: /api/service
+    >   - route: /api/services
     >- 4 Valider le dépot
-    >   - route:POST /api/item
+    >   - route:POST /api/items
 
 ### Page panier
 
