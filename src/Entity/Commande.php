@@ -58,7 +58,7 @@ class Commande
 
   #[ORM\ManyToOne(inversedBy: 'meansPayment')]
   #[Groups(['commande:read', 'commande:write', 'user:read'])]
-  private ?user $user = null;
+  private ?User $user = null;
 
 
 

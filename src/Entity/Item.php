@@ -7,7 +7,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
- 
+
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping\Entity;
 use App\Repository\ItemRepository;
@@ -44,18 +44,18 @@ class Item
   #[ORM\JoinColumn(nullable: false)]
   #[Groups(
     ['item:read', 'item:write', 'article:read:item'])]
-  private ?article $article = null;
+  private ?Article $article = null;
 
   #[ORM\ManyToOne]
   #[Groups(['item:read', 'item:write'])]
   #[ORM\JoinColumn(nullable: false)]
-  private ?service $service = null;
+  private ?Service $service = null;
 
   #[ORM\ManyToOne]
 
   #[ORM\JoinColumn(nullable: false)]
   #[Groups(['item:read', 'item:write'])]
-  private ?user $user = null;
+  private ?User $user = null;
 
 
   #[ORM\ManyToOne]
@@ -83,24 +83,24 @@ class Item
     return $this->id;
   }
 
-  public function getArticle(): ?article
+  public function getArticle(): ?Article
   {
     return $this->article;
   }
 
-  public function setArticle(?article $article): static
+  public function setArticle(?Article $article): static
   {
     $this->article = $article;
 
     return $this;
   }
 
-  public function getService(): ?service
+  public function getService(): ?Service
   {
     return $this->service;
   }
 
-  public function setService(?service $service): static
+  public function setService(?Service $service): static
   {
     $this->service = $service;
 
@@ -108,12 +108,12 @@ class Item
   }
 
 
-  public function getUser(): ?user
+  public function getUser(): ?User
   {
     return $this->user;
   }
 
-  public function setUser(?user $user): static
+  public function setUser(?User $user): static
   {
     $this->user = $user;
 
