@@ -16,8 +16,8 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ApiResource(
 
-  normalizationContext: ['groups' => ['articles:read', 'categories:read']],
-  denormalizationContext: ['groups' => ['article:write', 'categories:read']],
+  normalizationContext: ['groups' => ['articles:read', 'categories:read', 'articles:read:item']],
+  denormalizationContext: ['groups' => ['articles:write', 'categories:read', 'articles:read:item']],
 
   operations: [
     new Get(),
@@ -37,10 +37,11 @@ class Article
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
+  #[Groups(['articles:read', 'articles:read:item'])]
   private ?int $id = null;
 
 
-  #[Groups(['articles:read', 'articles:write', 'categories:read'])]
+  #[Groups(['articles:read', 'articles:write', 'categories:read', 'articles:read:item'])]
   #[ORM\Column(length: 50)]
   private ?string $name = null;
   /*
@@ -48,7 +49,7 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
   */
-  #[Groups(['articles:read', 'articles:write', 'categories:read'])]
+  #[Groups(['articles:read', 'articles:write'])]
   #[ORM\Column(length: 255, nullable: true)]
   private ?string $urlimage = null;
 

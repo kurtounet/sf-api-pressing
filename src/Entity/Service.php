@@ -9,9 +9,13 @@ use Doctrine\ORM\Mapping\Entity;
 use App\Repository\ServiceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['service:read']],
+  denormalizationContext: ['groups' => ['service:write']]
+)]
 class Service
 {
   #[ORM\Id]
@@ -20,15 +24,19 @@ class Service
   private ?int $id = null;
 
   #[ORM\Column(length: 100)]
+  #[Groups(['service:read', 'service:write'])]
   private ?string $name = null;
 
   #[ORM\Column]
+  #[Groups(['service:read', 'service:write'])]
   private ?float $price = null;
 
   #[ORM\Column(type: Types::TEXT, nullable: true)]
+  #[Groups(['service:read', 'service:write'])]
   private ?string $description = null;
 
   #[ORM\Column(length: 255, nullable: true)]
+  #[Groups(['service:read', 'service:write'])]
   private ?string $image = null;
 
 

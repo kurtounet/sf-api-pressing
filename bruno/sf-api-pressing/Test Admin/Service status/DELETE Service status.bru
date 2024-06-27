@@ -1,11 +1,11 @@
 meta {
-  name: POST services
+  name: DELETE Service status
   type: http
-  seq: 3
+  seq: 6
 }
 
 post {
-  url: https://127.0.0.1:8000/api/services
+  url: https://127.0.0.1:8000/api/service_statuses
   body: json
   auth: bearer
 }
@@ -19,12 +19,11 @@ auth:bearer {
 }
 
 body:json {
-  {
-    
-    "name": "Nettoyage à sec 2",
-    "price": 20.99,
-    "description": "<p>Nettoyage à sec 2 pour vêtements délicats.</p>",
-    "image": "nettoyage_sec.jpg"
+  
+  {  
+   
+    "name": "En attente de traiment" 
+  
   }
 }
 

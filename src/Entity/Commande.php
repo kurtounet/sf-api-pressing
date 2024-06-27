@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping\Entity;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 #[ApiResource(
@@ -17,23 +18,29 @@ class Commande
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
+  #[Groups(['commande:read'])]
   private ?int $id = null;
 
   #[ORM\Column(length: 10)]
+  #[Groups(['commande:read', 'commande:write'])]
   private ?string $ref = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
+  #[Groups(['commande:read', 'commande:write'])]
   private ?\DateTimeInterface $filingDate = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
+  #[Groups(['commande:read', 'commande:write'])]
   private ?\DateTimeInterface $returnDate = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
+  #[Groups(['commande:read', 'commande:write'])]
   private ?\DateTimeInterface $paymentDate = null;
 
   #[ORM\ManyToOne(inversedBy: 'meansPayment')]
+  #[Groups(['commande:read', 'commande:write'])]
   private ?user $user = null;
- 
+
 
 
 
@@ -101,7 +108,7 @@ class Commande
 
     return $this;
   }
-  
+
 
 
 

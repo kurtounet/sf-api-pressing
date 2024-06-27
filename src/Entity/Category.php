@@ -52,17 +52,19 @@ class Category
   /**
    * @var Collection<int, Article>
    */
-
+  #[Groups(['category:read'])]
   #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
   private Collection $articles;
 
   #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]
+  #[Groups(['category:read'])]
   private ?self $parent = null;
 
   /**
    * @var Collection<int, self>
    */
   #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
+  #[Groups(['category:read'])]
   private Collection $subcategories;
 
   public function __construct()

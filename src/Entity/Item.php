@@ -7,45 +7,58 @@ use Doctrine\ORM\Mapping\Entity;
 use App\Repository\ItemRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['item:read']],
+  denormalizationContext: ['groups' => ['item:write']]
+)]
 class Item
 {
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
+  #[Groups(['item:read'])]
   private ?int $id = null;
+
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(
+    ['item:read', 'item:write', 'article:read:item'])]
   private ?article $article = null;
 
   #[ORM\ManyToOne]
+  #[Groups(['item:read', 'item:write'])]
   #[ORM\JoinColumn(nullable: false)]
   private ?service $service = null;
 
- 
-
   #[ORM\ManyToOne]
+
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(['item:read', 'item:write'])]
   private ?user $user = null;
 
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(['item:read', 'item:write'])]
   private ?Commande $commande = null;
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(['item:read', 'item:write'])]
   private ?ServiceStatus $serviceStatus = null;
 
   #[ORM\Column(type: Types::TEXT, nullable: true)]
+  #[Groups(['item:read', 'item:write'])]
   private ?string $detailItem = null;
 
 
 
   #[ORM\Column]
+  #[Groups(['item:read', 'item:write'])]
   private ?float $price = null;
 
   public function getId(): ?int
@@ -76,7 +89,7 @@ class Item
 
     return $this;
   }
- 
+
 
   public function getUser(): ?user
   {
@@ -89,7 +102,7 @@ class Item
 
     return $this;
   }
- 
+
 
   public function getCommande(): ?Commande
   {

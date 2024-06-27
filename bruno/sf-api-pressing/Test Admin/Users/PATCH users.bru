@@ -5,7 +5,7 @@ meta {
 }
 
 patch {
-  url: https://127.0.0.1:8000/api/users/1
+  url: https://127.0.0.1:8000/api/users/11
   body: json
   auth: bearer
 }
@@ -20,11 +20,22 @@ auth:bearer {
 
 body:json {
   {
-    "@context": "/api/contexts/Article",
-    "@id": "/api/articles/17",
-    "@type": "Article",
-    "name": "chemise rose56",
-    "urlimage": "https://via.placeholder.com/500x500",
-    "category": "/api/categories/16"
-  }
+        
+        "email": "admin3@gmail.com",
+        "roles": [
+          "ROLE_ADMIN"
+        ],
+        "firstname": "Jean2",
+        "lastname": "Dupont2",
+        "password": "Dupont",
+        "mobilephone": "0612345678",
+        "phone": "0156789012",
+        "dateborn": "1985-10-15T00:00:00+00:00",
+        "numadrs": 123,
+        "adrs": "Rue de l'Exemple",
+        "city": "Limoges",
+        "zipcode": "87000",
+        "country": "France",
+        "meansPayment": []
+      }
 }
