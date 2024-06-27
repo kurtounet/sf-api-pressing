@@ -55,10 +55,11 @@ class Commande
   #[ORM\Column(type: Types::DATE_MUTABLE)]
   #[Groups(['commande:read', 'commande:write'])]
   private ?\DateTimeInterface $paymentDate = null;
-
-  #[ORM\ManyToOne(inversedBy: 'meansPayment')]
-  #[Groups(['commande:read', 'commande:write', 'user:read'])]
-  private ?User $user = null;
+  /*
+    #[ORM\ManyToOne(inversedBy: 'meansPayment')]
+    #[Groups(['commande:read', 'commande:write', 'user:read'])]
+    private ?User $user = null;
+  */
 
 
 

@@ -54,7 +54,7 @@ class Category
    */
 
   #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
-  //#[Groups(['categories:list', 'category:write'])]
+  #[Groups(['categories:list'])]
   private Collection $articles;
 
   #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]

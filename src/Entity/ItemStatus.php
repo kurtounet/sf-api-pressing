@@ -29,7 +29,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
     ]
 
 )]
-class ServiceStatus
+class ItemStatus
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

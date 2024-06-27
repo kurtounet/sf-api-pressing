@@ -52,7 +52,6 @@ class Item
   private ?Service $service = null;
 
   #[ORM\ManyToOne]
-
   #[ORM\JoinColumn(nullable: false)]
   #[Groups(['item:read', 'item:write'])]
   private ?User $user = null;
@@ -66,7 +65,7 @@ class Item
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
   #[Groups(['item:read', 'item:write'])]
-  private ?ServiceStatus $serviceStatus = null;
+  private ?ItemStatus $ItemStatus = null;
 
   #[ORM\Column(type: Types::TEXT, nullable: true)]
   #[Groups(['item:read', 'item:write'])]
@@ -77,6 +76,9 @@ class Item
   #[ORM\Column]
   #[Groups(['item:read', 'item:write'])]
   private ?float $price = null;
+
+  #[ORM\Column(type: Types::SMALLINT)]
+  private ?int $Quantity = null;
 
   public function getId(): ?int
   {
@@ -133,14 +135,14 @@ class Item
     return $this;
   }
 
-  public function getServiceStatus(): ?ServiceStatus
+  public function getItemStatus(): ?ItemStatus
   {
-    return $this->serviceStatus;
+    return $this->ItemStatus;
   }
 
-  public function setServiceStatus(?ServiceStatus $serviceStatus): static
+  public function setItemStatus(?ItemStatus $ItemStatus): static
   {
-    $this->serviceStatus = $serviceStatus;
+    $this->ItemStatus = $ItemStatus;
 
     return $this;
   }
@@ -169,6 +171,18 @@ class Item
   public function setPrice(float $price): static
   {
     $this->price = $price;
+
+    return $this;
+  }
+
+  public function getQuantity(): ?int
+  {
+    return $this->Quantity;
+  }
+
+  public function setQuantity(int $Quantity): static
+  {
+    $this->Quantity = $Quantity;
 
     return $this;
   }
