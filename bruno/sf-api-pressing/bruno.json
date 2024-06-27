@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "name": "bcapipressing",
+  "name": "sf-api-pressing",
   "type": "collection",
   "ignore": [
     "node_modules",
