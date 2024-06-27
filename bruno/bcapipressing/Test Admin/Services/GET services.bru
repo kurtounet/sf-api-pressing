@@ -1,11 +1,11 @@
 meta {
-  name: DELETE users
+  name: GET services
   type: http
-  seq: 6
+  seq: 1
 }
 
-delete {
-  url: https://127.0.0.1:8000/api/users/1
+get {
+  url: https://127.0.0.1:8000/api/services
   body: none
   auth: bearer
 }

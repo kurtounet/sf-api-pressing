@@ -1,11 +1,11 @@
 meta {
-  name: POST users
+  name: POST Service status
   type: http
-  seq: 3
+  seq: 2
 }
 
 post {
-  url: https://127.0.0.1:8000/api/users
+  url: https://127.0.0.1:8000/api/articles
   body: json
   auth: bearer
 }
@@ -19,10 +19,12 @@ auth:bearer {
 }
 
 body:json {
+  
   {  
     "name": "chemise rose",
     "urlimage": "https://via.placeholder.com/500x500",
     "category": "/api/categories/1"  
+  
   }
 }
 
