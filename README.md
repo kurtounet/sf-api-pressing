@@ -2,7 +2,7 @@
 
 
 
-created et update entity
+created et update entity trait voir gpt
 
 
 php bin/console lexik:jwt:generate-keypair --overwrite
