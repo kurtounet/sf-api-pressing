@@ -1,12 +1,16 @@
 # PROJET DU BUSINESS CASE POUR L'EXAMEN DE FORMATION DEVELOPPEUR WEB/WEB MOBILE
 
-## À FAIRE
 
-API
-    Toute pour récupérer les commande sans employer
+
+created et update entity
+
 
 php bin/console lexik:jwt:generate-keypair --overwrite
 
+## À FAIRE
+API
+- Toute pour récupérer les commande sans employer
+- created et update entity
 - Faire les groupes de sérialisation dans les entity
 - Faire les fixtures
 - choix du service -> article -> quantité
