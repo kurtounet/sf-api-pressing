@@ -57,7 +57,7 @@ class Commande
   private ?\DateTimeInterface $paymentDate = null;
 
   #[ORM\ManyToOne(inversedBy: 'meansPayment')]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write', 'user:read'])]
   private ?user $user = null;
 
 
