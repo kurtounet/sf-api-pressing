@@ -2,6 +2,12 @@
 
 namespace App\Entity;
 
+
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -16,7 +22,18 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[ApiResource(
   normalizationContext: ['groups' => ['user:read']],
-  denormalizationContext: ['groups' => ['user:write']]
+  denormalizationContext: ['groups' => ['user:write']],
+  operations: [
+    new Get(),
+    new GetCollection(),
+    new Post(),
+    new Patch(),
+    new Delete()
+    // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    // new Patch(security: "is_granted('ROLE_ADMIN')"),
+    // new Delete(security: "is_granted('ROLE_ADMIN')")
+  ]
+
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {

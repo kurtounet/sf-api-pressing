@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource(
-  normalizationContext: ['groups' => ['category:read']],
+  normalizationContext: ['groups' => ['categories:list']],
   denormalizationContext: ['groups' => ['category:write']],
 
   operations: [
@@ -37,34 +37,33 @@ class Category
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  #[Groups(['category:read'])]
+  #[Groups(['categories:list', 'articles:list:read', 'articles:item:read'])]
   private ?int $id = null;
 
   #[ORM\Column(length: 50)]
-  #[Groups(['category:read', 'category:write'])]
+  #[Groups(['categories:list', 'category:write', 'articles:list:read', 'articles:item:read'])]
   private ?string $name = null;
   /*
-    //#[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children', fetch: 'relation']
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children', fetch: 'relation'])
     private ?category $parent = null;
   */
 
   /**
    * @var Collection<int, Article>
    */
-  #[Groups(['category:read'])]
+
   #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
+  //#[Groups(['categories:list', 'category:write'])]
   private Collection $articles;
 
   #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]
-  #[Groups(['category:read'])]
   private ?self $parent = null;
 
   /**
    * @var Collection<int, self>
    */
   #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
-  #[Groups(['category:read'])]
   private Collection $subcategories;
 
   public function __construct()

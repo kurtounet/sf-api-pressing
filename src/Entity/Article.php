@@ -8,7 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
+
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -16,15 +16,14 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[ApiResource(
 
-  normalizationContext: ['groups' => ['articles:read', 'categories:read', 'articles:read:item']],
-  denormalizationContext: ['groups' => ['articles:write', 'categories:read', 'articles:read:item']],
+  normalizationContext: ['groups' => ['articles:list:read', 'articles:item:read', 'articles:item:write']],
+  denormalizationContext: ['groups' => ['articles:list::write', 'articles:item:read']],
 
   operations: [
     new Get(),
     new GetCollection(),
     new Post(),
     new Patch(),
-    new Put(),
     new Delete()
     // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
     // new Patch(security: "is_granted('ROLE_ADMIN')"),
@@ -37,11 +36,11 @@ class Article
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  #[Groups(['articles:read', 'articles:read:item'])]
+  #[Groups(['articles:list:read', 'articles:item:read'])]
   private ?int $id = null;
 
 
-  #[Groups(['articles:read', 'articles:write', 'categories:read', 'articles:read:item'])]
+  #[Groups(['articles:list:read', 'articles:item:read', 'articles:item:write'])]
   #[ORM\Column(length: 50)]
   private ?string $name = null;
   /*
@@ -49,7 +48,7 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
   */
-  #[Groups(['articles:read', 'articles:write'])]
+  #[Groups(['articles:list:read', 'articles:item:read'])]
   #[ORM\Column(length: 255, nullable: true)]
   private ?string $urlimage = null;
 
@@ -57,7 +56,7 @@ class Article
 
   #[ORM\ManyToOne(inversedBy: 'articles')]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(['articles:read', 'categories:read'])]
+  #[Groups(['articles:list:read', 'category:read'])]
   private ?Category $category = null;
 
 
