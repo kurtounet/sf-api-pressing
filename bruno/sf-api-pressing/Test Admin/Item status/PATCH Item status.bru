@@ -1,17 +1,17 @@
 meta {
-  name: PATCH Service status
+  name: PATCH Item status
   type: http
   seq: 5
 }
 
 patch {
-  url: https://127.0.0.1:8000/api/service_statuses/9
+  url: https://127.0.0.1:8000/api/item_statuses/82
   body: json
   auth: bearer
 }
 
 headers {
-  Content-Type: application/ld+json
+  Content-Type: application/merge-patch+json
 }
 
 auth:bearer {
@@ -19,12 +19,10 @@ auth:bearer {
 }
 
 body:json {
-  
-  {  
-   
-    "name": "En attente de traiment" 
-  
+  { 
+    "name": "En cours de préparations avant livraison" 
   }
+  
 }
 
 body:text {

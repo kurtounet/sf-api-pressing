@@ -70,16 +70,16 @@ class Item
   #[Groups(['item:read', 'item:write'])]
   private ?string $detailItem = null;
 
-
-
   #[ORM\Column]
   #[Groups(['item:read', 'item:write'])]
   private ?float $price = null;
 
   #[ORM\Column(type: Types::SMALLINT)]
+  #[Groups(['item:read'])]
   private ?int $Quantity = null;
 
   #[ORM\ManyToOne(inversedBy: 'items')]
+  #[Groups(['item:read'])]
   private ?Employee $employee = null;
 
   public function getId(): ?int

@@ -1,0 +1,22 @@
+meta {
+  name: GET Item status
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://127.0.0.1:8000/api/item_statuses
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+   
+      {
+        "name": "En attente 2"
+      }
+}

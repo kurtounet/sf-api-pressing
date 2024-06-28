@@ -13,6 +13,7 @@ use App\Repository\EmployeeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 /*
 #[ApiResource(
@@ -30,6 +31,17 @@ use Doctrine\ORM\Mapping as ORM;
     ]
 
 )]*/
+#[ApiResource(
+    normalizationContext: ['groups' => ['employee:read']],
+    denormalizationContext: ['groups' => ['employee:write']],
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new Post(),
+        new Patch(),
+        new Delete()
+    ]
+)]
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 class Employee extends User
 {
@@ -37,14 +49,17 @@ class Employee extends User
         #[ORM\Id]
         #[ORM\GeneratedValue]
         #[ORM\Column]
+        
         private ?int $id = null;
-    */
+        */
+    #[Groups(['employee:read', 'employee:write', 'user:read', 'user:write'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $empNumber = null;
 
     /**
      * @var Collection<int, Item>
      */
+    #[Groups(['employee:read', 'employee:write', 'user:read', 'user:write'])]
     #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'employee')]
     private Collection $items;
 
