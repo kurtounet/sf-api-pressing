@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\EmployeeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ApiResource]
+#[ApiResource()]
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 class Employee extends User
 {
@@ -17,6 +20,18 @@ class Employee extends User
     */
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $empNumber = null;
+
+    /**
+     * @var Collection<int, Item>
+     */
+    #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'employee')]
+    private Collection $items;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->items = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -31,6 +46,36 @@ class Employee extends User
     public function setEmpNumber(?string $empNumber): static
     {
         $this->empNumber = $empNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Item>
+     */
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function addItem(Item $item): static
+    {
+        if (!$this->items->contains($item)) {
+            $this->items->add($item);
+            $item->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): static
+    {
+        if ($this->items->removeElement($item)) {
+            // set the owning side to null (unless already changed)
+            if ($item->getEmployee() === $this) {
+                $item->setEmployee(null);
+            }
+        }
 
         return $this;
     }

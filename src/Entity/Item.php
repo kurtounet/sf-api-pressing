@@ -80,6 +80,9 @@ class Item
   #[ORM\Column(type: Types::SMALLINT)]
   private ?int $Quantity = null;
 
+  #[ORM\ManyToOne(inversedBy: 'items')]
+  private ?Employee $employee = null;
+
   public function getId(): ?int
   {
     return $this->id;
@@ -185,5 +188,17 @@ class Item
     $this->Quantity = $Quantity;
 
     return $this;
+  }
+
+  public function getEmployee(): ?Employee
+  {
+      return $this->employee;
+  }
+
+  public function setEmployee(?Employee $employee): static
+  {
+      $this->employee = $employee;
+
+      return $this;
   }
 }
