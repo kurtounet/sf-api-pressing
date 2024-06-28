@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -54,6 +54,17 @@ class Service
   #[ORM\Column(length: 255, nullable: true)]
   #[Groups(['service:read', 'service:write'])]
   private ?string $image = null;
+
+  /**
+   * @var Collection<int, Category>
+   */
+  #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'services')]
+  private Collection $Category;
+
+  public function __construct()
+  {
+    $this->Category = new ArrayCollection();
+  }
 
 
 
@@ -106,6 +117,30 @@ class Service
   public function setImage(?string $image): static
   {
     $this->image = $image;
+
+    return $this;
+  }
+
+  /**
+   * @return Collection<int, Category>
+   */
+  public function getCategory(): Collection
+  {
+    return $this->Category;
+  }
+
+  public function addCategory(Category $category): static
+  {
+    if (!$this->Category->contains($category)) {
+      $this->Category->add($category);
+    }
+
+    return $this;
+  }
+
+  public function removeCategory(Category $category): static
+  {
+    $this->Category->removeElement($category);
 
     return $this;
   }

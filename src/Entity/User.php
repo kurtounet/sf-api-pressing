@@ -3,11 +3,11 @@
 namespace App\Entity;
 
 
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -322,25 +322,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
 
-
-  /**
-   * @return Collection<int, Commande>
-   */
-  public function getMeansPayment(): Collection
-  {
-    return $this->meansPayment;
-  }
-
-  public function addMeansPayment(Commande $meansPayment): static
-  {
-    if (!$this->meansPayment->contains($meansPayment)) {
-      $this->meansPayment->add($meansPayment);
-      $meansPayment->setUser($this);
+  /*
+    /**
+     * @return Collection<int, Commande>
+      
+    public function getMeansPayment(): Collection
+    {
+      return $this->meansPayment;
     }
+   
+    public function addMeansPayment(Commande $meansPayment): static
+    {
+      if (!$this->meansPayment->contains($meansPayment)) {
+        $this->meansPayment->add($meansPayment);
+        $meansPayment->setUser($this);
+      }
 
-    return $this;
-  }
-
+      return $this;
+    }
+ 
   public function removeMeansPayment(Commande $meansPayment): static
   {
     if ($this->meansPayment->removeElement($meansPayment)) {
@@ -352,4 +352,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     return $this;
   }
+    */
 }

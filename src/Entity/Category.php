@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource(
-  normalizationContext: ['groups' => ['categories:list']],
+  normalizationContext: ['groups' => ['category:list']],
   denormalizationContext: ['groups' => ['category:write']],
 
   operations: [
@@ -48,14 +48,15 @@ class Category
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children', fetch: 'relation'])
     private ?category $parent = null;
   */
+  /*
+    /**
+     * @var Collection<int, Article>
+      
 
-  /**
-   * @var Collection<int, Article>
+    #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
+    #[Groups(['categories:list'])]
+    private Collection $articles;
    */
-
-  #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
-  #[Groups(['categories:list'])]
-  private Collection $articles;
 
   #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]
   private ?self $parent = null;
@@ -66,10 +67,17 @@ class Category
   #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
   private Collection $subcategories;
 
+  /**
+   * @var Collection<int, Service>
+   */
+  #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'Category')]
+  private Collection $services;
+
   public function __construct()
   {
     $this->articles = new ArrayCollection();
     $this->subcategories = new ArrayCollection();
+    $this->services = new ArrayCollection();
   }
 
 
@@ -91,37 +99,37 @@ class Category
   }
 
 
-
-  /**
-   * @return Collection<int, Article>
-   */
-  public function getArticles(): Collection
-  {
-    return $this->articles;
-  }
-
-  public function addArticle(Article $article): static
-  {
-    if (!$this->articles->contains($article)) {
-      $this->articles->add($article);
-      $article->setCategory($this);
+  /*
+    /**
+     * @return Collection<int, Article>
+     
+    public function getArticles(): Collection
+    {
+      return $this->articles;
     }
 
-    return $this;
-  }
-
-  public function removeArticle(Article $article): static
-  {
-    if ($this->articles->removeElement($article)) {
-      // set the owning side to null (unless already changed)
-      if ($article->getCategory() === $this) {
-        $article->setCategory(null);
+    public function addArticle(Article $article): static
+    {
+      if (!$this->articles->contains($article)) {
+        $this->articles->add($article);
+        $article->setCategory($this);
       }
+
+      return $this;
     }
 
-    return $this;
-  }
+    public function removeArticle(Article $article): static
+    {
+      if ($this->articles->removeElement($article)) {
+        // set the owning side to null (unless already changed)
+        if ($article->getCategory() === $this) {
+          $article->setCategory(null);
+        }
+      }
 
+      return $this;
+    }
+  */
   public function getParent(): ?self
   {
     return $this->parent;
@@ -159,6 +167,33 @@ class Category
       if ($subcategory->getParent() === $this) {
         $subcategory->setParent(null);
       }
+    }
+
+    return $this;
+  }
+
+  /**
+   * @return Collection<int, Service>
+   */
+  public function getServices(): Collection
+  {
+    return $this->services;
+  }
+
+  public function addService(Service $service): static
+  {
+    if (!$this->services->contains($service)) {
+      $this->services->add($service);
+      $service->addCategory($this);
+    }
+
+    return $this;
+  }
+
+  public function removeService(Service $service): static
+  {
+    if ($this->services->removeElement($service)) {
+      $service->removeCategory($this);
     }
 
     return $this;

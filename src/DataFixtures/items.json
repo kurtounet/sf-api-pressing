@@ -9,6 +9,7 @@
     "itemEtat": 1,
     "serviceStatus": 1,
     "detailItem": "Détail spécifique de l'article.",
+    "quantity": 5,
     "price": 15.99
   },
   {
@@ -21,6 +22,7 @@
     "itemEtat": 1,
     "serviceStatus": 1,
     "detailItem": "Détail spécifique de l'article.",
+    "quantity": 5,
     "price": 15.99
   },
   {
@@ -33,6 +35,7 @@
     "itemEtat": 1,
     "serviceStatus": 1,
     "detailItem": "Détail spécifique de l'article.",
+    "quantity": 5,
     "price": 15.99
   }
 ]

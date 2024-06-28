@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
-
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\ApiResource;
-use Doctrine\ORM\Mapping\Entity;
+
 use App\Repository\ItemRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,13 +38,13 @@ class Item
   #[Groups(['item:read'])]
   private ?int $id = null;
 
-
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  #[Groups(
-    ['item:read', 'item:write', 'article:read:item'])]
-  private ?Article $article = null;
-
+  /*
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(
+      ['item:read', 'item:write', 'article:read:item'])]
+    private ?Article $article = null;
+  */
   #[ORM\ManyToOne]
   #[Groups(['item:read', 'item:write'])]
   #[ORM\JoinColumn(nullable: false)]
@@ -87,19 +86,19 @@ class Item
   {
     return $this->id;
   }
+  /*
+    public function getArticle(): ?Article
+    {
+      return $this->article;
+    }
 
-  public function getArticle(): ?Article
-  {
-    return $this->article;
-  }
+    public function setArticle(?Article $article): static
+    {
+      $this->article = $article;
 
-  public function setArticle(?Article $article): static
-  {
-    $this->article = $article;
-
-    return $this;
-  }
-
+      return $this;
+    }
+  */
   public function getService(): ?Service
   {
     return $this->service;

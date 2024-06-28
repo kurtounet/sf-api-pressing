@@ -2,18 +2,17 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\ApiResource;
 
 use App\Repository\CommandeRepository;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
-use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
@@ -119,29 +118,29 @@ class Commande
 
     return $this;
   }
+  /*
+    public function getUser(): ?user
+    {
+      return $this->user;
+    }
 
-  public function getUser(): ?user
-  {
-    return $this->user;
-  }
+    public function setUser(?user $user): static
+    {
+      $this->user = $user;
 
-  public function setUser(?user $user): static
-  {
-    $this->user = $user;
-
-    return $this;
-  }
-
+      return $this;
+    }
+  */
   public function getClient(): ?Client
   {
-      return $this->client;
+    return $this->client;
   }
 
   public function setClient(?Client $client): static
   {
-      $this->client = $client;
+    $this->client = $client;
 
-      return $this;
+    return $this;
   }
 
 

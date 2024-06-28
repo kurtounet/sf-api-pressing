@@ -2,8 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\ItemStatusRepository;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\itemStatusRepository;
 use Doctrine\ORM\Mapping as ORM;
+
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ItemStatusRepository::class)]
 #[ApiResource(
@@ -37,6 +46,7 @@ class ItemStatus
     {
         return $this->id;
     }
+
     public function getName(): ?string
     {
         return $this->name;
@@ -48,4 +58,9 @@ class ItemStatus
 
         return $this;
     }
+
+
+
+
+
 }
