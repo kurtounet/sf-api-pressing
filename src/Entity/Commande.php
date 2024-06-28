@@ -55,6 +55,9 @@ class Commande
   #[ORM\Column(type: Types::DATE_MUTABLE)]
   #[Groups(['commande:read', 'commande:write'])]
   private ?\DateTimeInterface $paymentDate = null;
+
+  #[ORM\ManyToOne(inversedBy: 'commande')]
+  private ?Client $client = null;
   /*
     #[ORM\ManyToOne(inversedBy: 'meansPayment')]
     #[Groups(['commande:read', 'commande:write', 'user:read'])]
@@ -127,6 +130,18 @@ class Commande
     $this->user = $user;
 
     return $this;
+  }
+
+  public function getClient(): ?Client
+  {
+      return $this->client;
+  }
+
+  public function setClient(?Client $client): static
+  {
+      $this->client = $client;
+
+      return $this;
   }
 
 

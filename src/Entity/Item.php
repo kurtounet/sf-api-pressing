@@ -50,12 +50,12 @@ class Item
   #[Groups(['item:read', 'item:write'])]
   #[ORM\JoinColumn(nullable: false)]
   private ?Service $service = null;
-
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  #[Groups(['item:read', 'item:write'])]
-  private ?User $user = null;
-
+  /*
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['item:read', 'item:write'])]
+    private ?User $user = null;
+  */
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
@@ -112,19 +112,19 @@ class Item
     return $this;
   }
 
+  /*
+    public function getUser(): ?User
+    {
+      return $this->user;
+    }
 
-  public function getUser(): ?User
-  {
-    return $this->user;
-  }
+    public function setUser(?User $user): static
+    {
+      $this->user = $user;
 
-  public function setUser(?User $user): static
-  {
-    $this->user = $user;
-
-    return $this;
-  }
-
+      return $this;
+    }
+  */
 
   public function getCommande(): ?Commande
   {
@@ -192,13 +192,13 @@ class Item
 
   public function getEmployee(): ?Employee
   {
-      return $this->employee;
+    return $this->employee;
   }
 
   public function setEmployee(?Employee $employee): static
   {
-      $this->employee = $employee;
+    $this->employee = $employee;
 
-      return $this;
+    return $this;
   }
 }
