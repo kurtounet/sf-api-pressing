@@ -35,6 +35,13 @@ use Symfony\Component\Serializer\Attribute\Groups;
   ]
 
 )]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
+#[ORM\DiscriminatorMap([
+  'user' => User::class,
+  'client' => Client::class,
+  'employee' => Employee::class
+])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
   #[ORM\Id]
