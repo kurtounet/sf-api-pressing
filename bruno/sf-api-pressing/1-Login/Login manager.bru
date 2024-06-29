@@ -1,13 +1,13 @@
 meta {
   name: Login manager
   type: http
-  seq: 3
+  seq: 2
 }
 
 post {
   url: https://127.0.0.1:8000/api/login_check
   body: json
-  auth: none
+  auth: bearer
 }
 
 body:json {
@@ -15,4 +15,12 @@ body:json {
     "username": "jane.doe@gmail.com",
     "password": "Jane"
   }
+}
+
+vars:post-response {
+  jwt_token: res.body.token
+}
+
+script:post-response {
+  bru.setEnvVar("jwt_token_admin",res.body.token);
 }

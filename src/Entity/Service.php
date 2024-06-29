@@ -15,6 +15,7 @@ use App\Repository\ServiceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
 #[ApiResource(
@@ -24,8 +25,8 @@ use Symfony\Component\Serializer\Attribute\Groups;
     new Get(),
     new GetCollection(),
     new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    new Patch(security: "is_granted('ROLE_ADMIN')"),
-    new Delete(security: "is_granted('ROLE_ADMIN')")
+    new Patch(security: "is_granted('ROLE_ADMIN' or is_granted('ROLE_MANAGER'))"),
+    new Delete(security: "is_granted('ROLE_ADMIN' or is_granted('ROLE_MANAGER'))")
   ]
 
 )]
@@ -38,10 +39,14 @@ class Service
 
   #[ORM\Column(length: 100)]
   #[Groups(['service:read', 'service:write'])]
+  #[Assert\NotBlank]
+  #[Assert\Length(max: 100)]
   private ?string $name = null;
 
   #[ORM\Column]
   #[Groups(['service:read', 'service:write'])]
+  #[Assert\NotBlank]
+  #[Assert\Type(type: 'float')]
   private ?float $price = null;
 
   #[ORM\Column(type: Types::TEXT, nullable: true)]

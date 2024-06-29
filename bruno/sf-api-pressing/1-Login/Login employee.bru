@@ -1,18 +1,26 @@
 meta {
   name: Login employee
   type: http
-  seq: 2
+  seq: 3
 }
 
 post {
   url: https://127.0.0.1:8000/api/login_check
   body: json
-  auth: none
+  auth: bearer
 }
 
 body:json {
   {
-    "username": "john.smith@gmail.com",
-    "password": "John"
+    "username": "admin@gmail.com",
+    "password": "Jean"
   }
+}
+
+vars:post-response {
+  jwt_token: res.body.token
+}
+
+script:post-response {
+  bru.setEnvVar("jwt_token_admin",res.body.token);
 }

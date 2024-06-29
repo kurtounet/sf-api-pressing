@@ -7,16 +7,20 @@ meta {
 post {
   url: https://127.0.0.1:8000/api/login_check
   body: json
-  auth: none
+  auth: bearer
 }
 
 body:json {
   {
-    "username": "emma.wilson@gmail.com",
-    "password": "Emma"
+    "username": "admin@gmail.com",
+    "password": "Jean"
   }
 }
 
-assert {
-  : 
+vars:post-response {
+  jwt_token: res.body.token
+}
+
+script:post-response {
+  bru.setEnvVar("jwt_token_admin",res.body.token);
 }
