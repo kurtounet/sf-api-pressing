@@ -12,9 +12,10 @@ use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 /*
-#[ApiResource(
+(
     normalizationContext: ['groups' => ['client:read']],
     denormalizationContext: ['groups' => ['client:write']],
     operations: [
@@ -28,7 +29,9 @@ use Doctrine\ORM\Mapping as ORM;
         // new Delete(security: "is_granted('ROLE_ADMIN')")
     ]
 
-)]*/
+)
+*/
+#[ApiResource]
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client extends User
 {
@@ -39,9 +42,11 @@ class Client extends User
     private ?int $id = null;
 */
     #[ORM\Column(length: 255)]
+    #[Groups(['client:read', 'client:write'])]
     private ?string $clientNumber = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['client:read', 'client:write'])]
     private ?bool $Premium = null;
 
     /**

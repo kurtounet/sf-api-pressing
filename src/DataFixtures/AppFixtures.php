@@ -165,7 +165,7 @@ class AppFixtures extends Fixture
             $commande = new Commande();
             $commande
                 ->setRef($item['ref'])
-                ->setUser($allClients[rand(0, count($allClients) - 1)])
+                ->setClient($allClients[rand(0, count($allClients) - 1)])
                 ->setFilingDate(new \DateTime($item['filingDate']))
                 ->setReturnDate(new \DateTime($item['returnDate']))
                 ->setPaymentDate(new \DateTime($item['paymentDate']));

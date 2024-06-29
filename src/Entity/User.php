@@ -19,7 +19,16 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+//#[ORM\Table(name: '`user`')]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
+#[ORM\DiscriminatorMap([
+  'user' => User::class,
+  'client' => Client::class,
+  'employee' => Employee::class
+])]
+
 #[ApiResource(
   normalizationContext: ['groups' => ['user:read']],
   denormalizationContext: ['groups' => ['user:write']],
@@ -35,89 +44,83 @@ use Symfony\Component\Serializer\Attribute\Groups;
   ]
 
 )]
-#[ORM\InheritanceType('JOINED')]
-#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
-#[ORM\DiscriminatorMap([
-  'user' => User::class,
-  'client' => Client::class,
-  'employee' => Employee::class
-])]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  #[Groups(['user:read'])]
-  private ?int $id = null;
+  #[Groups(["user:read", "employee:read", "client:read"])]
+  protected ?int $id = null;
 
   #[ORM\Column(length: 180)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $email = null;
 
   /**
    * @var list<string> The user roles
    */
   #[ORM\Column]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private array $roles = [];
 
   /**
    * @var string The hashed password
    */
   #[ORM\Column]
-  #[Groups(['user:read', 'user:write'])]
+  //#[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $password = null;
 
   #[ORM\Column(length: 100)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $firstname = null;
 
   #[ORM\Column(length: 100)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $lastname = null;
 
   #[ORM\Column(length: 13, nullable: true)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $mobilephone = null;
 
 
   #[ORM\Column(length: 13, nullable: true)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $phone = null;
 
 
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
   private ?\DateTimeInterface $dateborn = null;
 
   #[ORM\Column(type: Types::SMALLINT)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?int $numadrs = null;
 
   #[ORM\Column(length: 255)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $adrs = null;
 
   #[ORM\Column(length: 50)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $city = null;
 
   #[ORM\Column(length: 6)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $zipcode = null;
 
   #[ORM\Column(length: 6)]
-  #[Groups(['user:read', 'user:write'])]
+  #[Groups(["user:read", "employee:read", "client:read"])]
   private ?string $country = null;
+  /*
 
+    /**
+     * @var Collection<int, Commande>
+      
 
-  /**
-   * @var Collection<int, Commande>
-   */
-
-  #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'user')]
-  private Collection $meansPayment;
-
+    #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'user')]
+    private Collection $meansPayment;
+  */
   public function __construct()
   {
     $this->meansPayment = new ArrayCollection();

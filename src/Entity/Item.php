@@ -46,8 +46,8 @@ class Item
     private ?Article $article = null;
   */
   #[ORM\ManyToOne]
-  #[Groups(['item:read', 'item:write'])]
   #[ORM\JoinColumn(nullable: false)]
+  #[Groups(['item:read', 'item:write'])]
   private ?Service $service = null;
   /*
     #[ORM\ManyToOne]
