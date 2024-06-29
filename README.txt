@@ -86,51 +86,45 @@ panier
 ## Pour JWT
 ### Configuration :
 
-> - security.yaml (fait)
-    - firewall (fait)
-    - acces control (à terminer)
-> - route.yaml (fait)
- 
+#### security.yaml
+ fait
+
+#### route.yaml
+fait
 
 ## CREATION DES ENTITEES
 security: is_granteg("ROLE_ADMIN")
->- Article.php (fait v2)
->- Material.php (fait v2)
->- Meansofpayment.php (fait v2)
->- Category.php (fait)
->- Client (fait)
+>- Article.php (fait)
+>- Category.php (fait) (avoir)
 >- Commande.php (fait)
->- Employee (fait)
 >- Item.php (fait)
->- ItemStatus.php (fait)
+>- ItemEtat.php (fait)
+>- Material.php (fait)
+>- Meansofpayment.php (fait)
 >- Service.php (fait)
+>- ServiceStatus.php (fait)
 >- User.php (fait)
 
 ## GROUPS SERIALISATION
->- Category.php 
-    - category:list:read  
-    - category:write  
->- Client.php 
-    - client :read  
-    - client :write  
->- Commande.php 
-    - commande:read  
-    - commande:write  
->- Employee 
-    - employee:read
-    - employee:write
->- Item.php 
-    - item :read  
-    - item :write  
->- ItemStatus.php 
-    itemStatus:read  
-    itemStatus:write  
+>- Article.php 
+#[ApiResource(
+    normalizationContext: ['groups' => ['articles:list']],
+    operations: [
+        new GetCollection()
+    ]
+)]
+#[ApiFilter(BooleanFilter::class, properties: ['visible'])]
+#[ApiFilter(SearchFilter::class, properties: ['title' => 'ipartial'])]
+>- Category.php  
+>- Commande.php  
+>- Item.php  
+>- ItemEtat.php  
+>- Material.php  
+>- Meansofpayment.php  
 >- Service.php  
-    - service :read
-    - service :write
+    mettre en unique
+>- ServiceStatus.php  
 >- User.php  
-    user:read 
-    user:write
 
 ## FIXTURES
 

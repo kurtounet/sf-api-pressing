@@ -18,7 +18,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource(
-  normalizationContext: ['groups' => ['category:list']],
+  normalizationContext: ['groups' => ['category:list:read']],
   denormalizationContext: ['groups' => ['category:write']],
 
   operations: [
@@ -37,11 +37,11 @@ class Category
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read'])]
   private ?int $id = null;
 
   #[ORM\Column(length: 50)]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read', 'category:write'])]
   private ?string $name = null;
   /*
     #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
@@ -59,21 +59,21 @@ class Category
    */
 
   #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read', 'category:write'])]
   private ?self $parent = null;
 
   /**
    * @var Collection<int, self>
    */
   #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read', 'category:write'])]
   private Collection $subcategories;
 
   /**
    * @var Collection<int, Service>
    */
   #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'Category')]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read', 'category:write'])]
   private Collection $services;
 
   public function __construct()

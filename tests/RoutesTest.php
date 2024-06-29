@@ -3,36 +3,122 @@
 namespace App\Tests;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Panther\PantherTestCase;
-use Symfony\Component\Panther\Client;
-
 
 class RoutesTest extends ApiTestCase
 {
-    public function testSomething(): void
+    const METHODS_HTTP = ['POST', 'GET', 'PATCH', 'DELETE'];
+    const CONTENT_TYPE = 'application/ld+json';
+
+    public function testRoutes(): void
     {
         /*
-        // Create a Panther client
-        $client = self::createPantherClient();
+            $category = {
+              "@id": "/api/categories/10",
+              "@type": "Category",
+              "id": 10,
+              "name": "Vêtements",
+              "subcategories": [],
+              "services": [
+                "/api/services/45"
+              ]
+            };*/
+        // Récupérer le token d'authentification
+        $token = $this->getAuthenticationToken();
 
-        // Make a request to your API endpoint
-        $crawler = $client->request('GET', '/api');
+        // Récupérer la liste des routes de l'API
+        $routes = $this->getApiRoutes($token);
 
-        // Assert the response status code is 200 (OK)
-        $this->assertResponseIsSuccessful();
+        // Tester chaque route avec différentes méthodes HTTP
+        foreach ($routes as $route) {
+            foreach (self::METHODS_HTTP as $method) {
+                echo "\n" . $method . ' - ' . $route . "\n";
+                $resp = $this->callRoute($method, $route, $token);
+                var_dump($resp);
+                die();
+                //$this->assertContains('200', $resp->getStatusCode());
+                // $this->callRoute('GET', $route . '/' . $id, $token);
+            }
+            /*
+                        foreach (self::METHODS_HTTP as $method) {
+                            $this->callRoute($method, $route, $token);
+                        }
+                            */
+        }
+    }
 
-        // Optionally, you can assert specific content on the page
-        // For example, if your API returns JSON data, you can decode it and check its content
-        $responseContent = $client->getCrawler()->filter('body')->text();
-        $responseData = json_decode($responseContent, true);
+    private function getAuthenticationToken(): string
+    {
+        $response = static::createClient()->request(
+            'POST',
+            '/api/login_check',
+            [
+                'json' => [
+                    'username' => 'admin@gmail.com',
+                    'password' => 'Jean'
+                ]
+            ]
+        );
 
-        // Assert specific content in the response data
-        $this->assertArrayHasKey('some_key', $responseData);
+        return json_decode($response->getContent(), true)['token'];
+    }
 
-        // Alternatively, assert specific text if your API returns HTML
-        // $this->assertSelectorTextContains('h1', 'Hello World');
-        //$this->assertSelectorTextContains('h1', 'Hello World');
-        */
+    private function getApiRoutes($token): array
+    {
+        $response = static::createClient()->request(
+            'GET',
+            '/api',
+            [
+                'headers' => [
+                    'Content-Type' => self::CONTENT_TYPE,
+                    'Authorization' => 'Bearer ' . $token
+                ]
+            ]
+        );
+
+        $routes = json_decode($response->getContent(), true);
+
+        // Supposant que les routes sont dans un format structuré ; 
+        // ajustez selon la structure de réponse de votre API
+        return array_slice($routes, 3);
+        // Ajuster le découpage en fonction de la structure de réponse de votre API
+    }
+
+    private function callRoute($methode, $route, $token): string
+    {
+        $response = static::createClient()->request(
+            $methode,
+            $route,
+            [
+                'headers' => [
+                    'Content-Type' => self::CONTENT_TYPE,
+                    'Authorization' => 'Bearer ' . $token
+                ]
+            ]
+        );
+
+        echo $response->getStatusCode();
+        // Gérer la réponse en fonction des résultats attendus
+        switch ($methode) {
+            case 'GET':
+                if ($response->getStatusCode() === 200) {
+                    echo "$route (GET) - OK\n";
+                } elseif ($response->getStatusCode() === 404) {
+                    echo "$route (GET) - Ressource non trouvée\n";
+                }
+                break;
+            case 'POST':
+                // Gérer les codes de réponse POST
+                break;
+            case 'PATCH':
+                // Gérer les codes de réponse PATCH
+                break;
+            case 'DELETE':
+                // Gérer les codes de réponse DELETE
+                break;
+            default:
+                // Gérer les méthodes non supportées
+                break;
+        }
+
     }
 }
