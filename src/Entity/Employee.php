@@ -16,20 +16,20 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 
-/*
-(
+
+
+
+#[ApiResource(
     normalizationContext: ['groups' => ['employee:read']],
     denormalizationContext: ['groups' => ['employee:write']],
     operations: [
         new Get(),
         new GetCollection(),
-        new Post(),
-        new Patch(),
-        new Delete()
+        new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        new Patch(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        new Delete(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')")
     ]
-)
-*/
-#[ApiResource]
+)]
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 class Employee extends User
 {

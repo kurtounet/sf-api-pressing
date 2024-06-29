@@ -14,24 +14,17 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
-/*
-(
-    normalizationContext: ['groups' => ['client:read']],
-    denormalizationContext: ['groups' => ['client:write']],
+#[ApiResource(
+    normalizationContext: ['groups' => ['employee:read']],
+    denormalizationContext: ['groups' => ['employee:write']],
     operations: [
         new Get(),
         new GetCollection(),
-        new Post(),
-        new Patch(),
-        new Delete()
-        // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-        // new Patch(security: "is_granted('ROLE_ADMIN')"),
-        // new Delete(security: "is_granted('ROLE_ADMIN')")
+        new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') or is_granted('ROLE_CLIENT')"),
+        new Patch(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        new Delete(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')")
     ]
-
-)
-*/
-#[ApiResource]
+)]
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client extends User
 {
