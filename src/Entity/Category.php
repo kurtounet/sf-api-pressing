@@ -78,7 +78,7 @@ class Category
 
   public function __construct()
   {
-    $this->articles = new ArrayCollection();
+    // $this->articles = new ArrayCollection();
     $this->subcategories = new ArrayCollection();
     $this->services = new ArrayCollection();
   }

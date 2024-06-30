@@ -10,13 +10,11 @@ php bin/console lexik:jwt:generate-keypair --overwrite
 ## À FAIRE
 API
 - Toute pour récupérer les commande sans employer
-- created et update entity
-- Faire les groupes de sérialisation dans les entity
-- Faire les fixtures
+- created et update entity 
 - choix du service -> article -> quantité
 - Route pour récupérer les commandes sans employé
-- Assigner une Commande a un employé ROLE_ADMIN
-- Employé indique qu'il a fini la commande ROLE_ADMIN
+- Assigner une Commande a un employé ROLE_Employer
+- Employé indique qu'il a fini la commande Employee
 
 # Page côté front
 
