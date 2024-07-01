@@ -12,23 +12,19 @@ use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
-/*
 #[ApiResource(
-    normalizationContext: ['groups' => ['client:read']],
-    denormalizationContext: ['groups' => ['client:write']],
+    normalizationContext: ['groups' => ['employee:read']],
+    denormalizationContext: ['groups' => ['employee:write']],
     operations: [
         new Get(),
         new GetCollection(),
-        new Post(),
-        new Patch(),
-        new Delete()
-        // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-        // new Patch(security: "is_granted('ROLE_ADMIN')"),
-        // new Delete(security: "is_granted('ROLE_ADMIN')")
+        new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER') or is_granted('ROLE_CLIENT')"),
+        new Patch(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        new Delete(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')")
     ]
-
-)]*/
+)]
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client extends User
 {
@@ -39,9 +35,11 @@ class Client extends User
     private ?int $id = null;
 */
     #[ORM\Column(length: 255)]
+    #[Groups(['client:read', 'client:write'])]
     private ?string $clientNumber = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['client:read', 'client:write'])]
     private ?bool $Premium = null;
 
     /**
