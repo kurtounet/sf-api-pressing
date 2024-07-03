@@ -37,11 +37,11 @@ class Category
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  #[Groups(['category:list:read'])]
+  #[Groups(['category:list:read', 'service:read'])]
   private ?int $id = null;
 
   #[ORM\Column(length: 50)]
-  #[Groups(['category:list:read', 'category:write'])]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private ?string $name = null;
   /*
     #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
@@ -59,21 +59,21 @@ class Category
    */
 
   #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]
-  #[Groups(['category:list:read', 'category:write'])]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private ?self $parent = null;
 
   /**
    * @var Collection<int, self>
    */
   #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
-  #[Groups(['category:list:read', 'category:write'])]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private Collection $subcategories;
 
   /**
    * @var Collection<int, Service>
    */
   #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'Category')]
-  #[Groups(['category:list:read', 'category:write'])]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private Collection $services;
 
   public function __construct()

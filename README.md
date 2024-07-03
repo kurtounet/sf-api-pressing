@@ -9,7 +9,7 @@ php bin/console lexik:jwt:generate-keypair --overwrite
 
 ## À FAIRE
 API
-- Toute pour récupérer les commande sans employer
+- Route pour récupérer les commande sans employer
 - created et update entity 
 - choix du service -> article -> quantité
 - Route pour récupérer les commandes sans employé
@@ -72,7 +72,7 @@ panier
 # Page côté BACK
 
 ### Authentification
-### Dashboard
+### Dashboard (a faire)
 > - Services
 > - utilisateurs
 > - commandes
@@ -104,31 +104,23 @@ security: is_granteg("ROLE_ADMIN")
 >- Service.php (fait)
 >- User.php (fait)
 
-## GROUPS SERIALISATION
+## GROUPS DE SERIALISATION
 >- Category.php 
-    - category:list:read  
-    - category:write  
+    - category:list:read    - category:write  
 >- Client.php 
-    - client :read  
-    - client :write  
+    - client :read  - client :write  
 >- Commande.php 
-    - commande:read  
-    - commande:write  
+    - commande:read - commande:write  
 >- Employee 
-    - employee:read
-    - employee:write
+    - employee:read - employee:write
 >- Item.php 
-    - item :read  
-    - item :write  
+    - item :read - item :write  
 >- ItemStatus.php 
-    itemStatus:read  
-    itemStatus:write  
+    - itemStatus:read - itemStatus:write  
 >- Service.php  
-    - service :read
-    - service :write
+    - service :read - service :write
 >- User.php  
-    user:read 
-    user:write
+    - user:read - user:write
 
 ## FIXTURES
 
