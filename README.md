@@ -262,3 +262,81 @@ Pour installer API Platform, on pourra utiliser son alias Flex `api` :
 ```bash
 composer require api
 ```
+
+
+
+
+
+Voici un tableau récapitulatif des groupes de sérialisation associés à chaque attribut des différentes classes entités que vous avez partagées :
+#### Page formulaire inscription et profile utilisateur
+### **User**
+- **id** : `["user:read", "employee:read", "client:read"]`
+- **email** : `["user:read", "employee:read", "client:read"]`
+- **roles** : `["user:read", "employee:read", "client:read"]`
+- **firstname** : `["user:read", "employee:read", "client:read"]`
+- **lastname** : `["user:read", "employee:read", "client:read"]`
+- **mobilephone** : `["user:read", "employee:read", "client:read"]`
+- **phone** : `["user:read", "employee:read", "client:read"]`
+- **dateborn** : `["user:read", "employee:read", "client:read"]`
+- **numadrs** : `["user:read", "employee:read", "client:read"]`
+- **adrs** : `["user:read", "employee:read", "client:read"]`
+- **city** : `["user:read", "employee:read", "client:read"]`
+- **zipcode** : `["user:read", "employee:read", "client:read"]`
+- **country** : `["user:read", "employee:read", "client:read"]`
+
+#### Page
+### **Client** (hérite de User)
+- **clientNumber** : `["client:read", "client:write"]`
+- **Premium** : `["client:read", "client:write"]`
+
+
+#### Page
+### **Employee** (hérite de User)
+- **empNumber** : `["employee:read", "employee:write"]`
+
+
+#### Page commande utilisateurs et admin
+### **Commande**
+- **id** : `["commande:read"]`
+- **ref** : `["commande:read", "commande:write"]`
+- **filingDate** : `["commande:read", "commande:write"]`
+- **returnDate** : `["commande:read", "commande:write"]`
+- **paymentDate** : `["commande:read", "commande:write"]`
+
+#### Page commande utilisateurs et admin
+### **Item**
+- **id** : `["item:read"]`
+- **service** : `["item:read", "item:write"]`
+- **commande** : `["item:read", "item:write"]`
+- **ItemStatus** : `["item:read", "item:write"]`
+- **detailItem** : `["item:read", "item:write"]`
+- **price** : `["item:read", "item:write"]`
+- **Quantity** : `["item:read"]`
+
+
+#### Page Employee, Utilisateurs, et admin
+### **ItemStatus**
+- **id** : `["itemStatus:read"]`
+- **name** : `["itemStatus:read", "itemStatus:write"]`
+
+
+
+
+#### Page Utilisateurs, et admin
+### **Service**
+- **id** : `["service:read"]`
+- **name** : `["service:read", "service:write"]`
+- **price** : `["service:read", "service:write"]`
+- **description** : `["service:read", "service:write"]`
+- **image** : `["service:read", "service:write"]`
+
+
+#### Page Utilisateurs, et admin
+### **Category**
+- **id** : `["category:list"]`
+- **name** : `["category:list"]`
+- **parent** : `["category:list"]`
+- **subcategories** : `["category:list"]`
+- **services** : `["category:list"]`
+
+Ce tableau synthétise les groupes de sérialisation pour chaque propriété . Cela aide à comprendre comment les données sont exposées à travers l'API en fonction du contexte de requête.
