@@ -56,7 +56,8 @@ class Service
    * @var Collection<int, Category>
    */
   #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'services')]
-  private Collection $Category;
+  #[Groups(['service:read'])]
+  private Collection $category;
 
   public function __construct()
   {
@@ -123,13 +124,13 @@ class Service
    */
   public function getCategory(): Collection
   {
-    return $this->Category;
+    return $this->category;
   }
 
   public function addCategory(Category $category): static
   {
-    if (!$this->Category->contains($category)) {
-      $this->Category->add($category);
+    if (!$this->category->contains($category)) {
+      $this->category->add($category);
     }
 
     return $this;
@@ -137,7 +138,7 @@ class Service
 
   public function removeCategory(Category $category): static
   {
-    $this->Category->removeElement($category);
+    $this->category->removeElement($category);
 
     return $this;
   }
