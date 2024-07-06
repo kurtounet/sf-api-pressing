@@ -37,12 +37,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
   operations: [
     new Get(),
     new GetCollection(),
-    new Post(),
-    new Patch(),
-    new Delete()
-    // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    // new Patch(security: "is_granted('ROLE_ADMIN')"),
-    // new Delete(security: "is_granted('ROLE_ADMIN')")
+    new GetCollection(routeName: 'app_current_user', name: 'app_current_user'),
+    new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    new Patch(security: "is_granted('ROLE_ADMIN')"),
+    new Delete(security: "is_granted('ROLE_ADMIN')")
   ]
 
 )]
