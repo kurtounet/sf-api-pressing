@@ -9,12 +9,12 @@ php bin/console lexik:jwt:generate-keypair --overwrite
 
 ## À FAIRE
 API
-- Route pour récupérer les commande sans employer
 - created et update entity 
 - choix du service -> article -> quantité
 - Route pour récupérer les commandes sans employé
 - Assigner une Commande a un employé ROLE_Employer
 - Employé indique qu'il a fini la commande Employee
+- faire avec les catégories parent
 
 # Page côté front
 
