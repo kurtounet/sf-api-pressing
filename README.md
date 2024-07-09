@@ -1,52 +1,65 @@
 # PROJET DU BUSINESS CASE POUR L'EXAMEN DE FORMATION DEVELOPPEUR WEB/WEB MOBILE
 
-# Test 
-composer require --dev symfony/test-pack symfony/http-client
+# Test
 
+composer require --dev symfony/test-pack symfony/http-client
 
 created et update entity trait php voir gpt
 php bin/console lexik:jwt:generate-keypair --overwrite
 
 ## À FAIRE
+
 API
-- created et update entity 
+
+- created et update entity
 - choix du service -> article -> quantité
-- Faire une route pour récupérer les commandes sans employé : api/commandes/noassign
-- Faire une route pour récupérer les commandes du client : api/client/commandes
-- Faire une route pour Assigner une Commande a un employé ROLE_Employee: api/employee/items
-- Faire une route pourEmployé qui indique qu'il a fini la item Employee:api/employee/items
+- Faire une route pour récupérer les commandes sans employé : api/commandes/noassign (fait)
+- Faire une route pour récupérer les commandes du client : api/client/commandes (fait)
+- Faire une route pour Assigner une Commande a un employé ROLE_Employee: api/employee/items (fait)
+- Faire une route pour Assigner une Commande a un employé ROLE_Employee: api/employee/items  
+- Faire une route pour Employé qui indique qu'il a fini l' item Employee:api/item/{id}/complete
 - Faire avec les catégories parent
 - -
+
 Faire une route pour
+
 # Page côté front
 
 ### Login
+>
 > routes: /api/check_login
   
 ## Visiteur
-### Landing page 
+
+### Landing page
+
 liste 3 services
 > routes: /api/services  
 
 ### Présentation des service
+>
 > routes: /api/services
- 
-## Espace Utilisateur:
+
+## Espace Utilisateur
 
 ### Page profile
+>
 > routes: /api/user/{id}  
   
 ### Page liste commande
+>
 > controller
 > route personnalisé : /api/commande/user/{id}
 
 ### Page dépôt
->### Processuse de dépot:
-    >- 1 Choix du service 
+>
+>### Processuse de dépot
+    >
+    >- 1 Choix du service
     >   - route:GET /api/services
     >- 2 Choix des article ManyToMany entre SERVICE et ARTICLE
-    >   - routes:GET /api/articles 
-    >- 3 Choix du quantité 
+    >   - routes:GET /api/articles
+    >- 3 Choix du quantité
     >   - route: /api/services
     >- 4 Valider le dépot
     >   - route:POST /api/items
@@ -54,46 +67,49 @@ liste 3 services
 ### Page panier
 
 ### - contact
-> routes: /api/contact/ 
+>
+> routes: /api/contact/
 
 panier
 
 ## Employé - admin
+    >
     > list des commande pour l'employer
     > routes: /api/check_login
-    
+
 ## Admin
+
 - Admin
   - liste de commande
   >routes: /api/commande
-  - liste des users 
+  - liste des users
   >routes: /api/user
-    - employer
-    - client
- 
+  - employer
+  - client
+
 # Page côté BACK
 
 ### Authentification
+
 ### Dashboard (a faire)
+>
 > - Services
 > - utilisateurs
 > - commandes
- 
-
-
-
 
 ## Pour JWT
-### Configuration :
+
+### Configuration
 
 > - security.yaml (fait)
     - firewall (fait)
     - acces control (à terminer)
 > - route.yaml (fait)
- 
 
 ## CREATION DES ENTITEES
+
 security: is_granteg("ROLE_ADMIN")
+>
 >- Article.php (fait v2)
 >- Material.php (fait v2)
 >- Meansofpayment.php (fait v2)
@@ -107,17 +123,18 @@ security: is_granteg("ROLE_ADMIN")
 >- User.php (fait)
 
 ## GROUPS DE SERIALISATION
->- Category.php 
+>
+>- Category.php
     - category:list:read    - category:write  
->- Client.php 
+>- Client.php
     - client :read  - client :write  
->- Commande.php 
+>- Commande.php
     - commande:read - commande:write  
->- Employee 
+>- Employee
     - employee:read - employee:write
->- Item.php 
+>- Item.php
     - item :read - item :write  
->- ItemStatus.php 
+>- ItemStatus.php
     - itemStatus:read - itemStatus:write  
 >- Service.php  
     - service :read - service :write
@@ -128,13 +145,13 @@ security: is_granteg("ROLE_ADMIN")
 
 >- Article.php (fait)
 >- Category.php (fait) (avoir)
->- Commande.php 
+>- Commande.php
 >- Item.php  
 >- ItemEtat.php  (fait)
 >- Material.php (fait)  
 >- Meansofpayment.php (fait)
->- Service.php (fait) 
->- ServiceStatus.php (fait) 
+>- Service.php (fait)
+>- ServiceStatus.php (fait)
 >- User.php (fait) ok
 
 ## Création d'un projet API
@@ -222,8 +239,6 @@ Pour installer API Platform, on pourra utiliser son alias Flex `api` :
 ```bash
 composer require api
 ```
-
-
 
 ### Création d'un projet API
 

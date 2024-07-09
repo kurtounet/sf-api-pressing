@@ -22,6 +22,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
   operations: [
     new Get(),
     new GetCollection(),
+    new GetCollection(routeName: 'app_get_commandes_no_assign', name: 'app_get_commandes_no_assign'),
     new Post(),
     new Patch(),
     new Delete()
