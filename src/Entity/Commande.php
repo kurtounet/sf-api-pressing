@@ -41,19 +41,19 @@ class Commande
   private ?int $id = null;
 
   #[ORM\Column(length: 10)]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write','client:read'])]
   private ?string $ref = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write','client:read'])]
   private ?\DateTimeInterface $filingDate = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write','client:read'])]
   private ?\DateTimeInterface $returnDate = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write','client:read'])]
   private ?\DateTimeInterface $paymentDate = null;
 
   #[ORM\ManyToOne(inversedBy: 'commande')]

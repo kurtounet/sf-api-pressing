@@ -56,7 +56,7 @@ class Item
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(['item:read', 'item:write'])]
+  #[Groups(['item:read', 'item:write',])]
   private ?Commande $commande = null;
 
   #[ORM\ManyToOne]
