@@ -70,6 +70,8 @@ class AppFixtures extends Fixture
         foreach ($categoriesData as $item) {
             $category = new Category();
             $category->setName($item['name']);
+            $category->setParent(null);
+            /*
             if ($item['parent'] == null) {
                 $category->setParent(null);
             } else {
@@ -78,7 +80,7 @@ class AppFixtures extends Fixture
                 $category->setParent($parentCategory);
                 // $category->setCreatedAt($faker->dateTimeBetween('-2 years'));
                 // $category->setUpdatedAt(new \DateTime('now'));
-            }
+            }*/
             // $category->setCreatedAt($faker->dateTimeBetween('-2 years'));
             // $category->setUpdatedAt(new \DateTime('now'));
             $allCategories[$item['name']] = $category;
