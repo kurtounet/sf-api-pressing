@@ -26,64 +26,62 @@ Faire une route pour
 # Page côté front
 
 ### Login
->
 > routes: /api/check_login
   
 ## Visiteur
-
 ### Landing page
-
 liste 3 services
-> routes: /api/services  
-
-### Présentation des service
->
+> routes: /api/services 
+### Présentation des services
 > routes: /api/services
 
-## Espace Utilisateur
-
-### Page profile
->
-> routes: /api/user/{id}  
-  
-### Page liste commande
->
-> controller
-> route personnalisé : /api/commande/user/{id}
-
-### Page dépôt
->
->### Processuse de dépot
-    >
+## **Espace Utilisateur**
+## Espace Client
+>#### Page dépôt
+>### Processuse de dépot    
     >- 1 Choix du service
-    >   - route:GET /api/services
+    >   - route: GET /api/services
     >- 2 Choix des article ManyToMany entre SERVICE et ARTICLE
-    >   - routes:GET /api/articles
+    >   - routes: GET /api/articles
     >- 3 Choix du quantité
     >   - route: /api/services
     >- 4 Valider le dépot
     >   - route:POST /api/items
 
+### Page liste commandes
+> controller
+> route personnalisé : /api/commande/user/{id}
 ### Page panier
-
-### - contact
->
+> stocker dans le localStorage
+### Page liste Profile
+> routes: /api/user/{id} 
+### Page liste contact
 > routes: /api/contact/
+## Espace Admin
+#### Page liste des ustilisateurs
+> routes: /api/users
+#### Page liste commandes
+#### Page liste des taches
+#### Page Profile
+## Espace Employee
+#### Page liste des taches
+#### Page Profile
+#### Page contact
 
-panier
+### Espace Manager
+### Espace Employee
+
 
 ## Employé - admin
-    >
-    > list des commande pour l'employer
-    > routes: /api/check_login
+> list des commande pour l'employer
+
 
 ## Admin
-
 - Admin
   - liste de commande
-  >routes: /api/commande
+  > routes: /api/commandes
   - liste des users
-  >routes: /api/user
+  > routes: /api/user
   - employer
   - client
 
