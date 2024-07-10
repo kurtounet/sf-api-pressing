@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +18,32 @@ class GetCurrentUserController extends AbstractController
         Security $security
     ): JsonResponse {
         $user = $security->getUser();
+
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }
+        /*
+                $data = '';
+                if (in_array("ROLE_ADMIN", $user->getRoles())) {
+                    $data = $user;
+                } else if (in_array("ROLE_MANAGER", $user->getRoles())) {
+                    $data = $user;
+                } else if (in_array("ROLE_EMPLOYEE", $user->getRoles())) {
+                    $data = $user;
+                } else if (in_array("ROLE_CLIENT", $user->getRoles())) {
+                    $data = $user;
+                    //$data = $this->$userRepository->findOneBy($user->getUserIdentifier());
 
+                } else {
+                    return $this->json(['message' => 'User not found'], 404);
+                }
+        */
+        //$data = $user;
         return $this->json(
             data: $user,
             context: ['groups' => ['user:read']],
             status: 200
+
         );
 
 
