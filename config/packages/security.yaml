@@ -26,8 +26,8 @@ security:
         api:
             pattern: ^/api
             stateless: true
-            jwt: ~
             #anonymous: true  # Permet l'accès anonyme
+            jwt: ~
 
         main:
             lazy: true

@@ -62,7 +62,7 @@ class Service
    * @var Collection<int, Category>
    */
   #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'services')]
-  #[Groups(['category:list:read'])]
+  #[Groups(['category:list:read', 'service:read'])]
   private Collection $Category;
 
   public function __construct()
