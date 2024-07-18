@@ -73,6 +73,10 @@ class Category
   // #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private Collection $services;
 
+  #[ORM\Column(length: 255, nullable: true)]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
+  private ?string $image = null;
+
   public function __construct()
   {
     // $this->articles = new ArrayCollection();
@@ -195,6 +199,18 @@ class Category
     if ($this->services->removeElement($service)) {
       $service->removeCategory($this);
     }
+
+    return $this;
+  }
+
+  public function getImage(): ?string
+  {
+    return $this->image;
+  }
+
+  public function setImage(?string $image): static
+  {
+    $this->image = $image;
 
     return $this;
   }
