@@ -22,6 +22,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
   operations: [
     new Get(),
     new GetCollection(),
+    new GetCollection(routeName: 'app_get_commandes_no_assign', name: 'app_get_commandes_no_assign'),
     new Post(),
     new Patch(),
     new Delete()
@@ -40,22 +41,23 @@ class Commande
   private ?int $id = null;
 
   #[ORM\Column(length: 10)]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write','client:read'])]
   private ?string $ref = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write','client:read'])]
   private ?\DateTimeInterface $filingDate = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write','client:read'])]
   private ?\DateTimeInterface $returnDate = null;
 
   #[ORM\Column(type: Types::DATE_MUTABLE)]
-  #[Groups(['commande:read', 'commande:write'])]
+  #[Groups(['commande:read', 'commande:write','client:read'])]
   private ?\DateTimeInterface $paymentDate = null;
 
   #[ORM\ManyToOne(inversedBy: 'commande')]
+  #[Groups(['commande:read'])]
   private ?Client $client = null;
   /*
     #[ORM\ManyToOne(inversedBy: 'meansPayment')]

@@ -35,16 +35,17 @@ class Service
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
+  #[Groups(['service:read', 'service:write', 'category:list:read'])]
   private ?int $id = null;
 
   #[ORM\Column(length: 100)]
-  #[Groups(['service:read', 'service:write'])]
+  #[Groups(['service:read', 'service:write', 'category:list:read'])]
   #[Assert\NotBlank]
   #[Assert\Length(max: 100)]
   private ?string $name = null;
 
   #[ORM\Column]
-  #[Groups(['service:read', 'service:write'])]
+  #[Groups(['service:read', 'service:write', 'category:list:read'])]
   #[Assert\NotBlank]
   #[Assert\Type(type: 'float')]
   private ?float $price = null;
@@ -61,6 +62,7 @@ class Service
    * @var Collection<int, Category>
    */
   #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'services')]
+  #[Groups(['category:list:read', 'service:read'])]
   private Collection $Category;
 
   public function __construct()

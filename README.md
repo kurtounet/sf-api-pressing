@@ -1,22 +1,27 @@
 # PROJET DU BUSINESS CASE POUR L'EXAMEN DE FORMATION DEVELOPPEUR WEB/WEB MOBILE
 
+# Test
 
+composer require --dev symfony/test-pack symfony/http-client
 
 created et update entity trait php voir gpt
-
-
 php bin/console lexik:jwt:generate-keypair --overwrite
 
 ## À FAIRE
+
 API
-- Toute pour récupérer les commande sans employer
+
 - created et update entity
-- Faire les groupes de sérialisation dans les entity
-- Faire les fixtures
 - choix du service -> article -> quantité
-- Route pour récupérer les commandes sans employé
-- Assigner une Commande a un employé ROLE_ADMIN
-- Employé indique qu'il a fini la commande ROLE_ADMIN
+- Faire une route pour récupérer les commandes sans employé : api/commandes/noassign (fait)
+- Faire une route pour récupérer les commandes du client : api/client/commandes (fait)
+- Faire une route pour Assigner une Commande a un employé ROLE_Employee: api/employee/items (fait)
+- Faire une route pour Assigner une Commande a un employé ROLE_Employee: api/employee/items  
+- Faire une route pour Employé qui indique qu'il a fini l' item Employee:api/item/{id}/complete
+- Faire avec les catégories parent
+- -
+
+Faire une route pour
 
 # Page côté front
 
@@ -24,157 +29,127 @@ API
 > routes: /api/check_login
   
 ## Visiteur
-### Landing page 
+### Landing page
 liste 3 services
-> routes: /api/services  
-
-### Présentation des service
+> routes: /api/services 
+### Présentation des services
 > routes: /api/services
- 
-## Espace Utilisateur:
 
-### Page profile
-> routes: /api/user/{id}  
-  
-### Page liste commande
-> controller
-> route personnalisé : /api/commande/user/{id}
-
-### Page dépôt
->### Processuse de dépot:
-    >- 1 Choix du service 
-    >   - route:GET /api/services
+## **Espace Utilisateur**
+## Espace Client
+>#### Page dépôt
+>### Processuse de dépot    
+    >- 1 Choix du service
+    >   - route: GET /api/services
     >- 2 Choix des article ManyToMany entre SERVICE et ARTICLE
-    >   - routes:GET /api/articles 
-    >- 3 Choix du quantité 
+    >   - routes: GET /api/articles
+    >- 3 Choix du quantité
     >   - route: /api/services
     >- 4 Valider le dépot
     >   - route:POST /api/items
 
+### Page liste commandes
+> controller
+> route personnalisé : /api/commande/user/{id}
 ### Page panier
+> stocker dans le localStorage
+### Page liste Profile
+> routes: /api/user/{id} 
+### Page liste contact
+> routes: /api/contact/
+## Espace Admin
+#### Page liste des ustilisateurs
+> routes: /api/users
+#### Page liste commandes
+#### Page liste des taches
+#### Page Profile
+## Espace Employee
+#### Page liste des taches
+#### Page Profile
+#### Page contact
 
-### - contact
-> routes: /api/contact/ 
+### Espace Manager
+### Espace Employee
 
-panier
 
 ## Employé - admin
-    > list des commande pour l'employer
-    > routes: /api/check_login
-    
+> list des commande pour l'employer
+
+
 ## Admin
 - Admin
   - liste de commande
-  >routes: /api/commande
-  - liste des users 
-  >routes: /api/user
-    - employer
-    - client
- 
+  > routes: /api/commandes
+  - liste des users
+  > routes: /api/user
+  - employer
+  - client
+
 # Page côté BACK
 
 ### Authentification
-### Dashboard
+
+### Dashboard (a faire)
+>
 > - Services
 > - utilisateurs
 > - commandes
- 
 
-
-
-### Création d'un projet API
-
-```bash
-symfony new bcapipressing --version=6.4
-```
-
-### Installation des bundles
-
-Installation du bundle orm-fixtures (fait)
-```bash
-composer require --dev orm-fixtures
-```
-Installation du bundle fakerphp (fait)
-```bash
-composer require --dev fakerphp/faker
-```
-Installation du bundle symfony/orm-pack (fait)
-```bash
-composer require symfony/orm-pack
-```
-Installation du bundle maker (fait)
-```bash
-composer require --dev maker
-```
-Installation du bundle security (fait)
-```bash
-composer require security
-```
-Installation du bundle API (fait)
-```bash
-composer require api
-```
-Installation du bundle lexik JWT (fait)
-```bash
-composer require lexik/jwt-authentication-bundle
-```
-```bash
-php bin/console lexik:jwt:generate-keypair
-```
 ## Pour JWT
-### Configuration :
 
-#### security.yaml
+### Configuration
 
-#### route.yaml
+> - security.yaml (fait)
+    - firewall (fait)
+    - acces control (à terminer)
+> - route.yaml (fait)
 
 ## CREATION DES ENTITEES
+
 security: is_granteg("ROLE_ADMIN")
->- Article.php (fait)
->- Category.php (fait) (avoir)
+>
+>- Article.php (fait v2)
+>- Material.php (fait v2)
+>- Meansofpayment.php (fait v2)
+>- Category.php (fait)
+>- Client (fait)
 >- Commande.php (fait)
+>- Employee (fait)
 >- Item.php (fait)
->- ItemEtat.php (fait)
->- Material.php (fait)
->- Meansofpayment.php (fait)
+>- ItemStatus.php (fait)
 >- Service.php (fait)
->- ServiceStatus.php (fait)
 >- User.php (fait)
 
-## GROUPS SERIALISATION
->- Article.php 
-
-
-#[ApiResource(
-    normalizationContext: ['groups' => ['articles:list']],
-    operations: [
-        new GetCollection()
-    ]
-)]
-#[ApiFilter(BooleanFilter::class, properties: ['visible'])]
-#[ApiFilter(SearchFilter::class, properties: ['title' => 'ipartial'])]
->- Category.php  
->- Commande.php  
->- Item.php  
->- ItemEtat.php  
->- Material.php  
->- Meansofpayment.php  
+## GROUPS DE SERIALISATION
+>
+>- Category.php
+    - category:list:read    - category:write  
+>- Client.php
+    - client :read  - client :write  
+>- Commande.php
+    - commande:read - commande:write  
+>- Employee
+    - employee:read - employee:write
+>- Item.php
+    - item :read - item :write  
+>- ItemStatus.php
+    - itemStatus:read - itemStatus:write  
 >- Service.php  
-    mettre en unique
->- ServiceStatus.php  
+    - service :read - service :write
 >- User.php  
+    - user:read - user:write
 
 ## FIXTURES
 
 >- Article.php (fait)
 >- Category.php (fait) (avoir)
->- Commande.php 
+>- Commande.php
 >- Item.php  
 >- ItemEtat.php  (fait)
 >- Material.php (fait)  
 >- Meansofpayment.php (fait)
->- Service.php (fait) 
->- ServiceStatus.php (fait) 
+>- Service.php (fait)
+>- ServiceStatus.php (fait)
 >- User.php (fait) ok
 
 ## Création d'un projet API
@@ -261,4 +236,58 @@ Pour installer API Platform, on pourra utiliser son alias Flex `api` :
 
 ```bash
 composer require api
+```
+
+### Création d'un projet API
+
+```bash
+symfony new bcapipressing --version=6.4
+```
+
+### Installation des bundles
+
+Installation du bundle orm-fixtures (fait)
+
+```bash
+composer require --dev orm-fixtures
+```
+
+Installation du bundle fakerphp (fait)
+
+```bash
+composer require --dev fakerphp/faker
+```
+
+Installation du bundle symfony/orm-pack (fait)
+
+```bash
+composer require symfony/orm-pack
+```
+
+Installation du bundle maker (fait)
+
+```bash
+composer require --dev maker
+```
+
+Installation du bundle security (fait)
+
+```bash
+composer require security
+```
+
+Installation du bundle API (fait)
+
+```bash
+composer require api
+```
+
+Installation du bundle lexik JWT (fait)
+
+```bash
+composer require lexik/jwt-authentication-bundle
+```
+
+```bash
+php bin/console lexik:jwt:generate-keypair
 ```

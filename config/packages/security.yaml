@@ -7,7 +7,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Employee
+                class: App\Entity\User
                 property: email
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
@@ -26,6 +26,7 @@ security:
         api:
             pattern: ^/api
             stateless: true
+            #anonymous: true  # Permet l'accès anonyme
             jwt: ~
 
         main:
@@ -50,9 +51,21 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+<<<<<<< HEAD
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
+=======
+        #- { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/api/services$, roles: IS_AUTHENTICATED_ANONYMOUSLY }         
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }         
+        - { path: ^/api/services, roles: PUBLIC_ACCESS,method: GET }         
+        - { path: ^/api/categories, roles: PUBLIC_ACCESS,method: GET }         
+        # - { path: ^/api/, roles: PUBLIC_ACCESS }
+        # - { path: ^/api/, roles: IS_AUTHENTICATED }
+        # - { path: ^/api/user-info, roles: IS_AUTHENTICATED }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+>>>>>>> main
         # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/api/login, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/profile, roles: ROLE_USER }

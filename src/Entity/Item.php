@@ -21,12 +21,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
   operations: [
     new Get(),
     new GetCollection(),
-    new Post(),
-    new Patch(),
-    new Delete()
-    // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    // new Patch(security: "is_granted('ROLE_ADMIN')"),
-    // new Delete(security: "is_granted('ROLE_ADMIN')")
+     new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    new Patch(security: "is_granted('ROLE_ADMIN')"),
+    new Delete(security: "is_granted('ROLE_ADMIN')")
   ]
 
 )]
@@ -58,7 +56,7 @@ class Item
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(['item:read', 'item:write'])]
+  #[Groups(['item:read', 'item:write',])]
   private ?Commande $commande = null;
 
   #[ORM\ManyToOne]

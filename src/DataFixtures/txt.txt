@@ -1,0 +1,123 @@
+# Create a JSON structure for the services applicable to each clothing category
+clothing_services = {
+    "T-shirt": ["Lavage", "Repassage", "Pliage"],
+    "Chemise": ["Lavage", "Repassage", "Pliage", "Pressing"],
+    "Pantalon": ["Lavage", "Repassage", "Pliage", "Pressing"],
+    "Jupe": ["Lavage", "Repassage", "Pliage", "Pressing"],
+    "Robe": ["Lavage", "Repassage", "Pliage", "Pressing"],
+    "Short": ["Lavage", "Repassage", "Pliage"],
+    "Veste": ["Lavage", "Repassage", "Pressing"],
+    "Manteau": ["Lavage", "Repassage", "Pressing"],
+    "Pull": ["Lavage", "Repassage", "Pliage"],
+    "Cardigan": ["Lavage", "Repassage", "Pliage"],
+    "Sweatshirt": ["Lavage", "Repassage", "Pliage"],
+    "Polo": ["Lavage", "Repassage", "Pliage"],
+    "Blazer": ["Lavage", "Repassage", "Pressing"],
+    "Gilet": ["Lavage", "Repassage", "Pliage"],
+    "Pyjama": ["Lavage", "Repassage", "Pliage"],
+    "Débardeur": ["Lavage", "Repassage", "Pliage"],
+    "Chemisier": ["Lavage", "Repassage", "Pliage", "Pressing"],
+    "Legging": ["Lavage", "Repassage", "Pliage"],
+    "Combinaison": ["Lavage", "Repassage", "Pliage", "Pressing"],
+    "Trench-coat": ["Lavage", "Repassage", "Pressing"]
+}
+
+import json
+
+# Convert the dictionary to a JSON string
+clothing_services_json = json.dumps(clothing_services, indent=4)
+
+clothing_services_json
+
+
+{
+  "services": {
+    "pressing": {
+      "Chemise sur cintre main": "2.61",
+      "Chemise pliée": "4.08",
+      "Chemisier": {
+        "standard": "5.23",
+        "délicat": "8.36"
+      },
+      "Pantalon": {
+        "standard": "7.32",
+        "délicat": "9.41"
+      },
+      "Veste": {
+        "standard": "7.32",
+        "délicat": "11.50"
+      },
+      "Robe": {
+        "standard": "8.36",
+        "délicat": "12.54"
+      },
+      "Pull": {
+        "standard": "7.32",
+        "délicat": "9.41"
+      },
+      "Polo": "3.14",
+      "T-shirt": "3.55",
+      "Echarpe ou Foulard": "6.27",
+      "Cravate": "6.58",
+      "Imperméable ou Trench": {
+        "standard": "15.68",
+        "délicat": "18.81"
+      },
+      "Manteau": {
+        "standard": "15.68",
+        "délicat": "22.99"
+      },
+      "Blouson": {
+        "standard": "15.68",
+        "délicat": "18.81"
+      },
+      "Doudoune": {
+        "standard": "18.81",
+        "délicat": "22.99"
+      },
+      "Combinaison de ski": "20.80",
+      "Pantalon de ski": "12.54",
+      "Blouson de ski": "18.81"
+    },
+    "blanchisserie": {
+      "Taie d’oreiller": "2.20",
+      "Taie de traversin": "5.23",
+      "Housse de couette": "6.79",
+      "Drap simple": "4.18",
+      "Drap housse": "5.68",
+      "Nappe": "15.68",
+      "Petit Drap de Bain": "3.14",
+      "Tapis de bain": "7.32",
+      "Torchon": "1.05",
+      "Serviette de table": "2.09",
+      "Rideau": "sur devis",
+      "Couette (2 places)": "22.99",
+      "Couverture / plaid": "12.54",
+      "Oreiller": "14.11",
+      "Dessus de lit": "17.77"
+    },
+    "cordonnerie": {
+      "Cirage (paire)": "10.44",
+      "Nettoyage cuir / daim (paire)": "31.04",
+      "Talons à tige/aiguille (paire)": "12.53",
+      "Talons ville (paire)": "à partir de 5.23",
+      "Patins de protection (paire)": "à partir de 5.23",
+      "Bouts à l’avant (paire)": "à partir de 5.00",
+      "Fers encastrés (paire)": "à partir de 5.23",
+      "Ressemelage (paire)": "à partir de 5.23"
+    },
+    "retouche": {
+      "Pose boutons": "4.70",
+      "Ourlet simple": "13.06",
+      "Poche déchirée": "13.59",
+      "Fermeture éclair": "sur devis",
+      "Doublure": "sur devis"
+    },
+    "spécialiste cuir et daim": {
+      "Manteau, veste, jupe, pantalon cuir": "75.24",
+      "Blouson cuir": "73.15",
+      "Robe cuir": "122.27"
+    }
+  }
+}
+

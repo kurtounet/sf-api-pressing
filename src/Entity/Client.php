@@ -14,13 +14,16 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
-/*
-(
+ 
+
+ 
+#[ApiResource(
     normalizationContext: ['groups' => ['client:read']],
     denormalizationContext: ['groups' => ['client:write']],
     operations: [
         new Get(),
         new GetCollection(),
+        new GetCollection(routeName: 'app_get_commandes_client', name: 'app_get_commandes_client'),
         new Post(),
         new Patch(),
         new Delete()
@@ -29,9 +32,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
         // new Delete(security: "is_granted('ROLE_ADMIN')")
     ]
 
-)
-*/
-#[ApiResource]
+)]
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client extends User
 {
@@ -53,6 +54,7 @@ class Client extends User
      * @var Collection<int, Commande>
      */
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'client')]
+    #[Groups(['client:read', 'client:write'])]
     private Collection $commande;
 
     public function __construct()

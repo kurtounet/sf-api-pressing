@@ -19,7 +19,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-//#[ORM\Table(name: '`user`')]
+
+
+#[ORM\HasLifecycleCallbacks]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 #[ORM\InheritanceType('JOINED')]
 #[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
@@ -35,12 +37,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
   operations: [
     new Get(),
     new GetCollection(),
-    new Post(),
-    new Patch(),
-    new Delete()
-    // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    // new Patch(security: "is_granted('ROLE_ADMIN')"),
-    // new Delete(security: "is_granted('ROLE_ADMIN')")
+    new GetCollection(routeName: 'app_current_user', name: 'app_current_user'),
+    new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    new Patch(security: "is_granted('ROLE_ADMIN')"),
+    new Delete(security: "is_granted('ROLE_ADMIN')")
   ]
 
 )]
@@ -50,67 +50,163 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   protected ?int $id = null;
 
   #[ORM\Column(length: 180)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $email = null;
 
   /**
    * @var list<string> The user roles
    */
   #[ORM\Column]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private array $roles = [];
 
   /**
    * @var string The hashed password
    */
   #[ORM\Column]
-  //#[Groups(["user:read", "employee:read", "client:read"])]
+  //#[ORM\PrePersist]
+  //#[ORM\PreUpdate]
+  //#[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
   private ?string $password = null;
 
   #[ORM\Column(length: 100)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $firstname = null;
 
   #[ORM\Column(length: 100)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $lastname = null;
 
   #[ORM\Column(length: 13, nullable: true)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $mobilephone = null;
 
 
   #[ORM\Column(length: 13, nullable: true)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $phone = null;
 
 
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
   private ?\DateTimeInterface $dateborn = null;
 
   #[ORM\Column(type: Types::SMALLINT)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?int $numadrs = null;
 
   #[ORM\Column(length: 255)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $adrs = null;
 
   #[ORM\Column(length: 50)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $city = null;
 
   #[ORM\Column(length: 6)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $zipcode = null;
 
   #[ORM\Column(length: 6)]
-  #[Groups(["user:read", "employee:read", "client:read"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $country = null;
   /*
 

@@ -1,0 +1,4819 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API LAVERIE",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/api/auth": {
+      "post": {
+        "operationId": "login_check_post",
+        "tags": [
+          "Login Check"
+        ],
+        "responses": {
+          "200": {
+            "description": "User token created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "readOnly": true,
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "token"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Creates a user token.",
+        "description": "Creates a user token.",
+        "requestBody": {
+          "description": "The login data",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "parameters": []
+    },
+    "/api/categories": {
+      "get": {
+        "operationId": "api_categories_get_collection",
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Category.jsonld"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Category resources.",
+        "description": "Retrieves the collection of Category resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "operationId": "api_categories_post",
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "201": {
+            "description": "Category resource created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Creates a Category resource.",
+        "description": "Creates a Category resource.",
+        "parameters": [],
+        "requestBody": {
+          "description": "The new Category resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/categories/tree": {
+      "get": {
+        "operationId": "api_categoriestree_get_collection",
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category-read"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Category.jsonld-read"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Category resources.",
+        "description": "Retrieves the collection of Category resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/categories/{id}": {
+      "get": {
+        "operationId": "api_categories_id_get",
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category.jsonld"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a Category resource.",
+        "description": "Retrieves a Category resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Category identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "put": {
+        "operationId": "api_categories_id_put",
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Replaces the Category resource.",
+        "description": "Replaces the Category resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Category identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Category resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "operationId": "api_categories_id_delete",
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "204": {
+            "description": "Category resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Removes the Category resource.",
+        "description": "Removes the Category resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Category identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "operationId": "api_categories_id_patch",
+        "tags": [
+          "Category"
+        ],
+        "responses": {
+          "200": {
+            "description": "Category resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Updates the Category resource.",
+        "description": "Updates the Category resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Category identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Category resource",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/faqs": {
+      "get": {
+        "operationId": "api_faqs_get_collection",
+        "tags": [
+          "Faq"
+        ],
+        "responses": {
+          "200": {
+            "description": "Faq collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Faq"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Faq.jsonld"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Faq resources.",
+        "description": "Retrieves the collection of Faq resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "operationId": "api_faqs_post",
+        "tags": [
+          "Faq"
+        ],
+        "responses": {
+          "201": {
+            "description": "Faq resource created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Creates a Faq resource.",
+        "description": "Creates a Faq resource.",
+        "parameters": [],
+        "requestBody": {
+          "description": "The new Faq resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/faqs/{id}": {
+      "get": {
+        "operationId": "api_faqs_id_get",
+        "tags": [
+          "Faq"
+        ],
+        "responses": {
+          "200": {
+            "description": "Faq resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq.jsonld"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a Faq resource.",
+        "description": "Retrieves a Faq resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Faq identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "put": {
+        "operationId": "api_faqs_id_put",
+        "tags": [
+          "Faq"
+        ],
+        "responses": {
+          "200": {
+            "description": "Faq resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Replaces the Faq resource.",
+        "description": "Replaces the Faq resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Faq identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Faq resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "operationId": "api_faqs_id_delete",
+        "tags": [
+          "Faq"
+        ],
+        "responses": {
+          "204": {
+            "description": "Faq resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Removes the Faq resource.",
+        "description": "Removes the Faq resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Faq identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "operationId": "api_faqs_id_patch",
+        "tags": [
+          "Faq"
+        ],
+        "responses": {
+          "200": {
+            "description": "Faq resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faq.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Updates the Faq resource.",
+        "description": "Updates the Faq resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Faq identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Faq resource",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Faq"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/get_email/{id}": {
+      "get": {
+        "operationId": "get_email",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User.jsonld"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a User resource.",
+        "description": "Retrieves a User resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/orders": {
+      "get": {
+        "operationId": "api_orders_get_collection",
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "Order collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Order-historique"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Order.jsonld-historique"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Order resources.",
+        "description": "Retrieves the collection of Order resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "operationId": "api_orders_post",
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "201": {
+            "description": "Order resource created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order-historique"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order.jsonld-historique"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Creates a Order resource.",
+        "description": "Creates a Order resource.",
+        "parameters": [],
+        "requestBody": {
+          "description": "The new Order resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/orders/tree": {
+      "get": {
+        "operationId": "api_orderstree_get_collection",
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "Order collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Order-read"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Order.jsonld-read"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Order resources.",
+        "description": "Retrieves the collection of Order resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/orders/{id}": {
+      "get": {
+        "operationId": "api_orders_id_get",
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "Order resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order-historique"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order.jsonld-historique"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a Order resource.",
+        "description": "Retrieves a Order resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "put": {
+        "operationId": "api_orders_id_put",
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "Order resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order-historique"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order.jsonld-historique"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Replaces the Order resource.",
+        "description": "Replaces the Order resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Order resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "operationId": "api_orders_id_delete",
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "204": {
+            "description": "Order resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Removes the Order resource.",
+        "description": "Removes the Order resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "operationId": "api_orders_id_patch",
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "Order resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order-historique"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order.jsonld-historique"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Updates the Order resource.",
+        "description": "Updates the Order resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Order identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Order resource",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/services": {
+      "get": {
+        "operationId": "api_services_get_collection",
+        "tags": [
+          "Service"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Service-read"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Service.jsonld-read"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Service resources.",
+        "description": "Retrieves the collection of Service resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "operationId": "api_services_post",
+        "tags": [
+          "Service"
+        ],
+        "responses": {
+          "201": {
+            "description": "Service resource created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Creates a Service resource.",
+        "description": "Creates a Service resource.",
+        "parameters": [],
+        "requestBody": {
+          "description": "The new Service resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Service"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Service.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/services/aleatoire": {
+      "get": {
+        "operationId": "get_services_aleatoire",
+        "tags": [
+          "Service"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Service"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Service.jsonld"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Service resources.",
+        "description": "Retrieves the collection of Service resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/services/{id}": {
+      "get": {
+        "operationId": "api_services_id_get",
+        "tags": [
+          "Service"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service.jsonld"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a Service resource.",
+        "description": "Retrieves a Service resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Service identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "put": {
+        "operationId": "api_services_id_put",
+        "tags": [
+          "Service"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Replaces the Service resource.",
+        "description": "Replaces the Service resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Service identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Service resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Service"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Service.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "operationId": "api_services_id_delete",
+        "tags": [
+          "Service"
+        ],
+        "responses": {
+          "204": {
+            "description": "Service resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Removes the Service resource.",
+        "description": "Removes the Service resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Service identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "operationId": "api_services_id_patch",
+        "tags": [
+          "Service"
+        ],
+        "responses": {
+          "200": {
+            "description": "Service resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Updates the Service resource.",
+        "description": "Updates the Service resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Service identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Service resource",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Service"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/services_category_order/tree": {
+      "get": {
+        "operationId": "api_services_category_ordertree_get_collection",
+        "tags": [
+          "ServicesCategoryOrder"
+        ],
+        "responses": {
+          "200": {
+            "description": "ServicesCategoryOrder collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServicesCategoryOrder-read"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld-read"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of ServicesCategoryOrder resources.",
+        "description": "Retrieves the collection of ServicesCategoryOrder resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/services_category_orders": {
+      "get": {
+        "operationId": "api_services_category_orders_get_collection",
+        "tags": [
+          "ServicesCategoryOrder"
+        ],
+        "responses": {
+          "200": {
+            "description": "ServicesCategoryOrder collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServicesCategoryOrder"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of ServicesCategoryOrder resources.",
+        "description": "Retrieves the collection of ServicesCategoryOrder resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "operationId": "api_services_category_orders_post",
+        "tags": [
+          "ServicesCategoryOrder"
+        ],
+        "responses": {
+          "201": {
+            "description": "ServicesCategoryOrder resource created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesCategoryOrder"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Creates a ServicesCategoryOrder resource.",
+        "description": "Creates a ServicesCategoryOrder resource.",
+        "parameters": [],
+        "requestBody": {
+          "description": "The new ServicesCategoryOrder resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicesCategoryOrder"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/services_category_orders/{id}": {
+      "get": {
+        "operationId": "api_services_category_orders_id_get",
+        "tags": [
+          "ServicesCategoryOrder"
+        ],
+        "responses": {
+          "200": {
+            "description": "ServicesCategoryOrder resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesCategoryOrder"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a ServicesCategoryOrder resource.",
+        "description": "Retrieves a ServicesCategoryOrder resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ServicesCategoryOrder identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "put": {
+        "operationId": "api_services_category_orders_id_put",
+        "tags": [
+          "ServicesCategoryOrder"
+        ],
+        "responses": {
+          "200": {
+            "description": "ServicesCategoryOrder resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesCategoryOrder"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Replaces the ServicesCategoryOrder resource.",
+        "description": "Replaces the ServicesCategoryOrder resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ServicesCategoryOrder identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated ServicesCategoryOrder resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicesCategoryOrder"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "operationId": "api_services_category_orders_id_delete",
+        "tags": [
+          "ServicesCategoryOrder"
+        ],
+        "responses": {
+          "204": {
+            "description": "ServicesCategoryOrder resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Removes the ServicesCategoryOrder resource.",
+        "description": "Removes the ServicesCategoryOrder resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ServicesCategoryOrder identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "operationId": "api_services_category_orders_id_patch",
+        "tags": [
+          "ServicesCategoryOrder"
+        ],
+        "responses": {
+          "200": {
+            "description": "ServicesCategoryOrder resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesCategoryOrder"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Updates the ServicesCategoryOrder resource.",
+        "description": "Updates the ServicesCategoryOrder resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ServicesCategoryOrder identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated ServicesCategoryOrder resource",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicesCategoryOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/users": {
+      "get": {
+        "operationId": "api_users_get_collection",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User.jsonld"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of User resources.",
+        "description": "Retrieves the collection of User resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "operationId": "api_users_post",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "201": {
+            "description": "User resource created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Creates a User resource.",
+        "description": "Creates a User resource.",
+        "parameters": [],
+        "requestBody": {
+          "description": "The new User resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User-register"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User.jsonld-register"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/users/tree": {
+      "get": {
+        "operationId": "api_userstree_get_collection",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User collection",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User-read"
+                  }
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/User.jsonld-read"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of User resources.",
+        "description": "Retrieves the collection of User resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/api/users/{id}": {
+      "get": {
+        "operationId": "api_users_id_get",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User-historique"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User.jsonld-historique"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a User resource.",
+        "description": "Retrieves a User resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "put": {
+        "operationId": "api_users_id_put",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Replaces the User resource.",
+        "description": "Replaces the User resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated User resource",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User-edit"
+              }
+            },
+            "application/ld+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User.jsonld-edit"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "operationId": "api_users_id_delete",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "204": {
+            "description": "User resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Removes the User resource.",
+        "description": "Removes the User resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "operationId": "api_users_id_patch",
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User resource updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User.jsonld"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Updates the User resource.",
+        "description": "Updates the User resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated User resource",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User-edit"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Category": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "libelle": {
+            "type": "string"
+          },
+          "categoryParente": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "categoryChild": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "picture": {
+            "type": "string"
+          },
+          "price": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "servicesCategoryOrders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "serviceCategory": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          }
+        }
+      },
+      "Category-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "libelle": {
+            "type": "string"
+          }
+        }
+      },
+      "Category-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "libelle": {
+            "type": "string"
+          },
+          "categoryChild": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category-read"
+            }
+          },
+          "picture": {
+            "type": "string"
+          },
+          "price": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        }
+      },
+      "Category.jsonld": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "libelle": {
+            "type": "string"
+          },
+          "categoryParente": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "categoryChild": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "picture": {
+            "type": "string"
+          },
+          "price": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "servicesCategoryOrders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "serviceCategory": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          }
+        }
+      },
+      "Category.jsonld-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "libelle": {
+            "type": "string"
+          }
+        }
+      },
+      "Category.jsonld-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "libelle": {
+            "type": "string"
+          },
+          "categoryChild": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category.jsonld-read"
+            }
+          },
+          "picture": {
+            "type": "string"
+          },
+          "price": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        }
+      },
+      "Faq": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          }
+        }
+      },
+      "Faq.jsonld": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "dateStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "servicesCategoryOrders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "Order-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "dateStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "servicesCategoryOrders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServicesCategoryOrder-historique"
+            }
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "Order-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User-read"
+          },
+          "dateStart": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Order.jsonld": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "dateStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "servicesCategoryOrders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "Order.jsonld-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "dateStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "servicesCategoryOrders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServicesCategoryOrder.jsonld-historique"
+            }
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "Order.jsonld-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User.jsonld-read"
+          },
+          "dateStart": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Service": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "servicesCategoryOrders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "picture": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Service-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Service-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category-read"
+            }
+          },
+          "picture": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Service.jsonld": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "servicesCategoryOrders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "picture": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "Service.jsonld-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "Service.jsonld-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category.jsonld-read"
+            }
+          },
+          "picture": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "ServicesCategoryOrder": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "numOrder": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "service": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "category": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "ServicesCategoryOrder-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "service": {
+            "$ref": "#/components/schemas/Service-historique"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category-historique"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "ServicesCategoryOrder-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "numOrder": {
+            "$ref": "#/components/schemas/Order-read"
+          },
+          "service": {
+            "$ref": "#/components/schemas/Service-read"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category-read"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "ServicesCategoryOrder.jsonld": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "numOrder": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "service": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "category": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "ServicesCategoryOrder.jsonld-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "service": {
+            "$ref": "#/components/schemas/Service.jsonld-historique"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category.jsonld-historique"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "ServicesCategoryOrder.jsonld-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "numOrder": {
+            "$ref": "#/components/schemas/Order.jsonld-read"
+          },
+          "service": {
+            "$ref": "#/components/schemas/Service.jsonld-read"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category.jsonld-read"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "password": {
+            "description": "The hashed password",
+            "type": "string"
+          },
+          "confirmPassword": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "numberPhone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "isVerified": {
+            "type": "boolean"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "userIdentifier": {
+            "readOnly": true,
+            "description": "A visual identifier that represents this user.",
+            "type": "string"
+          },
+          "verified": {
+            "readOnly": true,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "firstName",
+          "lastName",
+          "numberPhone",
+          "address"
+        ]
+      },
+      "User-edit": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "numberPhone",
+          "address"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "numberPhone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "User-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order-historique"
+            }
+          }
+        },
+        "required": [
+          "firstName"
+        ]
+      },
+      "User-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "numberPhone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "numberPhone",
+          "address"
+        ]
+      },
+      "User-register": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "required": [
+          "email",
+          "password",
+          "firstName",
+          "lastName",
+          "numberPhone",
+          "address"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "description": "The hashed password",
+            "type": "string"
+          },
+          "confirmPassword": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "numberPhone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "User.jsonld": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "password": {
+            "description": "The hashed password",
+            "type": "string"
+          },
+          "confirmPassword": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "numberPhone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "isVerified": {
+            "type": "boolean"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "userIdentifier": {
+            "readOnly": true,
+            "description": "A visual identifier that represents this user.",
+            "type": "string"
+          },
+          "verified": {
+            "readOnly": true,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "firstName",
+          "lastName",
+          "numberPhone",
+          "address"
+        ]
+      },
+      "User.jsonld-edit": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "numberPhone",
+          "address"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "numberPhone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "User.jsonld-historique": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order.jsonld-historique"
+            }
+          }
+        },
+        "required": [
+          "firstName"
+        ]
+      },
+      "User.jsonld-read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "numberPhone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "lastName",
+          "numberPhone",
+          "address"
+        ]
+      },
+      "User.jsonld-register": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "required": [
+          "email",
+          "password",
+          "firstName",
+          "lastName",
+          "numberPhone",
+          "address"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "description": "The hashed password",
+            "type": "string"
+          },
+          "confirmPassword": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "numberPhone": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {
+      "JWT": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "JWT": []
+    }
+  ],
+  "tags": []
+}

@@ -1,18 +1,82 @@
 [
   {
-    "name": "Linge de maison",
-    "parent": null
+    "name": "T-shirt",
+    "price": 5
   },
   {
-    "name": "Vêtements",
-    "parent": null
+    "name": "Chemise",
+    "price": 3
   },
   {
-    "name": "Chaussures",
-    "parent": null
+    "name": "Pantalon",
+    "price": 3
   },
   {
-    "name": "Accessoires",
-    "parent": null
+    "name": "Jupe",
+    "price": 4
+  },
+  {
+    "name": "Robe",
+    "price": 6
+  },
+  {
+    "name": "Short",
+    "price": 2.50
+  },
+  {
+    "name": "Veste",
+    "price": 7
+  },
+  {
+    "name": "Manteau",
+    "price": 6.90
+  },
+  {
+    "name": "Pull",
+    "price": 4.50
+  },
+  {
+    "name": "Cardigan",
+    "price": 5
+  },
+  {
+    "name": "Sweatshirt",
+    "price": 4.50
+  },
+  {
+    "name": "Polo",
+    "price": 3.50
+  },
+  {
+    "name": "Blazer",
+    "price": 8
+  },
+  {
+    "name": "Gilet",
+    "price": 4
+  },
+  {
+    "name": "Pyjama",
+    "price": 3
+  },
+  {
+    "name": "Débardeur",
+    "price": 2.50
+  },
+  {
+    "name": "Chemisier",
+    "price": 3.50
+  },
+  {
+    "name": "Legging",
+    "price": 2.50
+  },
+  {
+    "name": "Combinaison",
+    "price": 5.50
+  },
+  {
+    "name": "Trench-coat",
+    "price": 7
   }
 ]

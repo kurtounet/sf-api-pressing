@@ -18,18 +18,15 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource(
-  normalizationContext: ['groups' => ['category:list']],
+  normalizationContext: ['groups' => ['category:list:read']],
   denormalizationContext: ['groups' => ['category:write']],
 
   operations: [
     new Get(),
     new GetCollection(),
-    new Post(),
-    new Patch(),
-    new Delete()
-    // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    // new Patch(security: "is_granted('ROLE_ADMIN')"),
-    // new Delete(security: "is_granted('ROLE_ADMIN')")
+    new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    new Patch(security: "is_granted('ROLE_ADMIN')"),
+    new Delete(security: "is_granted('ROLE_ADMIN')")
   ]
 )]
 class Category
@@ -37,11 +34,11 @@ class Category
   #[ORM\Id]
   #[ORM\GeneratedValue]
   #[ORM\Column]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read', 'service:read'])]
   private ?int $id = null;
 
   #[ORM\Column(length: 50)]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private ?string $name = null;
   /*
     #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
@@ -59,26 +56,30 @@ class Category
    */
 
   #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private ?self $parent = null;
 
   /**
    * @var Collection<int, self>
    */
   #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
-  #[Groups(['category:list'])]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private Collection $subcategories;
 
   /**
    * @var Collection<int, Service>
    */
   #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'Category')]
-  #[Groups(['category:list'])]
+  // #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private Collection $services;
+
+  #[ORM\Column(length: 255, nullable: true)]
+  #[Groups(['category:list:read', 'category:write', 'service:read'])]
+  private ?string $image = null;
 
   public function __construct()
   {
-    $this->articles = new ArrayCollection();
+    // $this->articles = new ArrayCollection();
     $this->subcategories = new ArrayCollection();
     $this->services = new ArrayCollection();
   }
@@ -198,6 +199,18 @@ class Category
     if ($this->services->removeElement($service)) {
       $service->removeCategory($this);
     }
+
+    return $this;
+  }
+
+  public function getImage(): ?string
+  {
+    return $this->image;
+  }
+
+  public function setImage(?string $image): static
+  {
+    $this->image = $image;
 
     return $this;
   }
