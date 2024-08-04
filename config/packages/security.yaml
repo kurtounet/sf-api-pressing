@@ -53,21 +53,11 @@ security:
     access_control:
                
         - { path: ^/api/login, roles: PUBLIC_ACCESS }         
-<<<<<<< HEAD
         - { path: ^/api/services, roles: PUBLIC_ACCESS, method: GET }         
         - { path: ^/api/categories, roles: PUBLIC_ACCESS, method: GET }         
         - { path: ^/api/, roles: IS_AUTHENTICATED }
-=======
-        - { path: ^/api/services, roles: PUBLIC_ACCESS,method: GET }         
-        - { path: ^/api/categories, roles: PUBLIC_ACCESS,method: GET }         
-        - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/api/, roles: PUBLIC_ACCESS }
-        # - { path: ^/api/, roles: IS_AUTHENTICATED }
->>>>>>> easyadmin
-        # - { path: ^/api/user-info, roles: IS_AUTHENTICATED }
-        # - { path: ^/profile, roles: ROLE_USER }
-        # - { path: ^/api/login, roles: IS_AUTHENTICATED_FULLY }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin, roles: IS_AUTHENTICATED }
+         
 
 when@test:
     security:
