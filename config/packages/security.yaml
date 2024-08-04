@@ -32,6 +32,15 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                default_target_path: /admin
+                enable_csrf: true
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: app_login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -44,11 +53,18 @@ security:
     access_control:
                
         - { path: ^/api/login, roles: PUBLIC_ACCESS }         
+<<<<<<< HEAD
         - { path: ^/api/services, roles: PUBLIC_ACCESS, method: GET }         
         - { path: ^/api/categories, roles: PUBLIC_ACCESS, method: GET }         
         - { path: ^/api/, roles: IS_AUTHENTICATED }
+=======
+        - { path: ^/api/services, roles: PUBLIC_ACCESS,method: GET }         
+        - { path: ^/api/categories, roles: PUBLIC_ACCESS,method: GET }         
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/api/, roles: PUBLIC_ACCESS }
+        # - { path: ^/api/, roles: IS_AUTHENTICATED }
+>>>>>>> easyadmin
         # - { path: ^/api/user-info, roles: IS_AUTHENTICATED }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/api/login, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/profile, roles: ROLE_USER }
