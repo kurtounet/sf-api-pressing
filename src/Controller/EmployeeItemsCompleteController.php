@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class EmployeeItemsCompleteController extends AbstractController
 {
-    #[Route('/api/items/{id}/complete', name: 'app_items_complete')]
+    #[Route('/api/items/{id}/complete', name: 'app_items_complete', methods: ['GET'])]
     public function index(): Response
     {
         $user = $security->getUser();
