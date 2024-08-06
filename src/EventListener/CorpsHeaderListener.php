@@ -13,5 +13,9 @@ class CorpsHeaderListener
         $response->headers->add([
             'Access-Control-Allow-Origin' => '*'
         ]);
+        $response->headers->set(
+            'Access-Control-Allow-Origin',
+            '*'
+        );
     }
 }
