@@ -102,9 +102,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     "user:write",
     "employee:write",
     "client:write",
-    "user:write",
-    "employee:write",
-    "client:write"
+
   ])]
   private ?string $firstname = null;
 

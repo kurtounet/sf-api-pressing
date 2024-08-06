@@ -21,10 +21,13 @@ use Symfony\Component\Serializer\Attribute\Groups;
   operations: [
     new Get(),
     new GetCollection(),
-     new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    new Patch(security: "is_granted('ROLE_ADMIN')"),
-    new Delete(security: "is_granted('ROLE_ADMIN')")
+    new Post(),
+    new Patch(),
+    new Delete(),
+    // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    // // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    // new Patch(security: "is_granted('ROLE_ADMIN')"),
+    // new Delete(security: "is_granted('ROLE_ADMIN')")
   ]
 
 )]
@@ -56,13 +59,13 @@ class Item
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
-  #[Groups(['item:read', 'item:write',])]
+  #[Groups(['item:read', 'item:write'])]
   private ?Commande $commande = null;
 
   #[ORM\ManyToOne]
   #[ORM\JoinColumn(nullable: false)]
   #[Groups(['item:read', 'item:write'])]
-  private ?ItemStatus $ItemStatus = null;
+  private ?ItemStatus $itemStatus = null;
 
   #[ORM\Column(type: Types::TEXT, nullable: true)]
   #[Groups(['item:read', 'item:write'])]
@@ -73,8 +76,8 @@ class Item
   private ?float $price = null;
 
   #[ORM\Column(type: Types::SMALLINT)]
-  #[Groups(['item:read'])]
-  private ?int $Quantity = null;
+  #[Groups(['item:read', 'item:write'])]
+  private ?int $quantity = null;
 
   #[ORM\ManyToOne(inversedBy: 'items')]
   #[Groups(['item:read'])]
@@ -137,12 +140,12 @@ class Item
 
   public function getItemStatus(): ?ItemStatus
   {
-    return $this->ItemStatus;
+    return $this->itemStatus;
   }
 
-  public function setItemStatus(?ItemStatus $ItemStatus): static
+  public function setItemStatus(?ItemStatus $itemStatus): static
   {
-    $this->ItemStatus = $ItemStatus;
+    $this->itemStatus = $itemStatus;
 
     return $this;
   }
@@ -177,12 +180,12 @@ class Item
 
   public function getQuantity(): ?int
   {
-    return $this->Quantity;
+    return $this->quantity;
   }
 
-  public function setQuantity(int $Quantity): static
+  public function setQuantity(int $quantity): static
   {
-    $this->Quantity = $Quantity;
+    $this->quantity = $quantity;
 
     return $this;
   }

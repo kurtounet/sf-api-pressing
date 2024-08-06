@@ -26,7 +26,7 @@ class HashUserPasswordListener
         if (!$entity instanceof User) {
             return;
         }
-
+        // echo '$entity->getPassword()';
         $entity->setPassword($this->hasher->hashPassword($entity, $entity->getPassword()));
     }
     public function preUpdate(PreUpdateEventArgs $event): void
