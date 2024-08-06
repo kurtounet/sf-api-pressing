@@ -38,9 +38,12 @@ use Symfony\Component\Serializer\Attribute\Groups;
     new Get(),
     new GetCollection(),
     new GetCollection(routeName: 'app_current_user', name: 'app_current_user'),
-    new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    new Patch(security: "is_granted('ROLE_ADMIN')"),
-    new Delete(security: "is_granted('ROLE_ADMIN')")
+    new Post(),
+    new Patch(),
+    new Delete()
+    // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    // new Patch(security: "is_granted('ROLE_ADMIN')"),
+    // new Delete(security: "is_granted('ROLE_ADMIN')")
   ]
 
 )]
@@ -91,7 +94,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
   #[ORM\Column]
   //#[ORM\PrePersist]
   //#[ORM\PreUpdate]
-  //#[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
+  #[Groups([
+    "user:read",
+    "employee:read",
+    "client:read",
+    "user:write",
+    "employee:write",
+    "client:write"
+  ])]
   private ?string $password = null;
 
   #[ORM\Column(length: 100)]
