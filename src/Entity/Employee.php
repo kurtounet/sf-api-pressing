@@ -15,14 +15,14 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
- 
+
 #[ApiResource(
     normalizationContext: ['groups' => ['employee:read']],
     denormalizationContext: ['groups' => ['employee:write']],
     operations: [
         new Get(),
         new GetCollection(),
-        new GetCollection(routeName: 'app_get_employee_items', name: 'app_get_employee_items'),
+        // new GetCollection(routeName: 'app_get_employee_items', name: 'app_get_employee_items'),
         new Post(),
         new Patch(),
         new Delete()

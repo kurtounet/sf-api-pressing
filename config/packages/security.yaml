@@ -49,8 +49,8 @@ security:
         #- { path: ^/api/services$, roles: IS_AUTHENTICATED_ANONYMOUSLY }         
         - { path: ^/api/login, roles: PUBLIC_ACCESS}         
         - { path: ^/api/services, roles: PUBLIC_ACCESS, method: ['GET'] }         
-        - { path: ^/api/items, roles: IS_AUTHENTICATED}         
         - { path: ^/api/categories, roles: PUBLIC_ACCESS, method: ['GET'] }         
+        - { path: ^/api/, roles: IS_AUTHENTICATED}         
         # - { path: ^/api/, roles: PUBLIC_ACCESS }
         # - { path: ^/api/, roles: IS_AUTHENTICATED }
         # - { path: ^/api/user-info, roles: IS_AUTHENTICATED }
