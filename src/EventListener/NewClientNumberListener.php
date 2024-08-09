@@ -32,6 +32,15 @@ class NewClientNumberListener
 
         $entity->setClientNumber($this->generateClientNumber());
     }
+    // public function preUpdate(PreUpdateEventArgs $event): void
+    // {
+    //     $entity = $event->getObject();
+    //     if (!$entity instanceof Client) {
+    //         return;
+    //     }
+
+    //     $entity->setClientNumber($this->generateClientNumber());
+    // }
 
     private function generateClientNumber(): string
     {
