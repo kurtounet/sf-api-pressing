@@ -26,19 +26,28 @@ Faire une route pour
 # Page côté front
 
 ### Login
+>
 > routes: /api/check_login
   
 ## Visiteur
+
 ### Landing page
+
 liste 3 services
-> routes: /api/services 
+> routes: /api/services
+>
 ### Présentation des services
+>
 > routes: /api/services
 
 ## **Espace Utilisateur**
+
 ## Espace Client
+>
 >#### Page dépôt
->### Processuse de dépot    
+>
+>### Processuse de dépot
+    >
     >- 1 Choix du service
     >   - route: GET /api/services
     >- 2 Choix des article ManyToMany entre SERVICE et ARTICLE
@@ -49,34 +58,55 @@ liste 3 services
     >   - route:POST /api/items
 
 ### Page liste commandes
+>
 > controller
 > route personnalisé : /api/commande/user/{id}
+>
 ### Page panier
+>
 > stocker dans le localStorage
+>
 ### Page liste Profile
-> routes: /api/user/{id} 
+>
+> routes: /api/user/{id}
+>
 ### Page liste contact
+>
 > routes: /api/contact/
+>
 ## Espace Admin
+
 #### Page liste des ustilisateurs
+>
 > routes: /api/users
+>
 #### Page liste commandes
+
 #### Page liste des taches
+
 #### Page Profile
+
 ## Espace Employee
+
 #### Page liste des taches
+
 #### Page Profile
+
 #### Page contact
 
 ### Espace Manager
+
 ### Espace Employee
 
-
 ## Employé - admin
+>
 > list des commande pour l'employer
 
-
 ## Admin
+
+composer require easycorp/easyadmin-bundle
+php bin/console make:admin:dashboard
+
 - Admin
   - liste de commande
   > routes: /api/commandes

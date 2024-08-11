@@ -10,6 +10,7 @@ use App\Entity\Item;
 use App\Entity\ItemStatus;
 use App\Entity\Service;
 use App\Entity\User;
+use App\Entity\Profile;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -49,15 +50,26 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
-        yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Commande::class);
-        yield MenuItem::linkToCrud('Item', 'fas fa-list', Item::class);
-        yield MenuItem::linkToCrud('Client', 'fas fa-list', Client::class);
-        yield MenuItem::linkToCrud('Employé', 'fas fa-list', Employee::class);
-        yield MenuItem::linkToCrud('Services', 'fas fa-list', Service::class);
-        yield MenuItem::linkToCrud('Vetement', 'fas fa-list', Category::class);
-        yield MenuItem::linkToCrud('Item Status', 'fas fa-list', ItemStatus::class);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-list', User::class);
+            yield MenuItem::linkToCrud('Commandes', 'fas fa-list', Commande::class);
+            yield MenuItem::linkToCrud('Item', 'fas fa-list', Item::class);
+            yield MenuItem::linkToCrud('Client', 'fas fa-list', Client::class);
+            yield MenuItem::linkToCrud('Employé', 'fas fa-list', Employee::class);
+            yield MenuItem::linkToCrud('Services', 'fas fa-list', Service::class);
+            yield MenuItem::linkToCrud('Vetement', 'fas fa-list', Category::class);
+            yield MenuItem::linkToCrud('Item Status', 'fas fa-list', ItemStatus::class);
+            yield MenuItem::linkToCrud('Mon Profile', 'fas fa-list', User::class);
+
+        }
+
+        if ($this->isGranted('ROLE_EMPLOYEE')) {
+            yield MenuItem::linkToCrud('Mes tâches', 'fas fa-list', Item::class);
+            yield MenuItem::linkToCrud('Mon Profile', 'fas fa-list', User::class);
+        }
+
 
     }
 }

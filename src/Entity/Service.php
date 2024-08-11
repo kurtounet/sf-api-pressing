@@ -70,8 +70,6 @@ class Service
     $this->Category = new ArrayCollection();
   }
 
-
-
   public function getId(): ?int
   {
     return $this->id;
@@ -147,6 +145,11 @@ class Service
     $this->Category->removeElement($category);
 
     return $this;
+  }
+
+  public function __toString(): string
+  {
+    return $this->name ?: '';
   }
 
 }
