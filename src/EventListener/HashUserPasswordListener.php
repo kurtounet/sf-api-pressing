@@ -22,7 +22,6 @@ class HashUserPasswordListener
     public function prePersist(PrePersistEventArgs $event): void
     {
         $entity = $event->getObject();
-
         if (!$entity instanceof User) {
             return;
         }
@@ -32,11 +31,9 @@ class HashUserPasswordListener
     public function preUpdate(PreUpdateEventArgs $event): void
     {
         $entity = $event->getObject();
-
         if (!$entity instanceof User) {
             return;
         }
-
         $entity->setPassword($this->hasher->hashPassword($entity, $entity->getPassword()));
     }
 }
