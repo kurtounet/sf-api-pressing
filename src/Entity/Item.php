@@ -21,21 +21,19 @@ use Symfony\Component\Serializer\Attribute\Groups;
   operations: [
     new Get(),
     new GetCollection(),
-<<<<<<< HEAD
     new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-
     new Post(security: "is_granted('ROLE_ADMIN')"),
     new Patch(),
-    new Delete(security: "is_granted('ROLE_ADMIN')")
-=======
-    new Post(),
-    new Patch(),
-    new Delete(),
+    new Delete(security: "is_granted('ROLE_ADMIN')"),
+
+
+
+
     // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
     // // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
     // new Patch(security: "is_granted('ROLE_ADMIN')"),
     // new Delete(security: "is_granted('ROLE_ADMIN')")
->>>>>>> main
+
   ]
 
 )]
