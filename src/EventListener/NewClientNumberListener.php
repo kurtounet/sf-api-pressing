@@ -12,7 +12,7 @@ use Doctrine\ORM\Events;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsDoctrineListener(Events::prePersist)]
-#[AsDoctrineListener(Events::preUpdate)]
+//#[AsDoctrineListener(Events::preUpdate)]
 //#[AsDoctrineListener(Events::prePersist, entity: User::class)]
 class NewClientNumberListener
 {
@@ -32,7 +32,10 @@ class NewClientNumberListener
 
         $entity->setClientNumber($this->generateClientNumber());
     }
-
+    // public function preUpdate(PreUpdateEventArgs $args)
+    // {
+    //     // Your logic here
+    // }
     private function generateClientNumber(): string
     {
         // Generating a client number safely, potentially using a more robust method
