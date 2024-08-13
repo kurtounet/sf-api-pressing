@@ -1,5 +1,13 @@
 # PROJET DU BUSINESS CASE POUR L'EXAMEN DE FORMATION DEVELOPPEUR WEB/WEB MOBILE
 
+# easyadmin upload file
+
+composer require symfony/mime
+composer require vich/uploader-bundle
+
+- docs : vich/uploader-bundle
+<https://github.com/dustin10/VichUploaderBundle/blob/master/docs/installation.md>
+
 # Test
 
 composer require --dev symfony/test-pack symfony/http-client

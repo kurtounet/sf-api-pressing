@@ -16,7 +16,15 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
+
+
+
+
+ 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
 #[ApiResource(
   normalizationContext: ['groups' => ['service:read']],
@@ -30,6 +38,7 @@ use Symfony\Component\Validator\Constraints as Assert;
   ]
 
 )]
+
 class Service
 {
   #[ORM\Id]
@@ -53,7 +62,8 @@ class Service
   #[ORM\Column(type: Types::TEXT, nullable: true)]
   #[Groups(['service:read', 'service:write'])]
   private ?string $description = null;
-
+  #[Vich\UploadableField(mapping: 'services', fileNameProperty: 'image')]
+  private ?File $imageFile = null;
   #[ORM\Column(length: 255, nullable: true)]
   #[Groups(['service:read', 'service:write'])]
   private ?string $image = null;
@@ -121,6 +131,21 @@ class Service
     $this->image = $image;
 
     return $this;
+  }
+  public function setImageFile(?File $imageFile = null): void
+  {
+    $this->imageFile = $imageFile;
+
+    if (null !== $imageFile) {
+      // It is required that at least one field changes if you are using doctrine
+      // otherwise the event listeners won't be called and the file is lost
+      $this->updatedAt = new \DateTimeImmutable();
+    }
+  }
+
+  public function getImageFile(): ?File
+  {
+    return $this->imageFile;
   }
 
   /**

@@ -10,12 +10,14 @@ use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-
+use Symfony\Component\HttpFoundation\File\File;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource(
   normalizationContext: ['groups' => ['category:list:read']],
@@ -36,6 +38,7 @@ class Category
   #[ORM\Column]
   #[Groups(['category:list:read', 'service:read'])]
   private ?int $id = null;
+
 
   #[ORM\Column(length: 50)]
   #[Groups(['category:list:read', 'category:write', 'service:read'])]
@@ -72,6 +75,9 @@ class Category
   #[ORM\ManyToMany(targetEntity: Service::class, mappedBy: 'Category')]
   // #[Groups(['category:list:read', 'category:write', 'service:read'])]
   private Collection $services;
+
+  #[Vich\UploadableField(mapping: 'categories', fileNameProperty: 'image')]
+  private ?File $imageFile = null;
 
   #[ORM\Column(length: 255, nullable: true)]
   #[Groups(['category:list:read', 'category:write', 'service:read'])]
@@ -213,5 +219,24 @@ class Category
     $this->image = $image;
 
     return $this;
+  }
+  public function setImageFile(?File $imageFile = null): void
+  {
+    $this->imageFile = $imageFile;
+
+    if (null !== $imageFile) {
+
+      $this->updatedAt = new \DateTimeImmutable();
+    }
+  }
+
+  public function getImageFile(): ?File
+  {
+    return $this->imageFile;
+  }
+
+  public function __toString(): string
+  {
+    return $this->name;
   }
 }

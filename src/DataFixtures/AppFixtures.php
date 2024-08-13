@@ -71,6 +71,7 @@ class AppFixtures extends Fixture
             $category = new Category();
             $category->setName($item['name']);
             $category->setParent(null);
+            $category->setImage($item['image']);
             /*
             if ($item['parent'] == null) {
                 $category->setParent(null);

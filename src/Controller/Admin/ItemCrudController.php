@@ -22,6 +22,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -40,6 +41,11 @@ class ItemCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return Item::class;
+    }
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle(Crud::PAGE_INDEX, 'Liste des tâches');
     }
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
@@ -112,30 +118,34 @@ class ItemCrudController extends AbstractCrudController
             ];
         }
 
-        // Exemple pour ROLE_EMPLOYEE (vous pouvez ajuster cela selon vos besoins)
+
         if ($this->isGranted('ROLE_EMPLOYEE')) {
             return [
-                AssociationField::new('service')
+
+                TextField::new('service')
                     ->setLabel('Service')
-                    ->setFormTypeOptions([
-                        'class' => Service::class,
-                        'choice_label' => 'name',
-                        
-                    ]),
-                AssociationField::new('commande')
+                    ->setDisabled(true)
+                ,
+
+                TextField::new('commande')
                     ->setLabel('Commande')
-                    ->setFormTypeOptions([
-                        'class' => Commande::class,
-                        'choice_label' => 'ref'
-                    ]),
-                NumberField::new('quantity'),
+                    ->setDisabled(true)
+
+                ,
+
+
+                NumberField::new('quantity')
+                    ->setDisabled(true),
+
                 AssociationField::new('itemStatus')
                     ->setLabel('Statut de la tâche')
                     ->setFormTypeOptions([
                         'class' => ItemStatus::class,
                         'choice_label' => 'name'
                     ]),
-                TextEditorField::new('detailItem'),
+
+                TextEditorField::new('detailItem')
+                    ->setDisabled(true),
 
             ];
         }

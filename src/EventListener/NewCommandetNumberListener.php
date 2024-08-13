@@ -7,6 +7,8 @@ use App\Entity\Commande;
 use App\Repository\CommandeRepository;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+
 use Doctrine\ORM\Events;
 
 
@@ -31,6 +33,15 @@ class NewCommandetNumberListener
 
         $entity->setRef($this->generateCommandeNumber());
     }
+    public function preUpdate(PreUpdateEventArgs $event): void
+    {
+        $entity = $event->getObject();
+        if (!$entity instanceof Commande) {
+            return;
+        }
+       // $entity->setRef($this->generateCommandeNumber());
+    }
+
 
     private function generateCommandeNumber(): string
     {
