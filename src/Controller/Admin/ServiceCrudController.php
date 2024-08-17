@@ -5,10 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Service;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -18,6 +16,7 @@ class ServiceCrudController extends AbstractCrudController
     {
         return Service::class;
     }
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud

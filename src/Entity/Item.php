@@ -2,205 +2,199 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\ApiResource;
-
+use ApiPlatform\Metadata\Post;
+use App\Controller\GetItemsEmployeesController;
+use App\Controller\GetItemsNoAssignController;
 use App\Repository\ItemRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
+
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
+#[GetCollection(
+    name: 'app_get_items_no_assigned',
+    uriTemplate: '/items/noassigned',
+    controller: GetItemsNoAssignController::class,
+    normalizationContext: ['groups' => ['item:read']],
+    denormalizationContext: ['groups' => ['item:write']],
+)
+]
+#[GetCollection(
+    name: 'app_get_items_employee',
+    uriTemplate: '/items/employees',
+    controller: GetItemsEmployeesController::class,
+    normalizationContext: ['groups' => ['item:employee:read']],
+    denormalizationContext: ['groups' => ['item:write']],
+)
+]
 #[ApiResource(
-  normalizationContext: ['groups' => ['item:read']],
-  denormalizationContext: ['groups' => ['item:write']],
-  operations: [
-    new Get(),
-    new GetCollection(),
-    new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    new Post(security: "is_granted('ROLE_ADMIN')"),
-    new Patch(),
-    new Delete(security: "is_granted('ROLE_ADMIN')"),
+    normalizationContext: ['groups' => ['item:read']],
+    denormalizationContext: ['groups' => ['item:write']],
+    operations: [
+        new GetCollection(),
+        new Get(),
+        new Post(security: "is_granted('ROLE_ADMIN')"),
+        new Patch(),
+        new Delete(security: "is_granted('ROLE_ADMIN')"),
+        // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        // new Patch(security: "is_granted('ROLE_ADMIN')"),
+        // new Delete(security: "is_granted('ROLE_ADMIN')")
 
-
-
-
-    // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    // // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    // new Patch(security: "is_granted('ROLE_ADMIN')"),
-    // new Delete(security: "is_granted('ROLE_ADMIN')")
-
-  ]
-
+    ]
 )]
 class Item
 {
-  #[ORM\Id]
-  #[ORM\GeneratedValue]
-  #[ORM\Column]
-  #[Groups(['item:read'])]
-  private ?int $id = null;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    #[Groups(['item:read', 'employee:items', 'item:employee:read'])]
+    private ?int $id = null;
 
-  /*
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(
-      ['item:read', 'item:write', 'article:read:item'])]
-    private ?Article $article = null;
-  */
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  #[Groups(['item:read', 'item:write'])]
-  private ?Service $service = null;
-  /*
+    #[Groups(['item:read', 'item:write', 'employee:items', 'item:employee:read'])]
+    private ?Service $service = null;
+
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['item:read', 'item:write', 'item:employee:read'])]
+    private ?Commande $commande = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['item:read', 'item:write', 'item:employee:read', 'item:employee:write'])]
+    private ?ItemStatus $itemStatus = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['item:read', 'item:write', 'item:employee:read'])]
+    private ?string $detailItem = null;
+
+    #[ORM\Column]
     #[Groups(['item:read', 'item:write'])]
-    private ?User $user = null;
-  */
+    private ?float $price = null;
 
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  #[Groups(['item:read', 'item:write'])]
-  private ?Commande $commande = null;
+    #[ORM\Column(type: Types::SMALLINT)]
+    #[Groups(['item:read', 'item:write', 'item:employee:read'])]
+    private ?int $quantity = null;
 
-  #[ORM\ManyToOne]
-  #[ORM\JoinColumn(nullable: false)]
-  #[Groups(['item:read', 'item:write'])]
-  private ?ItemStatus $itemStatus = null;
+    #[ORM\ManyToOne(inversedBy: 'items')]
+    #[Groups(['item:read', 'item:write'])]
+    private ?Employee $employee = null;
 
-  #[ORM\Column(type: Types::TEXT, nullable: true)]
-  #[Groups(['item:read', 'item:write'])]
-  private ?string $detailItem = null;
+    #[ORM\ManyToOne]
+    #[Groups(['item:read', 'item:write', 'employee:items', 'item:employee:read'])]
+    private ?Category $category = null;
 
-  #[ORM\Column]
-  #[Groups(['item:read', 'item:write'])]
-  private ?float $price = null;
+    //
 
-  #[ORM\Column(type: Types::SMALLINT)]
-  #[Groups(['item:read', 'item:write'])]
-  private ?int $quantity = null;
 
-  #[ORM\ManyToOne(inversedBy: 'items')]
-  #[Groups(['item:read', 'item:write'])]
-  private ?Employee $employee = null;
-
-  public function getId(): ?int
-  {
-    return $this->id;
-  }
-  /*
-    public function getArticle(): ?Article
+    public function getId(): ?int
     {
-      return $this->article;
+        return $this->id;
     }
 
-    public function setArticle(?Article $article): static
+
+    public function getService(): ?Service
     {
-      $this->article = $article;
-
-      return $this;
-    }
-  */
-  public function getService(): ?Service
-  {
-    return $this->service;
-  }
-
-  public function setService(?Service $service): static
-  {
-    $this->service = $service;
-
-    return $this;
-  }
-
-  /*
-    public function getUser(): ?User
-    {
-      return $this->user;
+        return $this->service;
     }
 
-    public function setUser(?User $user): static
+    public function setService(?Service $service): static
     {
-      $this->user = $user;
+        $this->service = $service;
 
-      return $this;
+        return $this;
     }
-  */
 
-  public function getCommande(): ?Commande
-  {
-    return $this->commande;
-  }
 
-  public function setCommande(?Commande $commande): static
-  {
-    $this->commande = $commande;
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
 
-    return $this;
-  }
+    public function setCommande(?Commande $commande): static
+    {
+        $this->commande = $commande;
 
-  public function getItemStatus(): ?ItemStatus
-  {
-    return $this->itemStatus;
-  }
+        return $this;
+    }
 
-  public function setItemStatus(?ItemStatus $itemStatus): static
-  {
-    $this->itemStatus = $itemStatus;
+    public function getItemStatus(): ?ItemStatus
+    {
+        return $this->itemStatus;
+    }
 
-    return $this;
-  }
+    public function setItemStatus(?ItemStatus $itemStatus): static
+    {
+        $this->itemStatus = $itemStatus;
 
-  public function getDetailItem(): ?string
-  {
-    return $this->detailItem;
-  }
+        return $this;
+    }
 
-  public function setDetailItem(?string $detailItem): static
-  {
-    $this->detailItem = $detailItem;
+    public function getDetailItem(): ?string
+    {
+        return $this->detailItem;
+    }
 
-    return $this;
-  }
+    public function setDetailItem(?string $detailItem): static
+    {
+        $this->detailItem = $detailItem;
 
-  public function getPrice(): ?float
-  {
-    return $this->price;
-  }
+        return $this;
+    }
 
-  public function setPrice(float $price): static
-  {
-    $this->price = $price;
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
 
-    return $this;
-  }
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
 
-  public function getQuantity(): ?int
-  {
-    return $this->quantity;
-  }
+        return $this;
+    }
 
-  public function setQuantity(int $quantity): static
-  {
-    $this->quantity = $quantity;
+    public function getQuantity(): ?int
+    {
+        return $this->quantity;
+    }
 
-    return $this;
-  }
+    public function setQuantity(int $quantity): static
+    {
+        $this->quantity = $quantity;
 
-  public function getEmployee(): ?Employee
-  {
-    return $this->employee;
-  }
+        return $this;
+    }
 
-  public function setEmployee(?Employee $employee): static
-  {
-    $this->employee = $employee;
+    public function getEmployee(): ?Employee
+    {
+        return $this->employee;
+    }
 
-    return $this;
-  }
+    public function setEmployee(?Employee $employee): static
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
 }

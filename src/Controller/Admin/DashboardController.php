@@ -8,9 +8,9 @@ use App\Entity\Commande;
 use App\Entity\Employee;
 use App\Entity\Item;
 use App\Entity\ItemStatus;
+use App\Entity\Profile;
 use App\Entity\Service;
 use App\Entity\User;
-use App\Entity\Profile;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -36,8 +36,7 @@ class DashboardController extends AbstractDashboardController
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
         if ($this->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($adminUrlGenerator->setController(CommandeCrudController::class)->generateUrl());
-            ;
+            return $this->redirect($adminUrlGenerator->setController(CommandeCrudController::class)->generateUrl());;
         } else if ($this->isGranted('ROLE_EMPLOYEE')) {
             return $this->redirect($adminUrlGenerator->setController(ItemCrudController::class)->generateUrl());
         } else {
@@ -56,15 +55,13 @@ class DashboardController extends AbstractDashboardController
         if ($this->isGranted('ROLE_EMPLOYEE')) {
             return Dashboard::new()
                 ->setTitle('Pressing Préstige<br>' . $user->getUserIdentifier())
-                ->renderContentMaximized()
-            ;
+                ->renderContentMaximized();
         }
 
         if ($this->isGranted('ROLE_ADMIN')) {
             return Dashboard::new()
                 ->setTitle('Pressing Préstige<br>' . $user->getUserIdentifier())
-                ->renderContentMaximized()
-            ;
+                ->renderContentMaximized();
         }
 
         return Dashboard::new();
@@ -103,38 +100,30 @@ class DashboardController extends AbstractDashboardController
         if ($this->isGranted('ROLE_EMPLOYEE')) {
             return Actions::new()
                 ->addBatchAction(Action::BATCH_DELETE)
-                ->add(Crud::PAGE_INDEX, Action::NEW )
+                ->add(Crud::PAGE_INDEX, Action::NEW)
                 ->add(Crud::PAGE_INDEX, Action::EDIT)
                 ->add(Crud::PAGE_INDEX, Action::DELETE)
-
                 ->add(Crud::PAGE_DETAIL, Action::EDIT)
                 ->add(Crud::PAGE_DETAIL, Action::INDEX)
                 ->add(Crud::PAGE_DETAIL, Action::DELETE)
-
                 ->add(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN)
                 ->add(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE)
-
                 ->add(Crud::PAGE_NEW, Action::SAVE_AND_RETURN)
-                ->add(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER)
-            ;
+                ->add(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER);
         }
         if ($this->isGranted('ROLE_ADMIN')) {
             return Actions::new()
                 ->addBatchAction(Action::BATCH_DELETE)
-                ->add(Crud::PAGE_INDEX, Action::NEW )
+                ->add(Crud::PAGE_INDEX, Action::NEW)
                 ->add(Crud::PAGE_INDEX, Action::EDIT)
                 ->add(Crud::PAGE_INDEX, Action::DELETE)
-
                 ->add(Crud::PAGE_DETAIL, Action::EDIT)
                 ->add(Crud::PAGE_DETAIL, Action::INDEX)
                 ->add(Crud::PAGE_DETAIL, Action::DELETE)
-
                 ->add(Crud::PAGE_EDIT, Action::SAVE_AND_RETURN)
                 ->add(Crud::PAGE_EDIT, Action::SAVE_AND_CONTINUE)
-
                 ->add(Crud::PAGE_NEW, Action::SAVE_AND_RETURN)
-                ->add(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER)
-            ;
+                ->add(Crud::PAGE_NEW, Action::SAVE_AND_ADD_ANOTHER);
         }
     }
 

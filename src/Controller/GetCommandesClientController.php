@@ -12,7 +12,8 @@ class GetCommandesClientController extends AbstractController
     #[Route('/api/clients/commandes/{id}', name: 'app_get_commandes_client', methods: ['GET'])]
     public function index(
         Security $security,
-    ): Response {
+    ): Response
+    {
         $user = $security->getUser();
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);

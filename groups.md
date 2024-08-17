@@ -1,6 +1,9 @@
-D'accord, je vais ajuster les entités pour utiliser les attributs PHP 8 pour les annotations et créer des groupes de sérialisation pour chaque verbe HTTP (GET, POST, PUT, DELETE). Voici les définitions des entités avec les annotations mises à jour et un tableau récapitulatif pour les groupes de sérialisation.
+D'accord, je vais ajuster les entités pour utiliser les attributs PHP 8 pour les annotations et créer des groupes de
+sérialisation pour chaque verbe HTTP (GET, POST, PUT, DELETE). Voici les définitions des entités avec les annotations
+mises à jour et un tableau récapitulatif pour les groupes de sérialisation.
 
 ### Article.php
+
 ```php
 <?php
 
@@ -39,6 +42,7 @@ class Article
 ```
 
 ### Category.php
+
 ```php
 <?php
 
@@ -73,6 +77,7 @@ class Category
 ```
 
 ### Commande.php
+
 ```php
 <?php
 
@@ -107,6 +112,7 @@ class Commande
 ```
 
 ### Item.php
+
 ```php
 <?php
 
@@ -141,6 +147,7 @@ class Item
 ```
 
 ### ItemEtat.php
+
 ```php
 <?php
 
@@ -171,6 +178,7 @@ class ItemEtat
 ```
 
 ### Material.php
+
 ```php
 <?php
 
@@ -201,6 +209,7 @@ class Material
 ```
 
 ### Meansofpayment.php
+
 ```php
 <?php
 
@@ -231,6 +240,7 @@ class Meansofpayment
 ```
 
 ### Service.php
+
 ```php
 <?php
 
@@ -265,6 +275,7 @@ class Service
 ```
 
 ### ServiceStatus.php
+
 ```php
 <?php
 
@@ -295,6 +306,7 @@ class ServiceStatus
 ```
 
 ### User.php
+
 ```php
 <?php
 
@@ -330,36 +342,38 @@ class User
 
 ### Tableau des Groupes de Sérialisation
 
-| Entité           | Attribut     | GET              | POST              | PUT               | DELETE            |
-|------------------|--------------|------------------|-------------------|-------------------|-------------------|
-| **Article**      | id           | article:read     |                   |                   |                   |
-|                  | title        | article:read     | article:write     | article:write     |                   |
-|                  | content      | article:read     | article:write    
+| Entité      | Attribut | GET          | POST          | PUT           | DELETE |
+|-------------|----------|--------------|---------------|---------------|--------|
+| **Article** | id       | article:read |               |               |        |
+|             | title    | article:read | article:write | article:write |        |
+|             | content  | article:read | article:write 
 
- | article:write     |                   |
-|                  | category     | article:read     | article:write     | article:write     |                   |
-| **Category**     | id           | category:read    |                   |                   |                   |
-|                  | name         | category:read    | category:write    | category:write    |                   |
-|                  | articles     | category:read    |                   |                   |                   |
-| **Commande**     | id           | commande:read    |                   |                   |                   |
-|                  | orderDate    | commande:read    | commande:write    | commande:write    |                   |
-|                  | user         | commande:read    | commande:write    | commande:write    |                   |
-| **Item**         | id           | item:read        |                   |                   |                   |
-|                  | name         | item:read        | item:write        | item:write        |                   |
-|                  | itemEtat     | item:read        | item:write        | item:write        |                   |
-| **ItemEtat**     | id           | itemetat:read    |                   |                   |                   |
-|                  | status       | itemetat:read    | itemetat:write    | itemetat:write    |                   |
-| **Material**     | id           | material:read    |                   |                   |                   |
-|                  | type         | material:read    | material:write    | material:write    |                   |
-| **Meansofpayment**| id          | meansofpayment:read |               |                   |                   |
-|                  | method       | meansofpayment:read | meansofpayment:write | meansofpayment:write |            |
-| **Service**      | id           | service:read     |                   |                   |                   |
-|                  | name         | service:read     | service:write     | service:write     |                   |
-|                  | serviceStatus| service:read     | service:write     | service:write     |                   |
-| **ServiceStatus**| id           | servicestatus:read |                |                   |                   |
-|                  | status       | servicestatus:read | servicestatus:write | servicestatus:write |               |
-| **User**         | id           | user:read        |                   |                   |                   |
-|                  | username     | user:read        | user:write        | user:write        |                   |
-|                  | email        | user:read        | user:write        | user:write        |                   |
+| article:write | |
+| | category | article:read | article:write | article:write | |
+| **Category**     | id | category:read | | | |
+| | name | category:read | category:write | category:write | |
+| | articles | category:read | | | |
+| **Commande**     | id | commande:read | | | |
+| | orderDate | commande:read | commande:write | commande:write | |
+| | user | commande:read | commande:write | commande:write | |
+| **Item**         | id | item:read | | | |
+| | name | item:read | item:write | item:write | |
+| | itemEtat | item:read | item:write | item:write | |
+| **ItemEtat**     | id | itemetat:read | | | |
+| | status | itemetat:read | itemetat:write | itemetat:write | |
+| **Material**     | id | material:read | | | |
+| | type | material:read | material:write | material:write | |
+| **Meansofpayment**| id | meansofpayment:read | | | |
+| | method | meansofpayment:read | meansofpayment:write | meansofpayment:write | |
+| **Service**      | id | service:read | | | |
+| | name | service:read | service:write | service:write | |
+| | serviceStatus| service:read | service:write | service:write | |
+| **ServiceStatus**| id | servicestatus:read | | | |
+| | status | servicestatus:read | servicestatus:write | servicestatus:write | |
+| **User**         | id | user:read | | | |
+| | username | user:read | user:write | user:write | |
+| | email | user:read | user:write | user:write | |
 
-Cette structure permet de définir clairement quels champs sont disponibles pour chaque opération HTTP (GET, POST, PUT, DELETE) à travers les groupes de sérialisation. Les annotations PHP 8 rendent le code plus lisible et maintenable. Si vous avez besoin d'ajustements ou d'ajouts spécifiques, faites-le moi savoir.
+Cette structure permet de définir clairement quels champs sont disponibles pour chaque opération HTTP (GET, POST, PUT,
+DELETE) à travers les groupes de sérialisation. Les annotations PHP 8 rendent le code plus lisible et maintenable. Si
+vous avez besoin d'ajustements ou d'ajouts spécifiques, faites-le moi savoir.

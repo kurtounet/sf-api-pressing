@@ -7,10 +7,7 @@ use App\Entity\Employee;
 use App\Entity\Item;
 use App\Entity\ItemStatus;
 use App\Entity\Service;
-use App\Entity\User;
 use App\Repository\ItemRepository;
-use App\Repository\ServiceRepository;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
@@ -21,9 +18,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -33,20 +27,24 @@ class ItemCrudController extends AbstractCrudController
 {
 
     public function __construct(
-        private Security $security,
+        private Security       $security,
         private ItemRepository $itemRepository
-    ) {
+    )
+    {
 
     }
+
     public static function getEntityFqcn(): string
     {
         return Item::class;
     }
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
             ->setPageTitle(Crud::PAGE_INDEX, 'Liste des tâches');
     }
+
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $qb = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
@@ -62,6 +60,7 @@ class ItemCrudController extends AbstractCrudController
 
         return $qb;
     }
+
     public function configureActions(Actions $actions): Actions
     {
         // Get the current actions configuration
@@ -71,7 +70,7 @@ class ItemCrudController extends AbstractCrudController
         if ($this->isGranted('ROLE_EMPLOYEE')) {
             // Disable the delete and new actions for employees
             $actions = $actions
-                ->remove(Crud::PAGE_INDEX, Action::NEW )
+                ->remove(Crud::PAGE_INDEX, Action::NEW)
                 // ->remove(Crud::PAGE_EDIT, Action::DELETE)
                 ->remove(Crud::PAGE_INDEX, Action::DELETE);
         }

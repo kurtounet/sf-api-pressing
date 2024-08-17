@@ -3,13 +3,10 @@
 namespace App\EventListener;
 
 use App\Entity\Client;
-use App\Entity\User;
 use App\Repository\ClientRepository;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsDoctrineListener(Events::prePersist)]
 //#[AsDoctrineListener(Events::preUpdate)]
@@ -19,7 +16,8 @@ class NewClientNumberListener
     public function __construct(
         private ClientRepository $clientRepository
 
-    ) {
+    )
+    {
 
     }
 
@@ -41,7 +39,7 @@ class NewClientNumberListener
         // Generating a client number safely, potentially using a more robust method
         $lastClient = $this->clientRepository->findOneBy([], ['id' => 'DESC']);
         if ($lastClient) {
-            $number = (int) $lastClient->getClientNumber() + 1;
+            $number = (int)$lastClient->getClientNumber() + 1;
             return strval($number); // Incrementing last client's ID for simplicity
         }
         return '1'; // Default to '1' if no clients exist yet

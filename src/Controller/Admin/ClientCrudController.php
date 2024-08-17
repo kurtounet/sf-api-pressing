@@ -5,9 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Client;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ClientCrudController extends AbstractCrudController
 {
@@ -15,6 +12,7 @@ class ClientCrudController extends AbstractCrudController
     {
         return Client::class;
     }
+
     public function configureCrud(Crud $crud): Crud
     {
         return $crud

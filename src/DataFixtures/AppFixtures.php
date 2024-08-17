@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Client;
 use App\Entity\Commande;
@@ -14,11 +13,9 @@ use App\Entity\Material;
 use App\Entity\Meansofpayment;
 use App\Entity\Service;
 use App\Entity\ServiceStatus;
-use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class AppFixtures extends Fixture
@@ -29,9 +26,11 @@ class AppFixtures extends Fixture
 
     public function __construct(
         private SerializerInterface $serializer
-    ) {
+    )
+    {
 
     }
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
