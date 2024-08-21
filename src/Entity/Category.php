@@ -20,16 +20,16 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['category:list:read']],
-    denormalizationContext: ['groups' => ['category:write']],
-
     operations: [
         new Get(),
         new GetCollection(),
         new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
         new Patch(security: "is_granted('ROLE_ADMIN')"),
         new Delete(security: "is_granted('ROLE_ADMIN')")
-    ]
+    ],
+    normalizationContext: ['groups' => ['category:list:read']],
+
+    denormalizationContext: ['groups' => ['category:write']]
 )]
 class Category
 {

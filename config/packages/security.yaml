@@ -54,10 +54,10 @@ security:
     - { path: ^/api/login, roles: PUBLIC_ACCESS }
     - { path: ^/api/services, roles: PUBLIC_ACCESS, method: GET }
     - { path: ^/api/categories, roles: PUBLIC_ACCESS, method: GET }
+    - { path: ^/api/clients, roles: PUBLIC_ACCESS, method: GET }
     - { path: ^/api/docs, roles: PUBLIC_ACCESS }
-    - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
+    #- { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
     - { path: ^/api/admin, roles: ROLE_ADMIN }
-    # - { path: ^/api/user, roles: ROLE_USER }
 
 
 when@test:

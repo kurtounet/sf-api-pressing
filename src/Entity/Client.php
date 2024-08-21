@@ -8,27 +8,34 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\GetCommandesClientController;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
-
+#[GetCollection(
+    uriTemplate: '/clients/commandes',
+    controller: GetCommandesClientController::class,
+    normalizationContext: ['groups' => ['item:employee:read']],
+    denormalizationContext: ['groups' => ['item:write']],
+    name: 'app_get_commandes_client',
+)
+]
 #[ApiResource(
-    normalizationContext: ['groups' => ['client:read']],
-    denormalizationContext: ['groups' => ['client:write']],
     operations: [
         new Get(),
         new GetCollection(),
-        new GetCollection(routeName: 'app_get_commandes_client', name: 'app_get_commandes_client'),
         new Post(),
         new Patch(),
         new Delete()
         // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
         // new Patch(security: "is_granted('ROLE_ADMIN')"),
         // new Delete(security: "is_granted('ROLE_ADMIN')")
-    ]
+    ],
+    normalizationContext: ['groups' => ['client:read']],
+    denormalizationContext: ['groups' => ['client:write']]
 
 )]
 #[ORM\Entity(repositoryClass: ClientRepository::class)]

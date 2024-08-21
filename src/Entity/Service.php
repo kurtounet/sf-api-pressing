@@ -47,11 +47,11 @@ class Service
     #[Assert\Length(max: 100)]
     private ?string $name = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true,)]
     #[Groups(['service:read', 'service:write', 'category:list:read'])]
     #[Assert\NotBlank]
     #[Assert\Type(type: 'float')]
-    private ?float $price = null;
+    private ?float $price = 0.0;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['service:read', 'service:write'])]

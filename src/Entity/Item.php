@@ -18,24 +18,22 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
 #[GetCollection(
-    name: 'app_get_items_no_assigned',
     uriTemplate: '/items/noassigned',
     controller: GetItemsNoAssignController::class,
     normalizationContext: ['groups' => ['item:read']],
     denormalizationContext: ['groups' => ['item:write']],
+    name: 'app_get_items_no_assigned',
 )
 ]
 #[GetCollection(
-    name: 'app_get_items_employee',
     uriTemplate: '/items/employees',
     controller: GetItemsEmployeesController::class,
     normalizationContext: ['groups' => ['item:employee:read']],
     denormalizationContext: ['groups' => ['item:write']],
+    name: 'app_get_items_employee',
 )
 ]
 #[ApiResource(
-    normalizationContext: ['groups' => ['item:read']],
-    denormalizationContext: ['groups' => ['item:write']],
     operations: [
         new GetCollection(),
         new Get(),
@@ -47,7 +45,9 @@ use Symfony\Component\Serializer\Attribute\Groups;
         // new Patch(security: "is_granted('ROLE_ADMIN')"),
         // new Delete(security: "is_granted('ROLE_ADMIN')")
 
-    ]
+    ],
+    normalizationContext: ['groups' => ['item:read']],
+    denormalizationContext: ['groups' => ['item:write']]
 )]
 class Item
 {
@@ -58,17 +58,17 @@ class Item
     private ?int $id = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Groups(['item:read', 'item:write', 'employee:items', 'item:employee:read'])]
     private ?Service $service = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Groups(['item:read', 'item:write', 'item:employee:read'])]
     private ?Commande $commande = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     #[Groups(['item:read', 'item:write', 'item:employee:read', 'item:employee:write'])]
     private ?ItemStatus $itemStatus = null;
 
@@ -78,11 +78,11 @@ class Item
 
     #[ORM\Column]
     #[Groups(['item:read', 'item:write'])]
-    private ?float $price = null;
+    private ?float $price = 0.0;
 
     #[ORM\Column(type: Types::SMALLINT)]
     #[Groups(['item:read', 'item:write', 'item:employee:read'])]
-    private ?int $quantity = null;
+    private ?int $quantity = 0;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
     #[Groups(['item:read', 'item:write'])]

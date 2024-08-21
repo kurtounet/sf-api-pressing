@@ -15,19 +15,19 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['commande:item:read', 'commande:list:read', 'item:employee:read']],
-    denormalizationContext: ['groups' => ['commande:write']],
     operations: [
         new Get(),
         new GetCollection(),
-        //new GetCollection(routeName: 'app_get_commandes_no_assign', name: 'app_get_commandes_no_assign'),
+        new GetCollection(routeName: 'app_get_commandes_no_assign', name: 'app_get_commandes_no_assign'),
         new Post(),
         new Patch(),
         new Delete()
         // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
         // new Patch(security: "is_granted('ROLE_ADMIN')"),
         // new Delete(security: "is_granted('ROLE_ADMIN')")
-    ]
+    ],
+    normalizationContext: ['groups' => ['commande:item:read', 'commande:list:read', 'item:employee:read']],
+    denormalizationContext: ['groups' => ['commande:write']]
 
 )]
 class Commande

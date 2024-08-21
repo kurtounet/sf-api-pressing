@@ -1,0 +1,68 @@
+<mxfile host="Electron" modified="2024-08-18T19:53:17.876Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.3 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" version="24.5.3" etag="br6dnJ_90L7UQ6dF07Sv" type="device">
+  <diagram id="xiFbi1fKBqU_lzochWN2" name="Page-1">
+    <mxGraphModel dx="2234" dy="1654" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="node8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Category&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __construct(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; parent: &lt;br/&gt; image: &lt;br/&gt; imageFile: &lt;br/&gt; name: &lt;br/&gt; id: &lt;br/&gt; services: &lt;br/&gt; subcategories: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __toString(): &lt;br/&gt; setImageFile(imageFile): &lt;br/&gt; setImage(image): &lt;br/&gt; removeService(service): &lt;br/&gt; getImage(): &lt;br/&gt; removeSubcategory(subcategory): &lt;br/&gt; setName(name): &lt;br/&gt; addService(service): &lt;br/&gt; addSubcategory(subcategory): &lt;br/&gt; getServices(): &lt;br/&gt; setParent(parent): &lt;br/&gt; getId(): &lt;br/&gt; getImageFile(): &lt;br/&gt; getParent(): &lt;br/&gt; getSubcategories(): &lt;br/&gt; getName(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="260" y="-310" width="215" height="562" as="geometry" />
+        </mxCell>
+        <mxCell id="node5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Client&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __construct(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; Premium: &lt;br/&gt; clientNumber: &lt;br/&gt; commande: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; getClientNumber(): &lt;br/&gt; getCommande(): &lt;br/&gt; addCommande(commande): &lt;br/&gt; setClientNumber(clientNumber): &lt;br/&gt; removeCommande(commande): &lt;br/&gt; setPremium(Premium): &lt;br/&gt; getId(): &lt;br/&gt; isPremium(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-690" y="-170" width="208" height="298" as="geometry" />
+        </mxCell>
+        <mxCell id="node1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Commande&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; ref: &lt;br/&gt; returnDate: &lt;br/&gt; filingDate: &lt;br/&gt; client: &lt;br/&gt; id: &lt;br/&gt; paymentDate: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __toString(): &lt;br/&gt; setClient(client): &lt;br/&gt; setRef(ref): &lt;br/&gt; setReturnDate(returnDate): &lt;br/&gt; getReturnDate(): &lt;br/&gt; setPaymentDate(paymentDate): &lt;br/&gt; getRef(): &lt;br/&gt; getPaymentDate(): &lt;br/&gt; getId(): &lt;br/&gt; setFilingDate(filingDate): &lt;br/&gt; getFilingDate(): &lt;br/&gt; getClient(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="560" y="-310" width="201" height="429" as="geometry" />
+        </mxCell>
+        <mxCell id="node4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Employee&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __construct(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; empNumber: &lt;br/&gt; items: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; addItem(item): &lt;br/&gt; removeItem(item): &lt;br/&gt; getItems(): &lt;br/&gt; getId(): &lt;br/&gt; getEmpNumber(): &lt;br/&gt; setEmpNumber(empNumber): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-660" y="380" width="195" height="232" as="geometry" />
+        </mxCell>
+        <mxCell id="node2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Item&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; detailItem: &lt;br/&gt; quantity: &lt;br/&gt; service: &lt;br/&gt; price: &lt;br/&gt; itemStatus: &lt;br/&gt; id: &lt;br/&gt; commande: &lt;br/&gt; employee: &lt;br/&gt; category: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; setDetailItem(detailItem): &lt;br/&gt; getCommande(): &lt;br/&gt; getDetailItem(): &lt;br/&gt; setEmployee(employee): &lt;br/&gt; getPrice(): &lt;br/&gt; getItemStatus(): &lt;br/&gt; getService(): &lt;br/&gt; getQuantity(): &lt;br/&gt; getCategory(): &lt;br/&gt; setCategory(category): &lt;br/&gt; getId(): &lt;br/&gt; setService(service): &lt;br/&gt; setItemStatus(itemStatus): &lt;br/&gt; setPrice(price): &lt;br/&gt; setCommande(commande): &lt;br/&gt; getEmployee(): &lt;br/&gt; setQuantity(quantity): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="154" y="484" width="183" height="605" as="geometry" />
+        </mxCell>
+        <mxCell id="node3" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ItemStatus&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; name: &lt;br/&gt; id: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __toString(): &lt;br/&gt; setName(name): &lt;br/&gt; getId(): &lt;br/&gt; getName(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="145" y="1724" width="121" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="node7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PasswordAuthenticatedUserInterface&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; getPassword(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-100" y="-480" width="278" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="node0" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Service&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __construct(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; image: &lt;br/&gt; Category: &lt;br/&gt; price: &lt;br/&gt; imageFile: &lt;br/&gt; name: &lt;br/&gt; description: &lt;br/&gt; id: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __toString(): &lt;br/&gt; setImageFile(imageFile): &lt;br/&gt; setImage(image): &lt;br/&gt; getPrice(): &lt;br/&gt; getImage(): &lt;br/&gt; setName(name): &lt;br/&gt; getCategory(): &lt;br/&gt; getImageFile(): &lt;br/&gt; getId(): &lt;br/&gt; setDescription(description): &lt;br/&gt; addCategory(category): &lt;br/&gt; getDescription(): &lt;br/&gt; setPrice(price): &lt;br/&gt; removeCategory(category): &lt;br/&gt; getName(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="430" y="484" width="178" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="node9" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; __construct(): &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; country: &lt;br/&gt; firstname: &lt;br/&gt; city: &lt;br/&gt; roles: &lt;br/&gt; numadrs: &lt;br/&gt; adrs: &lt;br/&gt; meansPayment: &lt;br/&gt; lastname: &lt;br/&gt; zipcode: &lt;br/&gt; password: &lt;br/&gt; phone: &lt;br/&gt; dateborn: &lt;br/&gt; mobilephone: &lt;br/&gt; id: &lt;br/&gt; email: &lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; eraseCredentials(): &lt;br/&gt; getAdrs(): &lt;br/&gt; getMobilephone(): &lt;br/&gt; setDateborn(dateborn): &lt;br/&gt; getPassword(): &lt;br/&gt; setFirstname(firstname): &lt;br/&gt; getCity(): &lt;br/&gt; setRoles(roles): &lt;br/&gt; getId(): &lt;br/&gt; getCountry(): &lt;br/&gt; getRoles(): &lt;br/&gt; __toString(): &lt;br/&gt; getNumadrs(): &lt;br/&gt; getPhone(): &lt;br/&gt; setNumadrs(numadrs): &lt;br/&gt; setCity(city): &lt;br/&gt; setEmail(email): &lt;br/&gt; setZipcode(zipcode): &lt;br/&gt; getDateborn(): &lt;br/&gt; setAdrs(adrs): &lt;br/&gt; setMobilephone(mobilephone): &lt;br/&gt; setPhone(phone): &lt;br/&gt; setLastname(lastname): &lt;br/&gt; getZipcode(): &lt;br/&gt; getUserIdentifier(): &lt;br/&gt; getLastname(): &lt;br/&gt; getFirstname(): &lt;br/&gt; setCountry(country): &lt;br/&gt; setPassword(password): &lt;br/&gt; getEmail(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-250" y="-320" width="201" height="1046" as="geometry" />
+        </mxCell>
+        <mxCell id="node6" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UserInterface&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;/&gt;&lt;p style=&quot;margin:0 0 0 4px;line-height:1.6;&quot;&gt; eraseCredentials(): &lt;br/&gt; getUserIdentifier(): &lt;br/&gt; getRoles(): &lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=14;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="-400" y="-490" width="131" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node5" target="node9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge1" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=0;startArrow=none;endArrow=block;endSize=12;strokeColor=#000082;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node4" target="node9" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-562" y="1000" />
+              <mxPoint x="-530" y="1000" />
+              <mxPoint x="-530" y="900" />
+              <mxPoint x="-150" y="900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.001;entryDx=0;entryDy=0;" parent="1" source="node9" target="node7" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-35" y="-354" />
+              <mxPoint x="205" y="-354" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge0" value="" style="html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;startArrow=none;endArrow=block;endSize=12;strokeColor=#008200;exitX=0.500;exitY=0.000;exitDx=0;exitDy=0;entryX=0.500;entryY=1.000;entryDx=0;entryDy=0;" parent="1" source="node9" target="node6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

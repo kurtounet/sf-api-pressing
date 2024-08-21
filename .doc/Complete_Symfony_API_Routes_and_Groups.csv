@@ -1,0 +1,54 @@
+Table,Attribut,Groupes Symfony,Route API Platform,Méthodes HTTP
+"Category,id,""['category:list:read', 'category:write']"",/categories/{id},""GET, PUT, DELETE"""
+"Category,name,""['category:list:read', 'category:write', 'service:read']"",/categories,""GET, POST"""
+"Category,parent,""['category:write', 'category:read']"",/categories/{id}/parent,""GET, PUT"""
+Category,articles,['category:read'],/categories/{id}/articles,GET
+Category,subcategories,['category:read'],/categories/{id}/subcategories,GET
+"Category,services,""['category:read', 'service:read']"",/categories/{id}/services,GET"
+Category,imageFile,['category:write'],/categories/{id}/image,PUT
+"Category,image,""['category:list:read', 'category:write', 'service:read']"",/categories/{id}/image,GET"
+"Client,id,""['client:read', 'client:write']"",/clients/{id},""GET, PUT, DELETE"""
+"Client,clientNumber,""['client:read', 'client:write']"",/clients,""GET, POST"""
+"Client,Premium,""['client:read', 'client:write']"",/clients/{id}/premium,""GET, PUT"""
+Client,commande,['client:read'],/clients/{id}/commandes,GET
+"Commande,id,""['commande:read', 'commande:write']"",/commandes/{id},""GET, PUT, DELETE"""
+"Commande,ref,""['commande:read', 'commande:write']"",/commandes,""GET, POST"""
+"Commande,filingDate,""['commande:read', 'commande:write']"",/commandes/{id}/filing-date,""GET, PUT"""
+"Commande,returnDate,""['commande:read', 'commande:write']"",/commandes/{id}/return-date,""GET, PUT"""
+"Commande,paymentDate,""['commande:read', 'commande:write']"",/commandes/{id}/payment-date,""GET, PUT"""
+"Commande,client,""['commande:read', 'commande:write']"",/commandes/{id}/client,""GET, PUT"""
+"Employee,id,""['employee:read', 'employee:write']"",/employees/{id},""GET, PUT, DELETE"""
+"Employee,empNumber,""['employee:read', 'employee:write']"",/employees,""GET, POST"""
+Employee,items,['employee:read'],/employees/{id}/items,GET
+"Item,id,""['item:read', 'item:write']"",/items/{id},""GET, PUT, DELETE"""
+"Item,service,""['item:read', 'item:write']"",/items,""GET, POST"""
+"Item,commande,""['item:read', 'item:write']"",/items/{id}/commande,""GET, PUT"""
+"Item,itemStatus,""['item:read', 'item:write']"",/items/{id}/status,""GET, PUT"""
+"Item,detailItem,""['item:read', 'item:write']"",/items/{id}/detail,""GET, PUT"""
+"Item,price,""['item:read', 'item:write']"",/items/{id}/price,""GET, PUT"""
+"Item,quantity,""['item:read', 'item:write']"",/items/{id}/quantity,""GET, PUT"""
+Item,employee,['item:read'],/items/{id}/employee,GET
+Item,category,['item:read'],/items/{id}/category,GET
+"ItemStatus,id,""['itemStatus:read', 'itemStatus:write']"",/item-status/{id},""GET, PUT, DELETE"""
+"ItemStatus,name,""['itemStatus:read', 'itemStatus:write']"",/item-status,""GET, POST"""
+"Service,id,""['service:read', 'service:write']"",/services/{id},""GET, PUT, DELETE"""
+"Service,name,""['service:read', 'service:write']"",/services,""GET, POST"""
+"Service,price,""['service:read', 'service:write']"",/services/{id}/price,""GET, PUT"""
+"Service,description,""['service:read', 'service:write']"",/services/{id}/description,""GET, PUT"""
+Service,imageFile,['service:write'],/services/{id}/image,PUT
+"Service,image,""['service:read', 'service:write']"",/services/{id}/image,GET"
+"Service,Category,""['service:read', 'service:write']"",/services/{id}/categories,GET"
+"User,id,""['user:read', 'user:write']"",/users/{id},""GET, PUT, DELETE"""
+"User,email,""['user:read', 'user:write']"",/users,""GET, POST"""
+"User,roles,""['user:read', 'user:write']"",/users/{id}/roles,""GET, PUT"""
+User,password,['user:write'],/users/{id}/password,PUT
+"User,firstname,""['user:read', 'user:write']"",/users/{id}/firstname,""GET, PUT"""
+"User,lastname,""['user:read', 'user:write']"",/users/{id}/lastname,""GET, PUT"""
+"User,mobilephone,""['user:read', 'user:write']"",/users/{id}/mobilephone,""GET, PUT"""
+"User,phone,""['user:read', 'user:write']"",/users/{id}/phone,""GET, PUT"""
+"User,dateborn,""['user:read', 'user:write']"",/users/{id}/dateborn,""GET, PUT"""
+"User,numadrs,""['user:read', 'user:write']"",/users/{id}/numadrs,""GET, PUT"""
+"User,adrs,""['user:read', 'user:write']"",/users/{id}/address,""GET, PUT"""
+"User,city,""['user:read', 'user:write']"",/users/{id}/city,""GET, PUT"""
+"User,zipcode,""['user:read', 'user:write']"",/users/{id}/zipcode,""GET, PUT"""
+"User,country,""['user:read', 'user:write']"",/users/{id}/country,""GET, PUT"""
