@@ -1,0 +1,15 @@
+meta {
+  name: DELETE clients
+  type: http
+  seq: 6
+}
+
+delete {
+  url: 1https://127.0.0.1:8000/api/employees/13
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}

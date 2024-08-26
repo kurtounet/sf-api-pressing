@@ -44,6 +44,7 @@ class ItemStatus
     {
         return $this->id;
     }
+
     public function getName(): ?string
     {
         return $this->name;
@@ -54,5 +55,10 @@ class ItemStatus
         $this->name = $name;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?: '';
     }
 }

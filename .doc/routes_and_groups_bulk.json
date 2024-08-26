@@ -1,0 +1,542 @@
+[
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 0
+    }
+  },
+  {
+    "Ressource": "Category",
+    "M\u00e9thode": "GET",
+    "Route": "/api/categories",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 1
+    }
+  },
+  {
+    "Ressource": "Category",
+    "M\u00e9thode": "POST",
+    "Route": "/api/categories",
+    "Groups Symfony": "Category.jsonld-category.list.read, Category-category.write, Category-category.list.read, Category.jsonld-category.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 2
+    }
+  },
+  {
+    "Ressource": "Category",
+    "M\u00e9thode": "GET",
+    "Route": "/api/categories/{id}",
+    "Groups Symfony": "Category.jsonld-category.list.read, Category-category.list.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 3
+    }
+  },
+  {
+    "Ressource": "Category",
+    "M\u00e9thode": "DELETE",
+    "Route": "/api/categories/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 4
+    }
+  },
+  {
+    "Ressource": "Category",
+    "M\u00e9thode": "PATCH",
+    "Route": "/api/categories/{id}",
+    "Groups Symfony": "Category.jsonld-category.list.read, Category-category.list.read, Category-category.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 5
+    }
+  },
+  {
+    "Ressource": "Client",
+    "M\u00e9thode": "GET",
+    "Route": "/api/clients",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 6
+    }
+  },
+  {
+    "Ressource": "Client",
+    "M\u00e9thode": "POST",
+    "Route": "/api/clients",
+    "Groups Symfony": "Client-client.write, Client.jsonld-client.read, Client-client.read, Client.jsonld-client.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 7
+    }
+  },
+  {
+    "Ressource": "Client",
+    "M\u00e9thode": "GET",
+    "Route": "/api/clients/commandes/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 8
+    }
+  },
+  {
+    "Ressource": "Client",
+    "M\u00e9thode": "GET",
+    "Route": "/api/clients/{id}",
+    "Groups Symfony": "Client.jsonld-client.read, Client-client.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 9
+    }
+  },
+  {
+    "Ressource": "Client",
+    "M\u00e9thode": "DELETE",
+    "Route": "/api/clients/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 10
+    }
+  },
+  {
+    "Ressource": "Client",
+    "M\u00e9thode": "PATCH",
+    "Route": "/api/clients/{id}",
+    "Groups Symfony": "Client-client.write, Client.jsonld-client.read, Client-client.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 11
+    }
+  },
+  {
+    "Ressource": "Commande",
+    "M\u00e9thode": "GET",
+    "Route": "/api/commandes",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 12
+    }
+  },
+  {
+    "Ressource": "Commande",
+    "M\u00e9thode": "POST",
+    "Route": "/api/commandes",
+    "Groups Symfony": "Commande-commande.item.read_commande.list.read_item.employee.read, Commande-commande.write, Commande.jsonld-commande.item.read_commande.list.read_item.employee.read, Commande.jsonld-commande.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 13
+    }
+  },
+  {
+    "Ressource": "Commande",
+    "M\u00e9thode": "GET",
+    "Route": "/api/commandes/{id}",
+    "Groups Symfony": "Commande-commande.item.read_commande.list.read_item.employee.read, Commande.jsonld-commande.item.read_commande.list.read_item.employee.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 14
+    }
+  },
+  {
+    "Ressource": "Commande",
+    "M\u00e9thode": "DELETE",
+    "Route": "/api/commandes/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 15
+    }
+  },
+  {
+    "Ressource": "Commande",
+    "M\u00e9thode": "PATCH",
+    "Route": "/api/commandes/{id}",
+    "Groups Symfony": "Commande-commande.item.read_commande.list.read_item.employee.read, Commande-commande.write, Commande.jsonld-commande.item.read_commande.list.read_item.employee.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 16
+    }
+  },
+  {
+    "Ressource": "User",
+    "M\u00e9thode": "GET",
+    "Route": "/api/currentuser",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 17
+    }
+  },
+  {
+    "Ressource": "Employee",
+    "M\u00e9thode": "GET",
+    "Route": "/api/employees",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 18
+    }
+  },
+  {
+    "Ressource": "Employee",
+    "M\u00e9thode": "POST",
+    "Route": "/api/employees",
+    "Groups Symfony": "Employee.jsonld-employee.write, Employee.jsonld-employee.read, Employee-employee.read, Employee-employee.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 19
+    }
+  },
+  {
+    "Ressource": "Employee",
+    "M\u00e9thode": "GET",
+    "Route": "/api/employees/{id}",
+    "Groups Symfony": "Employee.jsonld-employee.read, Employee-employee.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 20
+    }
+  },
+  {
+    "Ressource": "Employee",
+    "M\u00e9thode": "DELETE",
+    "Route": "/api/employees/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 21
+    }
+  },
+  {
+    "Ressource": "Employee",
+    "M\u00e9thode": "PATCH",
+    "Route": "/api/employees/{id}",
+    "Groups Symfony": "Employee.jsonld-employee.read, Employee-employee.read, Employee-employee.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 22
+    }
+  },
+  {
+    "Ressource": "ItemStatus",
+    "M\u00e9thode": "GET",
+    "Route": "/api/item_statuses",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 23
+    }
+  },
+  {
+    "Ressource": "ItemStatus",
+    "M\u00e9thode": "POST",
+    "Route": "/api/item_statuses",
+    "Groups Symfony": "ItemStatus.jsonld-itemStatus.read, ItemStatus.jsonld-itemStatus.write, ItemStatus-itemStatus.read, ItemStatus-itemStatus.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 24
+    }
+  },
+  {
+    "Ressource": "ItemStatus",
+    "M\u00e9thode": "GET",
+    "Route": "/api/item_statuses/{id}",
+    "Groups Symfony": "ItemStatus.jsonld-itemStatus.read, ItemStatus-itemStatus.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 25
+    }
+  },
+  {
+    "Ressource": "ItemStatus",
+    "M\u00e9thode": "DELETE",
+    "Route": "/api/item_statuses/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 26
+    }
+  },
+  {
+    "Ressource": "ItemStatus",
+    "M\u00e9thode": "PATCH",
+    "Route": "/api/item_statuses/{id}",
+    "Groups Symfony": "ItemStatus.jsonld-itemStatus.read, ItemStatus-itemStatus.write, ItemStatus-itemStatus.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 27
+    }
+  },
+  {
+    "Ressource": "Item",
+    "M\u00e9thode": "GET",
+    "Route": "/api/items",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 28
+    }
+  },
+  {
+    "Ressource": "Item",
+    "M\u00e9thode": "POST",
+    "Route": "/api/items",
+    "Groups Symfony": "Item.jsonld-item.read, Item-item.write, Item-item.read, Item.jsonld-item.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 29
+    }
+  },
+  {
+    "Ressource": "Item",
+    "M\u00e9thode": "GET",
+    "Route": "/api/items/employees",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 30
+    }
+  },
+  {
+    "Ressource": "Item",
+    "M\u00e9thode": "GET",
+    "Route": "/api/items/noassigned",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 31
+    }
+  },
+  {
+    "Ressource": "Item",
+    "M\u00e9thode": "GET",
+    "Route": "/api/items/{id}",
+    "Groups Symfony": "Item.jsonld-item.read, Item-item.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 32
+    }
+  },
+  {
+    "Ressource": "Item",
+    "M\u00e9thode": "DELETE",
+    "Route": "/api/items/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 33
+    }
+  },
+  {
+    "Ressource": "Item",
+    "M\u00e9thode": "PATCH",
+    "Route": "/api/items/{id}",
+    "Groups Symfony": "Item.jsonld-item.read, Item-item.write, Item-item.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 34
+    }
+  },
+  {
+    "Ressource": "Login Check",
+    "M\u00e9thode": "POST",
+    "Route": "/api/login_check",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 35
+    }
+  },
+  {
+    "Ressource": "Service",
+    "M\u00e9thode": "GET",
+    "Route": "/api/services",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 36
+    }
+  },
+  {
+    "Ressource": "Service",
+    "M\u00e9thode": "POST",
+    "Route": "/api/services",
+    "Groups Symfony": "Service-service.write, Service.jsonld-service.read, Service-service.read, Service.jsonld-service.write"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 37
+    }
+  },
+  {
+    "Ressource": "Service",
+    "M\u00e9thode": "GET",
+    "Route": "/api/services/{id}",
+    "Groups Symfony": "Service.jsonld-service.read, Service-service.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 38
+    }
+  },
+  {
+    "Ressource": "Service",
+    "M\u00e9thode": "DELETE",
+    "Route": "/api/services/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 39
+    }
+  },
+  {
+    "Ressource": "Service",
+    "M\u00e9thode": "PATCH",
+    "Route": "/api/services/{id}",
+    "Groups Symfony": "Service-service.write, Service.jsonld-service.read, Service-service.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 40
+    }
+  },
+  {
+    "Ressource": "User",
+    "M\u00e9thode": "GET",
+    "Route": "/api/users",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 41
+    }
+  },
+  {
+    "Ressource": "User",
+    "M\u00e9thode": "POST",
+    "Route": "/api/users",
+    "Groups Symfony": "User.jsonld-user.write, User-user.read, User-user.write, User.jsonld-user.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 42
+    }
+  },
+  {
+    "Ressource": "User",
+    "M\u00e9thode": "GET",
+    "Route": "/api/users/{id}",
+    "Groups Symfony": "User-user.read, User.jsonld-user.read"
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 43
+    }
+  },
+  {
+    "Ressource": "User",
+    "M\u00e9thode": "DELETE",
+    "Route": "/api/users/{id}",
+    "Groups Symfony": ""
+  },
+  {
+    "index": {
+      "_index": "routes_and_groups",
+      "_id": 44
+    }
+  },
+  {
+    "Ressource": "User",
+    "M\u00e9thode": "PATCH",
+    "Route": "/api/users/{id}",
+    "Groups Symfony": "User-user.read, User-user.write, User.jsonld-user.read"
+  }
+]

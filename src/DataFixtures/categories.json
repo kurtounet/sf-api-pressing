@@ -1,82 +1,110 @@
 [
   {
+    "id": 1,
     "name": "T-shirt",
-    "price": 5
+    "image": "t-shirt.png",
+    "parent_id": null
   },
   {
+    "id": 2,
     "name": "Chemise",
-    "price": 3
+    "image": "Chemise-homme.jpg",
+    "parent_id": null
   },
   {
+    "id": 3,
     "name": "Pantalon",
-    "price": 3
+    "image": "pantalon.png",
+    "parent_id": null
   },
   {
+    "id": 4,
     "name": "Jupe",
-    "price": 4
+    "image": "jupe.jpg",
+    "parent_id": null
   },
   {
+    "id": 5,
     "name": "Robe",
-    "price": 6
+    "image": "robe.jpg",
+    "parent_id": null
   },
   {
+    "id": 6,
     "name": "Short",
-    "price": 2.50
+    "image": "short.png",
+    "parent_id": null
   },
   {
-    "name": "Veste",
-    "price": 7
-  },
-  {
+    "id": 8,
     "name": "Manteau",
-    "price": 6.90
+    "image": "manteau.jpg",
+    "parent_id": null
   },
   {
+    "id": 9,
     "name": "Pull",
-    "price": 4.50
+    "image": "pull.png",
+    "parent_id": null
   },
   {
+    "id": 10,
     "name": "Cardigan",
-    "price": 5
+    "image": "cardigan.png",
+    "parent_id": null
   },
   {
-    "name": "Sweatshirt",
-    "price": 4.50
+    "id": 11,
+    "name": "Sweat-shirt",
+    "image": "sweat-shirt.png",
+    "parent_id": null
   },
   {
+    "id": 12,
     "name": "Polo",
-    "price": 3.50
+    "image": "pollo.png",
+    "parent_id": null
   },
   {
+    "id": 13,
     "name": "Blazer",
-    "price": 8
+    "image": "blazer.png",
+    "parent_id": null
   },
   {
+    "id": 14,
     "name": "Gilet",
-    "price": 4
+    "image": "blazer.png",
+    "parent_id": null
   },
   {
+    "id": 15,
     "name": "Pyjama",
-    "price": 3
+    "image": "pyjama.png",
+    "parent_id": null
   },
   {
-    "name": "Débardeur",
-    "price": 2.50
-  },
-  {
+    "id": 17,
     "name": "Chemisier",
-    "price": 3.50
+    "image": "Blouse-Chemisier.jpg",
+    "parent_id": null
   },
   {
+    "id": 18,
     "name": "Legging",
-    "price": 2.50
+    "image": "Legging.png",
+    "parent_id": null
   },
   {
+    "id": 19,
     "name": "Combinaison",
-    "price": 5.50
+    "image": "combinaison.jpg",
+    "parent_id": null
   },
   {
+    "id": 20,
     "name": "Trench-coat",
-    "price": 7
+    "image": "trench-coat.jpg",
+    "parent_id": null
   }
 ]

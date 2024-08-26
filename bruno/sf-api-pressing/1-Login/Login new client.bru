@@ -1,0 +1,26 @@
+meta {
+  name: Login new client
+  type: http
+  seq: 6
+}
+
+post {
+  url: https://127.0.0.1:8000/api/login_check
+  body: json
+  auth: bearer
+}
+
+body:json {
+  {
+    "username": "anthony2@gmail.com",
+    "password": "nirvana"
+  }
+}
+
+vars:post-response {
+  jwt_token: res.body.token
+}
+
+script:post-response {
+  bru.setEnvVar("jwt_token_admin",res.body.token);
+}
