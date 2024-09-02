@@ -37,7 +37,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
         new Post(),
         new Patch(),
         new Delete()
-        // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        // new Post(security: "is_granted('ROLE_ADMIN')"),
         // new Patch(security: "is_granted('ROLE_ADMIN')"),
         // new Delete(security: "is_granted('ROLE_ADMIN')")
     ],
@@ -80,7 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     //#[ORM\PrePersist]
-        //#[ORM\PreUpdate]
+    //#[ORM\PreUpdate]
     #[Groups([
         "user:read",
         "employee:read",
@@ -136,8 +136,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         "client:write"
     ])]
     private ?string $phone = null;
-
-
     #[Groups([
         "user:read",
         "employee:read",
@@ -229,7 +227,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getUserIdentifier(): string
     {
-        return (string)$this->email;
+        return (string) $this->email;
     }
 
 
