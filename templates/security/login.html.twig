@@ -3,51 +3,48 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-    <div class="flex items-center justify-center ">
-        <div class="w-full max-w-md m-8 p-8 bg-gray-300 shadow-md rounded-lg">
-            <form method="post" class="flex flex-col space-y-6">
+    <div class="d-flex align-items-center justify-content-center vh-100">
+        <div class="card w-100 max-w-md mx-3 p-4 shadow-sm">
+            <form method="post" class="d-flex flex-column gap-3">
                 {% if error %}
-                    <div class="text-red-500 border border-red-400 p-4 rounded-md">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
                 {% if app.user %}
                     <div class="mb-3">
                         Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"
-                                                                                         class="text-blue-500 hover:text-blue-700">Déconnexion</a>
+                                                                                         class="text-primary">Déconnexion</a>
                     </div>
                 {% endif %}
 
-                <h1 class="font-bold text-gray-900">Veuillez vous connecter</h1>
-                <div class="flex flex-col">
-                    <label for="username" class="mb-2 text-gray-700">Email</label>
+                <h1 class="h4 text-dark">Veuillez vous connecter</h1>
+                <div class="form-group">
+                    <label for="username" class="form-label">Email</label>
                     <input value="admin@gmail.com" type="email" value="{{ last_username }}" name="_username"
                            id="username"
-                           class="bg-white border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-blue-500 focus:border-blue-500"
-                           autocomplete="email" required autofocus>
+                           class="form-control" autocomplete="email" required autofocus>
                 </div>
 
-                <div class="flex flex-col mt-4">
-                    <label for="password" class="mb-2 text-gray-700">Mot de passe</label>
+                <div class="form-group">
+                    <label for="password" class="form-label">Mot de passe</label>
                     <input value="Jean" type="password" name="_password" id="password"
-                           class="bg-white border border-gray-300 rounded-md p-2 text-gray-900 focus:ring-blue-500 focus:border-blue-500"
-                           autocomplete="current-password" required>
+                           class="form-control" autocomplete="current-password" required>
                 </div>
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 {#
                 Décommentez pour activer la fonctionnalité "se souvenir de moi"
-               <div class="flex items-center mt-4">
-                   <input type="checkbox" name="_remember_me" id="_remember_me" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                   <label for="_remember_me" class="ml-2 block text-sm text-gray-900">Se souvenir de moi</label>
+               <div class="form-check">
+                   <input type="checkbox" name="_remember_me" id="_remember_me" class="form-check-input">
+                   <label for="_remember_me" class="form-check-label">Se souvenir de moi</label>
                </div>
                 #}
 
-                <button class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit">
+                <button class="btn btn-primary w-100" type="submit">
                     Se connecter
                 </button>
             </form>
-            {# <a class="flex justify-center w-full p-5 text-red-500" href="{{ path('app_reset_password') }}">Mot de passe oublié</a> #}
+            {# <a class="d-block text-center text-danger mt-3" href="{{ path('app_reset_password') }}">Mot de passe oublié</a> #}
         </div>
     </div>
 {% endblock %}
