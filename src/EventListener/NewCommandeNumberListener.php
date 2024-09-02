@@ -14,7 +14,7 @@ use Doctrine\ORM\Events;
 #[AsDoctrineListener(Events::prePersist)]
 #[AsDoctrineListener(Events::preUpdate)]
 //#[AsDoctrineListener(Events::prePersist, entity: User::class)]
-class NewCommandetNumberListener
+class NewCommandeNumberListener
 {
     public function __construct(
         private CommandeRepository $commandeRepository
