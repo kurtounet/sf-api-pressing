@@ -19,8 +19,7 @@ class NewCommandeNumberListener
     public function __construct(
         private CommandeRepository $commandeRepository
 
-    )
-    {
+    ) {
 
     }
 
@@ -37,10 +36,10 @@ class NewCommandeNumberListener
     {
         $lastCommande = $this->commandeRepository->findOneBy([], ['id' => 'DESC']);
         if ($lastCommande) {
-            $number = (int)$lastCommande->getRef() + 1;
-            return strval($number); // Incrementing last client's ID for simplicity
+            $number = (int) $lastCommande->getRef() + 1;
+            return strval($number);
         }
-        return '1'; // Default to '1' if no clients exist yet
+        return '1';
     }
 
     public function preUpdate(PreUpdateEventArgs $event): void
@@ -49,6 +48,6 @@ class NewCommandeNumberListener
         if (!$entity instanceof Commande) {
             return;
         }
-        // $entity->setRef($this->generateCommandeNumber());
+
     }
 }

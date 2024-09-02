@@ -12,8 +12,7 @@ class EmployeeItemsCompleteController extends AbstractController
     #[Route('/api/items/{id}/complete', name: 'app_items_complete', methods: ['GET'])]
     public function __invoke(
         Security $security
-    ): Response
-    {
+    ): Response {
         $user = $security->getUser();
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);

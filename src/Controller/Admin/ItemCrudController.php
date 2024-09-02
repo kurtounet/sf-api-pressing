@@ -2,11 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
 use App\Entity\Commande;
 use App\Entity\Employee;
 use App\Entity\Item;
 use App\Entity\ItemStatus;
 use App\Entity\Service;
+use App\Repository\CategoryRepository;
 use App\Repository\ItemRepository;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
@@ -27,10 +29,9 @@ class ItemCrudController extends AbstractCrudController
 {
 
     public function __construct(
-        private Security       $security,
+        private Security $security,
         private ItemRepository $itemRepository
-    )
-    {
+    ) {
 
     }
 
@@ -70,7 +71,7 @@ class ItemCrudController extends AbstractCrudController
         if ($this->isGranted('ROLE_EMPLOYEE')) {
             // Disable the delete and new actions for employees
             $actions = $actions
-                ->remove(Crud::PAGE_INDEX, Action::NEW)
+                ->remove(Crud::PAGE_INDEX, Action::NEW )
                 // ->remove(Crud::PAGE_EDIT, Action::DELETE)
                 ->remove(Crud::PAGE_INDEX, Action::DELETE);
         }
@@ -85,6 +86,7 @@ class ItemCrudController extends AbstractCrudController
             return [
                 AssociationField::new('service')
                     ->setLabel('Service')
+                    ->setTextAlign('center')
                     ->setFormTypeOptions([
                         'class' => Service::class,
                         'choice_label' => 'name'
@@ -119,24 +121,35 @@ class ItemCrudController extends AbstractCrudController
 
 
         if ($this->isGranted('ROLE_EMPLOYEE')) {
-            return [
 
+
+            return [
+                TextField::new('commande')
+                    ->setLabel('Commande')
+                    ->setTextAlign('center')
+                    ->setDisabled(true)
+
+                ,
                 TextField::new('service')
+                    ->setTextAlign('center')
                     ->setLabel('Service')
                     ->setDisabled(true)
                 ,
-
-                TextField::new('commande')
-                    ->setLabel('Commande')
+                AssociationField::new('category')
+                    ->setLabel('Catégorie de vêtement')
+                    ->setTextAlign('center')
                     ->setDisabled(true)
-
-                ,
-
+                    ->setFormTypeOptions([
+                        'class' => Category::class,
+                        'choice_label' => 'name'
+                    ]),
 
                 NumberField::new('quantity')
+                    ->setTextAlign('center')
                     ->setDisabled(true),
 
                 AssociationField::new('itemStatus')
+                    ->setTextAlign('center')
                     ->setLabel('Statut de la tâche')
                     ->setFormTypeOptions([
                         'class' => ItemStatus::class,
@@ -144,6 +157,7 @@ class ItemCrudController extends AbstractCrudController
                     ]),
 
                 TextEditorField::new('detailItem')
+                    ->setTextAlign('center')
                     ->setDisabled(true),
 
             ];
