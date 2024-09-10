@@ -22,5 +22,5 @@ function Show-Tree {
 }
 
 # Appeler la fonction avec le chemin du dossier souhaité
-Show-Tree -Path "F:\sf-api-pressing\src"
+Show-Tree -Path "F:\sf-api-pressing\public"
 #Show-Tree -Path "G:\.Labo\Symfony\projetsymfony\templates"

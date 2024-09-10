@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "ref": "1001",
+    "user": 1,
+    "filingDate": "2023-05-01",
+    "returnDate": "2023-05-08",
+    "paymentDate": "2023-05-01T14:00:00Z",
+    "meansPayment": 2
+  },
+  {
+    "id": 2,
+    "ref": "1002",
+    "user": 2,
+    "filingDate": "2023-05-02",
+    "returnDate": "2023-05-09",
+    "paymentDate": "2023-05-02T14:00:00Z",
+    "meansPayment": 3
+  },
+  {
+    "id": 3,
+    "ref": "1003",
+    "user": 3,
+    "filingDate": "2023-05-03",
+    "returnDate": "2023-05-10",
+    "paymentDate": "2023-05-03T14:00:00Z",
+    "meansPayment": 1
+  },
+  {
+    "id": 4,
+    "ref": "1004",
+    "user": 4,
+    "filingDate": "2023-05-04",
+    "returnDate": "2023-05-11",
+    "paymentDate": "2023-05-04T14:00:00Z",
+    "meansPayment": 2
+  },
+  {
+    "id": 5,
+    "ref": "1005",
+    "user": 5,
+    "filingDate": "2023-05-05",
+    "returnDate": "2023-05-12",
+    "paymentDate": "2023-05-05T14:00:00Z",
+    "meansPayment": 3
+  },
+  {
+    "id": 6,
+    "ref": "1006",
+    "user": 6,
+    "filingDate": "2023-05-06",
+    "returnDate": "2023-05-13",
+    "paymentDate": "2023-05-06T14:00:00Z",
+    "meansPayment": 1
+  },
+  {
+    "id": 7,
+    "ref": "1007",
+    "user": 7,
+    "filingDate": "2023-05-07",
+    "returnDate": "2023-05-14",
+    "paymentDate": "2023-05-07T14:00:00Z",
+    "meansPayment": 2
+  },
+  {
+    "id": 8,
+    "ref": "1008",
+    "user": 8,
+    "filingDate": "2023-05-08",
+    "returnDate": "2023-05-15",
+    "paymentDate": "2023-05-08T14:00:00Z",
+    "meansPayment": 3
+  },
+  {
+    "id": 9,
+    "ref": "1009",
+    "user": 9,
+    "filingDate": "2023-05-09",
+    "returnDate": "2023-05-16",
+    "paymentDate": "2023-05-09T14:00:00Z",
+    "meansPayment": 1
+  },
+  {
+    "id": 10,
+    "ref": "1010",
+    "user": 10,
+    "filingDate": "2023-05-10",
+    "returnDate": "2023-05-17",
+    "paymentDate": "2023-05-10T14:00:00Z",
+    "meansPayment": 2
+  }
+]

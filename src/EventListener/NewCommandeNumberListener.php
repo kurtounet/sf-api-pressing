@@ -1,15 +1,12 @@
 <?php
 
 namespace App\EventListener;
-
-
 use App\Entity\Commande;
 use App\Repository\CommandeRepository;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
-
 
 #[AsDoctrineListener(Events::prePersist)]
 #[AsDoctrineListener(Events::preUpdate)]
@@ -18,9 +15,7 @@ class NewCommandeNumberListener
 {
     public function __construct(
         private CommandeRepository $commandeRepository
-
     ) {
-
     }
 
     public function prePersist(PrePersistEventArgs $event): void
@@ -31,7 +26,6 @@ class NewCommandeNumberListener
         }
         $entity->setRef($this->generateCommandeNumber());
     }
-
     private function generateCommandeNumber(): string
     {
         $lastCommande = $this->commandeRepository->findOneBy([], ['id' => 'DESC']);
@@ -41,13 +35,11 @@ class NewCommandeNumberListener
         }
         return '1';
     }
-
     public function preUpdate(PreUpdateEventArgs $event): void
     {
         $entity = $event->getObject();
         if (!$entity instanceof Commande) {
             return;
         }
-
     }
 }

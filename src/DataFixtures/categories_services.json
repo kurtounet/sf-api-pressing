@@ -1,0 +1,254 @@
+[
+    {
+        "service_id": 1,
+        "category_id": 1
+    },
+    {
+        "service_id": 1,
+        "category_id": 2
+    },
+    {
+        "service_id": 1,
+        "category_id": 3
+    },
+    {
+        "service_id": 1,
+        "category_id": 5
+    },
+    {
+        "service_id": 2,
+        "category_id": 1
+    },
+    {
+        "service_id": 2,
+        "category_id": 2
+    },
+    {
+        "service_id": 2,
+        "category_id": 3
+    },
+    {
+        "service_id": 2,
+        "category_id": 5
+    },
+    {
+        "service_id": 2,
+        "category_id": 9
+    },
+    {
+        "service_id": 3,
+        "category_id": 1
+    },
+    {
+        "service_id": 3,
+        "category_id": 2
+    },
+    {
+        "service_id": 3,
+        "category_id": 3
+    },
+    {
+        "service_id": 3,
+        "category_id": 4
+    },
+    {
+        "service_id": 3,
+        "category_id": 5
+    },
+    {
+        "service_id": 3,
+        "category_id": 9
+    },
+    {
+        "service_id": 3,
+        "category_id": 10
+    },
+    {
+        "service_id": 4,
+        "category_id": 1
+    },
+    {
+        "service_id": 4,
+        "category_id": 2
+    },
+    {
+        "service_id": 4,
+        "category_id": 5
+    },
+    {
+        "service_id": 4,
+        "category_id": 13
+    },
+    {
+        "service_id": 5,
+        "category_id": 1
+    },
+    {
+        "service_id": 5,
+        "category_id": 2
+    },
+    {
+        "service_id": 5,
+        "category_id": 3
+    },
+    {
+        "service_id": 5,
+        "category_id": 4
+    },
+    {
+        "service_id": 6,
+        "category_id": 8
+    },
+    {
+        "service_id": 6,
+        "category_id": 20
+    },
+    {
+        "service_id": 7,
+        "category_id": 1
+    },
+    {
+        "service_id": 7,
+        "category_id": 5
+    },
+    {
+        "service_id": 7,
+        "category_id": 9
+    },
+    {
+        "service_id": 8,
+        "category_id": 33
+    },
+    {
+        "service_id": 8,
+        "category_id": 4
+    },
+    {
+        "service_id": 9,
+        "category_id": 5
+    },
+    {
+        "service_id": 9,
+        "category_id": 10
+    },
+    {
+        "service_id": 9,
+        "category_id": 9
+    },
+    {
+        "service_id": 9,
+        "category_id": 38
+    },
+    {
+        "service_id": 10,
+        "category_id": 27
+    },
+    {
+        "service_id": 10,
+        "category_id": 29
+    },
+    {
+        "service_id": 10,
+        "category_id": 38
+    },
+    {
+        "service_id": 11,
+        "category_id": 27
+    },
+    {
+        "service_id": 11,
+        "category_id": 29
+    },
+    {
+        "service_id": 12,
+        "category_id": 38
+    },
+    {
+        "service_id": 12,
+        "category_id": 27
+    },
+    {
+        "service_id": 12,
+        "category_id": 5
+    },
+    {
+        "service_id": 13,
+        "category_id": 38
+    },
+    {
+        "service_id": 13,
+        "category_id": 10
+    },
+    {
+        "service_id": 14,
+        "category_id": 18
+    },
+    {
+        "service_id": 14,
+        "category_id": 1
+    },
+    {
+        "service_id": 14,
+        "category_id": 9
+    },
+    {
+        "service_id": 15,
+        "category_id": 36
+    },
+    {
+        "service_id": 15,
+        "category_id": 35
+    },
+    {
+        "service_id": 16,
+        "category_id": 38
+    },
+    {
+        "service_id": 17,
+        "category_id": 8
+    },
+    {
+        "service_id": 17,
+        "category_id": 21
+    },
+    {
+        "service_id": 18,
+        "category_id": 36
+    },
+    {
+        "service_id": 18,
+        "category_id": 35
+    },
+    {
+        "service_id": 18,
+        "category_id": 37
+    },
+    {
+        "service_id": 19,
+        "category_id": 10
+    },
+    {
+        "service_id": 19,
+        "category_id": 13
+    },
+    {
+        "service_id": 19,
+        "category_id": 14
+    },
+    {
+        "service_id": 20,
+        "category_id": 1
+    },
+    {
+        "service_id": 20,
+        "category_id": 8
+    },
+    {
+        "service_id": 20,
+        "category_id": 9
+    },
+    {
+        "service_id": 20,
+        "category_id": 13
+    }
+]

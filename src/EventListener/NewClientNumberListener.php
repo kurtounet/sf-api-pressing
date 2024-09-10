@@ -15,7 +15,6 @@ class NewClientNumberListener
 {
     public function __construct(
         private ClientRepository $clientRepository
-
     ) {
 
     }
@@ -35,12 +34,17 @@ class NewClientNumberListener
     // }
     private function generateClientNumber(): string
     {
-
+        // Récupérer le dernier client (ou null si aucun client n'existe)
         $lastClient = $this->clientRepository->findOneBy([], ['id' => 'DESC']);
+
+        // Si un client existe, on incrémente le numéro, sinon on retourne "1"
         if ($lastClient) {
             $number = (int) $lastClient->getClientNumber() + 1;
             return strval($number);
         }
+
+        // Aucun client n'existe encore, donc on commence à 1
         return '1';
     }
+
 }
