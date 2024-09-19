@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="d-flex align-items-center justify-content-center vh-100">
-        <div class="card w-100 max-w-md mx-3 p-4 shadow-sm">
+        <div class="card w-50 max-w-md mx-3 p-4 shadow-sm">
             <form method="post" class="d-flex flex-column gap-3">
                 {% if error %}
                     <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
