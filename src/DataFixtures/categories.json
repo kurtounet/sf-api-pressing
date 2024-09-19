@@ -86,7 +86,7 @@
   {
     "id": 17,
     "name": "Chemisier",
-    "image": "Blouse-Chemisier.jpg",
+    "image": "blouse-chemisier.jpg",
     "parent_id": null
   },
   {
@@ -105,6 +105,114 @@
     "id": 20,
     "name": "Trench-coat",
     "image": "trench-coat.jpg",
+    "parent_id": null
+  },
+  {
+    "id": 21,
+    "name": "Blouson",
+    "image": "blouson.png",
+    "parent_id": null
+  },
+  {
+    "id": 22,
+    "name": "Chapeau",
+    "image": "chapeau.png",
+    "parent_id": null
+  },
+  {
+    "id": 23,
+    "name": "Combinaison de ski",
+    "image": "combinaison-de-ski.png",
+    "parent_id": null
+  },
+  {
+    "id": 24,
+    "name": "Costume 3 pièces",
+    "image": "costume-3-piece.png",
+    "parent_id": null
+  },
+  {
+    "id": 25,
+    "name": "Costume",
+    "image": "costume.png",
+    "parent_id": null
+  },
+  {
+    "id": 26,
+    "name": "Cravate",
+    "image": "cravate.jpg",
+    "parent_id": null
+  },
+  {
+    "id": 27,
+    "name": "Doudoune",
+    "image": "doudoune.jpg",
+    "parent_id": null
+  },
+  {
+    "id": 28,
+    "name": "Foulard",
+    "image": "foulard.jpg",
+    "parent_id": null
+  },
+  {
+    "id": 29,
+    "name": "Gants",
+    "image": "gants.png",
+    "parent_id": null
+  },
+  {
+    "id": 30,
+    "name": "Maillot de bain",
+    "image": "maillot-de-bain.png",
+    "parent_id": null
+  },
+  {
+    "id": 31,
+    "name": "Noisette",
+    "image": "noisette.png",
+    "parent_id": null
+  },
+  {
+    "id": 32,
+    "name": "Peignoir",
+    "image": "paignoire.png",
+    "parent_id": null
+  },
+  {
+    "id": 33,
+    "name": "Parka",
+    "image": "parka.png",
+    "parent_id": null
+  },
+  {
+    "id": 34,
+    "name": "Robe courte",
+    "image": "robe-coute.png",
+    "parent_id": null
+  },
+  {
+    "id": 35,
+    "name": "Robe longue",
+    "image": "robe-longue.png",
+    "parent_id": null
+  },
+  {
+    "id": 36,
+    "name": "Robe de mariée",
+    "image": "robe-mariee.png",
+    "parent_id": null
+  },
+  {
+    "id": 37,
+    "name": "Robe de soirée",
+    "image": "robe-soiree.png",
+    "parent_id": null
+  },
+  {
+    "id": 38,
+    "name": "Sac à main",
+    "image": "sac-a-main.png",
     "parent_id": null
   }
 ]

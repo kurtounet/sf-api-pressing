@@ -48,18 +48,17 @@ class Client extends User
     private ?int $id = null;
 */
     #[ORM\Column(length: 255)]
-    #[Groups(['client:read', 'client:write'])]
+    #[Groups(['client:read', 'client:write', 'user:read', 'user:write'])]
     private ?string $clientNumber = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['client:read', 'client:write'])]
+    #[Groups(['client:read', 'client:write', 'user:read', 'user:write'])]
     private ?bool $Premium = null;
 
     /**
      * @var Collection<int, Commande>
      */
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'client')]
-    #[Groups(['client:read', 'client:write'])]
     private Collection $commande;
 
     public function __construct()

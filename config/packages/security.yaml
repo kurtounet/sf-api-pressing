@@ -51,6 +51,7 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
+<<<<<<< HEAD
      - { path: ^/api/login, roles: PUBLIC_ACCESS}
      - { path: ^/api/services, roles: PUBLIC_ACCESS}
      - { path: ^/api/categories, roles: PUBLIC_ACCESS}
@@ -59,6 +60,16 @@ security:
     # - { path: ^/api/docs, roles: PUBLIC_ACCESS }
     # - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
     # - { path: ^/api/admin, roles: ROLE_ADMIN }
+=======
+    - { path: ^/api/login, roles: PUBLIC_ACCESS}
+    - { path: ^/api/services, roles: PUBLIC_ACCESS}
+    - { path: ^/api/categories, roles: PUBLIC_ACCESS}
+    - { path: ^/api/clients, roles: PUBLIC_ACCESS}
+    - { path: ^/api/users, roles: PUBLIC_ACCESS}
+    - { path: ^/api/docs, roles: PUBLIC_ACCESS }
+    - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/api/admin, roles: ROLE_ADMIN }
+>>>>>>> 2dc582a6b6e8c7b841835b7b5288f6ae15ee1c96
 
 
 when@test:

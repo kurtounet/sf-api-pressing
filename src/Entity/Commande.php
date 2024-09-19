@@ -8,12 +8,21 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\PostCommandesClientController;
 use App\Repository\CommandeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
+#[Post(
+    uriTemplate: '/commandes/client',
+    controller: PostCommandesClientController::class,
+    //normalizationContext: ['groups' => ['commande:item:read', 'commande:list:read', 'item:employee:read']],
+    denormalizationContext: ['groups' => ['commande:client:write']],
+    name: 'app_post_commandes_client',
+)
+]
 #[ApiResource(
     operations: [
         new Get(),
@@ -39,19 +48,19 @@ class Commande
     private ?int $id = null;
 
     #[ORM\Column(length: 10)]
-    #[Groups(['commande:item:read', 'commande:list:read', 'commande:write', 'client:read', 'commande:employee:read'])]
+    #[Groups(['commande:client:write', 'commande:item:read', 'commande:list:read', 'commande:write', 'client:read', 'commande:employee:read'])]
     private ?string $ref = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['commande:item:read', 'commande:list:read', 'commande:write', 'client:read'])]
+    #[Groups(['commande:client:write', 'commande:item:read', 'commande:list:read', 'commande:write', 'client:read'])]
     private ?\DateTimeInterface $filingDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['commande:item:read', 'commande:list:read', 'commande:write', 'client:read'])]
+    #[Groups(['commande:client:write', 'commande:item:read', 'commande:list:read', 'commande:write', 'client:read'])]
     private ?\DateTimeInterface $returnDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['commande:item:read', 'commande:list:read', 'commande:write', 'client:read'])]
+    #[Groups(['commande:client:write', 'commande:item:read', 'commande:list:read', 'commande:write', 'client:read'])]
     private ?\DateTimeInterface $paymentDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'commande')]
