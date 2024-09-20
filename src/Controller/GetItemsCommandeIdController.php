@@ -37,7 +37,7 @@ class GetItemsCommandeIdController extends AbstractController
             return $this->json(
                 $items,
                 200,
-                context: ['groups' => ['item:read']]
+                context: ['groups' => ['item:read', 'itemStatus:read']]
             );
         } else {
             return $this->json(['message' => 'Items not found'], 404);

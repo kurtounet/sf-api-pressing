@@ -70,7 +70,7 @@ class Category
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['category:list:read', 'category:write', 'service:read'])]
+    #[Groups(['category:list:read', 'category:write', 'service:read', 'item:read'])]
     private ?string $image = null;
 
 
