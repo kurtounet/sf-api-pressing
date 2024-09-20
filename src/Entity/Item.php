@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\GetItemsCommandeIdController;
 use App\Controller\GetItemsEmployeesController;
 use App\Controller\GetItemsNoAssignController;
 use App\Repository\ItemRepository;
@@ -33,20 +34,28 @@ use Symfony\Component\Serializer\Attribute\Groups;
     name: 'app_get_items_employee',
 )
 ]
-#[ApiResource(
-    operations: [
-        new GetCollection(),
-        new Get(),
-        new Post(security: "is_granted('ROLE_ADMIN')"),
-        new Patch(),
-        new Delete(security: "is_granted('ROLE_ADMIN')"),
-        // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-        // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-        // new Patch(security: "is_granted('ROLE_ADMIN')"),
-        // new Delete(security: "is_granted('ROLE_ADMIN')")
-
-    ],
+#[GetCollection(
+    uriTemplate: '/items/commande/{id}',
+    controller: GetItemsCommandeIdController::class,
     normalizationContext: ['groups' => ['item:read']],
+    denormalizationContext: ['groups' => ['item:write']],
+    name: 'app_get_items_commandes_id',
+)
+]
+#[ApiResource(
+    // operations: [
+    //     new GetCollection(),
+    //     new Get(),
+    //     new Patch(),
+    //     new Post(),
+    //     new Delete(),
+    //     // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    //     // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    //     // new Patch(security: "is_granted('ROLE_ADMIN')"),
+    //     // new Delete(security: "is_granted('ROLE_ADMIN')")
+
+    // ],
+    normalizationContext: ['groups' => ['item:read', 'item:commande:read']],
     denormalizationContext: ['groups' => ['item:write']]
 )]
 class Item

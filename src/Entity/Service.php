@@ -42,13 +42,13 @@ class Service
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['service:read', 'service:write', 'category:list:read'])]
+    #[Groups(['service:read', 'service:write', 'category:list:read', 'item:read'])]
     #[Assert\NotBlank]
     #[Assert\Length(max: 100)]
     private ?string $name = null;
 
     #[ORM\Column(nullable: true, )]
-    #[Groups(['service:read', 'service:write', 'category:list:read'])]
+    #[Groups(['service:read', 'service:write', 'category:list:read', 'item:read'])]
     #[Assert\NotBlank]
     #[Assert\Type(type: 'float')]
     private ?float $price = 0.0;

@@ -35,7 +35,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
         // new Patch(security: "is_granted('ROLE_ADMIN')"),
         // new Delete(security: "is_granted('ROLE_ADMIN')")
     ],
-    normalizationContext: ['groups' => ['commande:item:read', 'commande:list:read', 'item:employee:read']],
+    normalizationContext: ['groups' => ['commande:item:read', 'commande:list:read', 'item:employee:read', 'item:client:read']],
     denormalizationContext: ['groups' => ['commande:write']]
 
 )]

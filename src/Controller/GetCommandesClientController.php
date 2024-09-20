@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\CommandeRepository;
+use App\Repository\ItemRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ class GetCommandesClientController extends AbstractController
     //#[Route('/api/clients/{id}/commandes', name: 'app_get_commandes_client', methods: ['GET'])]
     public function __invoke(
         CommandeRepository $commandeRepository,
+        ItemRepository $itemRepository,
         Security $security
     ): JsonResponse {
         $user = $security->getUser();
@@ -31,7 +33,7 @@ class GetCommandesClientController extends AbstractController
         return $this->json(
             $commandeRepository->findBy(['client' => $user->getId()]),
             200,
-            context: ['groups' => ['commande:item:read']]
+            context: ['groups' => ['commande:item:read', 'item:read']]
         );
     }
 }

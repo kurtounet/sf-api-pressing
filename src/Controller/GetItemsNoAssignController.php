@@ -12,9 +12,8 @@ class GetItemsNoAssignController extends AbstractController
     // #[Route('/api/items/noassigned', name: 'app_get_items_no_assign')]
     public function __invoke(
         ItemRepository $itemRepository,
-        Security       $security
-    ): JsonResponse
-    {
+        Security $security
+    ): JsonResponse {
         $user = $security->getUser();
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
@@ -27,7 +26,7 @@ class GetItemsNoAssignController extends AbstractController
         // }
         return $this->json(
             $itemRepository->findBy(
-                ['employee' => null]
+                ['employee' => null, 'status' => 1],
             ),
             200,
             context: ['groups' => ['service:read', 'item:read', 'commande:list:read', 'itemStatus:read']]

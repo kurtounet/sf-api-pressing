@@ -41,7 +41,7 @@ class Category
 
 
     #[ORM\Column(length: 50)]
-    #[Groups(['category:list:read', 'category:write', 'service:read'])]
+    #[Groups(['category:list:read', 'category:write', 'service:read', 'item:read'])]
     private ?string $name = null;
 
     //  #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
