@@ -19,14 +19,10 @@ class GetItemsNoAssignController extends AbstractController
             return $this->json(['message' => 'User not found'], 404);
         }
 
-        // $item = $itemRepository->findBy(['employee' => null]);
 
-        // if (!empty($item)) {
-        //     return $this->json($item, 200);
-        // }
         return $this->json(
             $itemRepository->findBy(
-                ['employee' => null, 'status' => 1],
+                ['employee' => null],
             ),
             200,
             context: ['groups' => ['service:read', 'item:read', 'commande:list:read', 'itemStatus:read']]

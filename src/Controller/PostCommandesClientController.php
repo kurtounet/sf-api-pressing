@@ -7,6 +7,7 @@ use App\Entity\Commande;
 use App\Entity\Item;
 use App\Entity\Service;
 use App\Repository\ClientRepository;
+use App\Repository\ItemStatusRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -22,6 +23,7 @@ class PostCommandesClientController extends AbstractController
         EntityManagerInterface $entityManager,
         ValidatorInterface $validator,
         Security $security,
+        ItemStatusRepository $itemStatusRepository,
         ClientRepository $clientRepository // Ajout du repository client
     ): JsonResponse {
         // Récupérer l'utilisateur authentifié
@@ -68,6 +70,12 @@ class PostCommandesClientController extends AbstractController
             return $this->json(['errors' => $errorMessages], 400);
         }
 
+        // Recherche du statut "En attente"
+        // $itemStatus = $itemStatusRepository->findBy(['name' => 'En attente']);
+        // if (empty($itemStatus)) {
+        //     return $this->json(['message' => 'Status not found'], 404);
+        // }
+        // $idItemStatus = $itemStatus[0]->getId();
         // Traitement et persistance des items associés à la commande
         foreach ($data['items'] as $itemData) {
             $item = new Item();
@@ -78,6 +86,11 @@ class PostCommandesClientController extends AbstractController
             $item->setCategory($entityManager->getRepository(Category::class)->find(
                 (int) filter_var($itemData['category'], FILTER_SANITIZE_NUMBER_INT)
             ));
+            // if (!$itemData['itemStatus']) {
+            //     $item->setItemStatus($itemStatusRepository->find(
+            //         $idItemStatus
+            //     ));
+            // }
             $item->setDetailItem($itemData['detailItem']);
             $item->setQuantity($itemData['quantity']);
 

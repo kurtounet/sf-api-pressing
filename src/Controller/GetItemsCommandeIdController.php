@@ -31,7 +31,7 @@ class GetItemsCommandeIdController extends AbstractController
         if (!empty($itemsList)) {
             // Récupérer le premier statut trouvé
             $items = $itemsList;
-            // Récuperer l'ID de l'objet Status
+            
 
 
             return $this->json(
