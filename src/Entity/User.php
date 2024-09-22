@@ -5,10 +5,12 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
+use ApiPlatform\Metadata\Options;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
@@ -36,7 +38,9 @@ use Symfony\Component\Serializer\Attribute\Groups;
         new GetCollection(routeName: 'app_current_user', name: 'app_current_user'),
         new Post(),
         new Patch(),
+        new Put(),
         new Delete()
+
         // new Post(security: "is_granted('ROLE_ADMIN')"),
         // new Patch(security: "is_granted('ROLE_ADMIN')"),
         // new Delete(security: "is_granted('ROLE_ADMIN')")
@@ -82,9 +86,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     //#[ORM\PrePersist]
     //#[ORM\PreUpdate]
     #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
         "user:write",
         "employee:write",
         "client:write"
