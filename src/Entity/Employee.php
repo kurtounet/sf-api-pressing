@@ -26,6 +26,7 @@ use ApiPlatform\Metadata\Post;
         new Delete()
     ]
 )]
+#[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 class Employee extends User
 {
     /*
