@@ -21,7 +21,7 @@ class GetCommandesNoAssignController extends AbstractController
             return $this->json(['message' => 'User not found'], 404);
         }
         $commandes = $commandeRepository->findAll();
-        //$commandes = $commandeRepository->findBy(['employee' => null]);
+
         return $this->json(
             data: $commandes,
             context: ['groups' => ['commande:read']],

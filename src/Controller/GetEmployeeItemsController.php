@@ -22,32 +22,12 @@ class GetEmployeeItemsController extends AbstractController
         }
 
         // Récupération des articles spécifiques à l'employé connecté
-        // $items = $itemRepository->findBy(['employee' => $user->getId()]);
-        // return $this->json(
-        //     data: $items,
-        //     context: ['groups' => ['item:read']],
-        //     status: 200
-        // );
+        $items = $itemRepository->findBy(['employee' => $user->getId()]);
+        return $this->json(
+            data: $items,
+            context: ['groups' => ['item:read']],
+            status: 200
+        );
         return $this->json(['message' => 'ok'], 200);
     }
 }
-// #[Route('/api/currentuser', name: 'app_current_user', methods: ['GET'])]
-//     public function __invoke(
-//         //SerializerInterface $serializer,
-//         Security $security
-//     ): JsonResponse {
-//         $user = $security->getUser();
-
-//         if (!$user) {
-//             return $this->json(['message' => 'User not found'], 404);
-//         }
-
-//         return $this->json(
-//             data: $user,
-//             context: ['groups' => ['user:read']],
-//             status: 200
-
-//         );
-
-
-//     }

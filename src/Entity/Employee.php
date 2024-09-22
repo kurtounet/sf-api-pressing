@@ -8,23 +8,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
-use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Post;
 
+#[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['employee:read']],
     denormalizationContext: ['groups' => ['employee:write']],
-    operations: [
-        new Get(),
-        new GetCollection(),
-        // new GetCollection(routeName: 'app_get_employee_items', name: 'app_get_employee_items'),
-        new Post(),
-        new Patch(),
-        new Delete()
-    ]
 )]
 class Employee extends User
 {

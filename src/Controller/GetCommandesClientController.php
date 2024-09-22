@@ -14,6 +14,7 @@ class GetCommandesClientController extends AbstractController
 {
     #[Route('/api/clients/commandes/{id}', name: 'app_get_commandes_client', methods: ['GET'])]
     public function index(
+        CommandeRepository $commandeRepository,
         Security $security,
     ): JsonResponse {
         $user = $security->getUser();
@@ -21,12 +22,7 @@ class GetCommandesClientController extends AbstractController
             return $this->json(['message' => 'User not found'], 404);
         }
 
-        // $items = $itemRepository->findBy(['employee' => $user->getId()]);
 
-        // if (!empty($items)) {
-        //     return $this->json($items, 200);
-
-        // }
 
         return $this->json(
             $commandeRepository->findBy(['client' => $user->getId()]),
