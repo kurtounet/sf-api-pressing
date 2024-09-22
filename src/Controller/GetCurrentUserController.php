@@ -12,16 +12,10 @@ class GetCurrentUserController extends AbstractController
 {
     #[Route('/api/currentuser', name: 'app_current_user', methods: ['GET'])]
     public function __invoke(
-<<<<<<< HEAD
         SerializerInterface $serializer,
         Security            $security
     ): JsonResponse
     {
-=======
-        //SerializerInterface $serializer,
-        Security $security
-    ): JsonResponse {
->>>>>>> d7739d2e9739382551b51c1eeb1a45348b997cce
         $user = $security->getUser();
 
         if (!$user) {

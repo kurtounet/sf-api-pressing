@@ -10,12 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 
-<<<<<<< HEAD
-#[ORM\Entity(repositoryClass: EmployeeRepository::class)]
-#[ApiResource(
-    normalizationContext: ['groups' => ['employee:read']],
-    denormalizationContext: ['groups' => ['employee:write']]
-=======
 #[ApiResource(
     normalizationContext: ['groups' => ['employee:read']],
     denormalizationContext: ['groups' => ['employee:write']],
@@ -27,7 +21,6 @@ use Symfony\Component\Serializer\Attribute\Groups;
         new Patch(),
         new Delete()
     ]
->>>>>>> d7739d2e9739382551b51c1eeb1a45348b997cce
 )]
 class Employee extends User
 {
