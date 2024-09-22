@@ -28,10 +28,23 @@ class NewClientNumberListener
 
         $entity->setClientNumber($this->generateClientNumber());
     }
+<<<<<<< HEAD
     // public function preUpdate(PreUpdateEventArgs $args)
     // {
     //     // Your logic here
     // }
+=======
+    // public function preUpdate(PreUpdateEventArgs $event): void
+    // {
+    //     $entity = $event->getObject();
+    //     if (!$entity instanceof Client) {
+    //         return;
+    //     }
+
+    //     $entity->setClientNumber($this->generateClientNumber());
+    // }
+
+>>>>>>> d7739d2e9739382551b51c1eeb1a45348b997cce
     private function generateClientNumber(): string
     {
         // Récupérer le dernier client (ou null si aucun client n'existe)

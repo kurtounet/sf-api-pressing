@@ -3,35 +3,29 @@
 namespace App\Controller;
 
 use App\Repository\CommandeRepository;
-use App\Repository\ItemRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Security;
 
-class GetCommandesClientController extends AbstractController
+class GetCommandesNoAssignController extends AbstractController
 {
-    #[Route('/api/clients/commandes/{id}', name: 'app_get_commandes_client', methods: ['GET'])]
-    public function index(
+    #[Route('/api/commandes/noassign', name: 'app_get_commandes_no_assign', methods: ['GET'])]
+    public function __invoke(
         Security $security,
+        CommandeRepository $commandeRepository
     ): JsonResponse {
         $user = $security->getUser();
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }
-
-        // $items = $itemRepository->findBy(['employee' => $user->getId()]);
-
-        // if (!empty($items)) {
-        //     return $this->json($items, 200);
-
-        // }
-
+        $commandes = $commandeRepository->findAll();
+        //$commandes = $commandeRepository->findBy(['employee' => null]);
         return $this->json(
-            $commandeRepository->findBy(['client' => $user->getId()]),
-            200,
-            context: ['groups' => ['commande:item:read', 'item:read']]
+            data: $commandes,
+            context: ['groups' => ['commande:read']],
+            status: 200
         );
     }
 }

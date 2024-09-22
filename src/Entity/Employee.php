@@ -10,10 +10,24 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 
+<<<<<<< HEAD
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['employee:read']],
     denormalizationContext: ['groups' => ['employee:write']]
+=======
+#[ApiResource(
+    normalizationContext: ['groups' => ['employee:read']],
+    denormalizationContext: ['groups' => ['employee:write']],
+    operations: [
+        new Get(),
+        new GetCollection(),
+        // new GetCollection(routeName: 'app_get_employee_items', name: 'app_get_employee_items'),
+        new Post(),
+        new Patch(),
+        new Delete()
+    ]
+>>>>>>> d7739d2e9739382551b51c1eeb1a45348b997cce
 )]
 class Employee extends User
 {

@@ -16,6 +16,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
+<<<<<<< HEAD
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
 #[GetCollection(
@@ -57,6 +58,24 @@ use Symfony\Component\Serializer\Attribute\Groups;
     // ],
     normalizationContext: ['groups' => ['item:read', 'item:commande:read']],
     denormalizationContext: ['groups' => ['item:write']]
+=======
+#[ORM\Entity(repositoryClass: ItemRepository::class)]
+#[ApiResource(
+  normalizationContext: ['groups' => ['item:read']],
+  denormalizationContext: ['groups' => ['item:write']],
+  operations: [
+    new Get(),
+    new GetCollection(),
+    new Post(),
+    new Patch(),
+    new Delete(),
+    new GetCollection(routeName: 'app_get_items_employee', name: 'app_get_items_employee'),
+    // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    // // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+    // new Patch(security: "is_granted('ROLE_ADMIN')"),
+    // new Delete(security: "is_granted('ROLE_ADMIN')")
+  ]
+>>>>>>> d7739d2e9739382551b51c1eeb1a45348b997cce
 )]
 class Item
 {
