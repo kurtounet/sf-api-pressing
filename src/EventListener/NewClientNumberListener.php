@@ -26,7 +26,7 @@ class NewClientNumberListener
             return;
         }
 
-        $entity->setClientNumber($this->generateClientNumber());
+        //$entity->setClientNumber($this->generateClientNumber());
     }
     // public function preUpdate(PreUpdateEventArgs $event): void
     // {

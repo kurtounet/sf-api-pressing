@@ -48,22 +48,20 @@ security:
       # https://symfony.com/doc/current/security/impersonating_user.html
       # switch_user: true
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        #- { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        #- { path: ^/api/services$, roles: IS_AUTHENTICATED_ANONYMOUSLY }         
-        - { path: ^/api/login, roles: PUBLIC_ACCESS}         
-        - { path: ^/api/services, roles: PUBLIC_ACCESS, method: ['GET'] }         
-        - { path: ^/api/items, roles: IS_AUTHENTICATED}         
-        - { path: ^/api/categories, roles: PUBLIC_ACCESS, method: ['GET'] }         
-        # - { path: ^/api/, roles: PUBLIC_ACCESS }
-        # - { path: ^/api/, roles: IS_AUTHENTICATED }
-        # - { path: ^/api/user-info, roles: IS_AUTHENTICATED }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
-        # - { path: ^/api/login, roles: IS_AUTHENTICATED_FULLY }
-        # - { path: ^/profile, roles: ROLE_USER }
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
+
+     - { path: ^/api/login, roles: PUBLIC_ACCESS}
+     - { path: ^/api/services, roles: PUBLIC_ACCESS}
+     - { path: ^/api/categories, roles: PUBLIC_ACCESS}
+     - { path: ^/api/clients, roles: PUBLIC_ACCESS}
+    # - { path: ^/api/users, roles: PUBLIC_ACCESS}
+    # - { path: ^/api/docs, roles: PUBLIC_ACCESS }
+    # - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
+    # - { path: ^/api/admin, roles: ROLE_ADMIN }
+
+
 
 when@test:
   security:

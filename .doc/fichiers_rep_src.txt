@@ -1,0 +1,64 @@
+
+ApiResource   
+    .gitignore
+Controller    
+    Admin  "# Easy Admin   
+        CategoryCrudController.php     
+        ClientCrudController.php       
+        CommandeCrudController.php     
+        DashboardController.php        
+        EmployeeCrudController.php     
+        ItemCrudController.php
+        ItemStatusCrudController.php   
+        ServiceCrudController.php      
+        UserCrudController.php
+    .gitignore
+    EmployeeItemsCompleteController.php # Route
+    GetCommandesClientController.php # Route   
+    GetCurrentUserController.php   # Route     
+    GetItemsEmployeesController.php   # Route  
+    GetItemsNoAssignController.php   # Route   
+    IndexController.php  # index
+    SecurityController.php 
+DataFixtures
+    AppFixtures.php
+    articles.json
+    articlesStates.json
+    categories.json
+    city.json     
+    commandes.json
+    data.json
+    items.json
+    itemStatus.json
+    materials.json
+    meansOfPayments.json
+    services.json
+    subcategories.json
+    txt.txt
+    users.json
+Entity
+    .gitignore
+    Category.php
+    Client.php
+    Commande.php
+    Employee.php
+    Item.php
+    ItemStatus.php
+    Service.php
+    User.php
+EventListener
+    HashUserPasswordListener.php # hash le mots de passe de l'utilisateur lors de son inscription
+    NewClientNumberListener.php # Génère le numéro de client
+    NewCommandeNumberListener.php # Génère le numéro de commande
+    NewEmployeeNumberListener.php # Génère le numéro de Employée
+Repository
+    .gitignore
+    CategoryRepository.php
+    ClientRepository.php
+    CommandeRepository.php
+    EmployeeRepository.php
+    ItemRepository.php
+    ItemStatusRepository.php
+    ServiceRepository.php
+    UserRepository.php
+Kernel.php
