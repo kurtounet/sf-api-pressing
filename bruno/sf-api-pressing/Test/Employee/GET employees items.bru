@@ -1,0 +1,15 @@
+meta {
+  name: GET employees items
+  type: http
+  seq: 7
+}
+
+get {
+  url: https://127.0.0.1:8000/api/employees/items
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}

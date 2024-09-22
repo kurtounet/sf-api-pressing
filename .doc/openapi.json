@@ -114,6 +114,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category-category.list.read"
+                  }
+                }
               }
             }
           }
@@ -152,6 +160,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Category.jsonld-category.list.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category-category.list.read"
+                }
               }
             },
             "links": {}
@@ -173,13 +186,17 @@
               "schema": {
                 "$ref": "#/components/schemas/Category.jsonld-category.write"
               }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category-category.write"
+              }
             }
           },
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/categories/{id}": {
       "get": {
@@ -194,6 +211,11 @@
               "application/ld+json": {
                 "schema": {
                   "$ref": "#/components/schemas/Category.jsonld-category.list.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category-category.list.read"
                 }
               }
             }
@@ -268,6 +290,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Category.jsonld-category.list.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category-category.list.read"
+                }
               }
             },
             "links": {}
@@ -312,137 +339,7 @@
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
-    },
-    "/api/client/commandes": {
-      "get": {
-        "operationId": "app_get_commandes_client",
-        "tags": [
-          "Client"
-        ],
-        "responses": {
-          "200": {
-            "description": "Client collection",
-            "content": {
-              "application/ld+json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "hydra:member": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Client.jsonld-client.read"
-                      }
-                    },
-                    "hydra:totalItems": {
-                      "type": "integer",
-                      "minimum": 0
-                    },
-                    "hydra:view": {
-                      "type": "object",
-                      "properties": {
-                        "@id": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "@type": {
-                          "type": "string"
-                        },
-                        "hydra:first": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:last": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:previous": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:next": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        }
-                      },
-                      "example": {
-                        "@id": "string",
-                        "type": "string",
-                        "hydra:first": "string",
-                        "hydra:last": "string",
-                        "hydra:previous": "string",
-                        "hydra:next": "string"
-                      }
-                    },
-                    "hydra:search": {
-                      "type": "object",
-                      "properties": {
-                        "@type": {
-                          "type": "string"
-                        },
-                        "hydra:template": {
-                          "type": "string"
-                        },
-                        "hydra:variableRepresentation": {
-                          "type": "string"
-                        },
-                        "hydra:mapping": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "@type": {
-                                "type": "string"
-                              },
-                              "variable": {
-                                "type": "string"
-                              },
-                              "property": {
-                                "type": [
-                                  "string",
-                                  "null"
-                                ]
-                              },
-                              "required": {
-                                "type": "boolean"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "hydra:member"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "Retrieves the collection of Client resources.",
-        "description": "Retrieves the collection of Client resources.",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "The collection page number",
-            "required": false,
-            "deprecated": false,
-            "allowEmptyValue": true,
-            "schema": {
-              "type": "integer",
-              "default": 1
-            },
-            "style": "form",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/clients": {
       "get": {
@@ -546,6 +443,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Client-client.read"
+                  }
+                }
               }
             }
           }
@@ -584,6 +489,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Client.jsonld-client.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client-client.read"
+                }
               }
             },
             "links": {}
@@ -605,137 +515,8 @@
               "schema": {
                 "$ref": "#/components/schemas/Client.jsonld-client.write"
               }
-            }
-          },
-          "required": true
-        },
-        "deprecated": false
-      },
-      "parameters": []
-    },
-    "/api/clients/{id}": {
-      "get": {
-        "operationId": "api_clients_id_get",
-        "tags": [
-          "Client"
-        ],
-        "responses": {
-          "200": {
-            "description": "Client resource",
-            "content": {
-              "application/ld+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Client.jsonld-client.read"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Resource not found"
-          }
-        },
-        "summary": "Retrieves a Client resource.",
-        "description": "Retrieves a Client resource.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Client identifier",
-            "required": true,
-            "deprecated": false,
-            "allowEmptyValue": false,
-            "schema": {
-              "type": "string"
             },
-            "style": "simple",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "deprecated": false
-      },
-      "delete": {
-        "operationId": "api_clients_id_delete",
-        "tags": [
-          "Client"
-        ],
-        "responses": {
-          "204": {
-            "description": "Client resource deleted"
-          },
-          "404": {
-            "description": "Resource not found"
-          }
-        },
-        "summary": "Removes the Client resource.",
-        "description": "Removes the Client resource.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Client identifier",
-            "required": true,
-            "deprecated": false,
-            "allowEmptyValue": false,
-            "schema": {
-              "type": "string"
-            },
-            "style": "simple",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "deprecated": false
-      },
-      "patch": {
-        "operationId": "api_clients_id_patch",
-        "tags": [
-          "Client"
-        ],
-        "responses": {
-          "200": {
-            "description": "Client resource updated",
-            "content": {
-              "application/ld+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Client.jsonld-client.read"
-                }
-              }
-            },
-            "links": {}
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "404": {
-            "description": "Resource not found"
-          },
-          "422": {
-            "description": "Unprocessable entity"
-          }
-        },
-        "summary": "Updates the Client resource.",
-        "description": "Updates the Client resource.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Client identifier",
-            "required": true,
-            "deprecated": false,
-            "allowEmptyValue": false,
-            "schema": {
-              "type": "string"
-            },
-            "style": "simple",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "requestBody": {
-          "description": "The updated Client resource",
-          "content": {
-            "application/merge-patch+json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Client-client.write"
               }
@@ -744,18 +525,17 @@
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
-    "/api/commandes": {
+    "/api/clients/commandes/{id}": {
       "get": {
-        "operationId": "api_commandes_get_collection",
+        "operationId": "app_get_commandes_client",
         "tags": [
-          "Commande"
+          "Client"
         ],
         "responses": {
           "200": {
-            "description": "Commande collection",
+            "description": "Client collection",
             "content": {
               "application/ld+json": {
                 "schema": {
@@ -764,7 +544,7 @@
                     "hydra:member": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/Commande.jsonld-commande.read"
+                        "$ref": "#/components/schemas/Client.jsonld-client.read"
                       }
                     },
                     "hydra:totalItems": {
@@ -849,6 +629,293 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Client-client.read"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Client resources.",
+        "description": "Retrieves the collection of Client resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/api/clients/{id}": {
+      "get": {
+        "operationId": "api_clients_id_get",
+        "tags": [
+          "Client"
+        ],
+        "responses": {
+          "200": {
+            "description": "Client resource",
+            "content": {
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client.jsonld-client.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client-client.read"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a Client resource.",
+        "description": "Retrieves a Client resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Client identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "operationId": "api_clients_id_delete",
+        "tags": [
+          "Client"
+        ],
+        "responses": {
+          "204": {
+            "description": "Client resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Removes the Client resource.",
+        "description": "Removes the Client resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Client identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "operationId": "api_clients_id_patch",
+        "tags": [
+          "Client"
+        ],
+        "responses": {
+          "200": {
+            "description": "Client resource updated",
+            "content": {
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client.jsonld-client.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client-client.read"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Updates the Client resource.",
+        "description": "Updates the Client resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Client identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Client resource",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Client-client.write"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      }
+    },
+    "/api/commandes": {
+      "get": {
+        "operationId": "api_commandes_get_collection",
+        "tags": [
+          "Commande"
+        ],
+        "responses": {
+          "200": {
+            "description": "Commande collection",
+            "content": {
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Commande.jsonld-commande.item.read_commande.list.read_item.employee.read"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Commande-commande.item.read_commande.list.read_item.employee.read"
+                  }
+                }
               }
             }
           }
@@ -885,7 +952,12 @@
             "content": {
               "application/ld+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Commande.jsonld-commande.read"
+                  "$ref": "#/components/schemas/Commande.jsonld-commande.item.read_commande.list.read_item.employee.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commande-commande.item.read_commande.list.read_item.employee.read"
                 }
               }
             },
@@ -908,13 +980,17 @@
               "schema": {
                 "$ref": "#/components/schemas/Commande.jsonld-commande.write"
               }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Commande-commande.write"
+              }
             }
           },
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/commandes/{id}": {
       "get": {
@@ -928,7 +1004,12 @@
             "content": {
               "application/ld+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Commande.jsonld-commande.read"
+                  "$ref": "#/components/schemas/Commande.jsonld-commande.item.read_commande.list.read_item.employee.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commande-commande.item.read_commande.list.read_item.employee.read"
                 }
               }
             }
@@ -1001,7 +1082,12 @@
             "content": {
               "application/ld+json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Commande.jsonld-commande.read"
+                  "$ref": "#/components/schemas/Commande.jsonld-commande.item.read_commande.list.read_item.employee.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Commande-commande.item.read_commande.list.read_item.employee.read"
                 }
               }
             },
@@ -1047,8 +1133,7 @@
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/currentuser": {
       "get": {
@@ -1152,6 +1237,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User-user.read"
+                  }
+                }
               }
             }
           }
@@ -1176,137 +1269,7 @@
           }
         ],
         "deprecated": false
-      },
-      "parameters": []
-    },
-    "/api/employee/items": {
-      "get": {
-        "operationId": "app_get_employee_items",
-        "tags": [
-          "Employee"
-        ],
-        "responses": {
-          "200": {
-            "description": "Employee collection",
-            "content": {
-              "application/ld+json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "hydra:member": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Employee.jsonld-employee.read"
-                      }
-                    },
-                    "hydra:totalItems": {
-                      "type": "integer",
-                      "minimum": 0
-                    },
-                    "hydra:view": {
-                      "type": "object",
-                      "properties": {
-                        "@id": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "@type": {
-                          "type": "string"
-                        },
-                        "hydra:first": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:last": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:previous": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:next": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        }
-                      },
-                      "example": {
-                        "@id": "string",
-                        "type": "string",
-                        "hydra:first": "string",
-                        "hydra:last": "string",
-                        "hydra:previous": "string",
-                        "hydra:next": "string"
-                      }
-                    },
-                    "hydra:search": {
-                      "type": "object",
-                      "properties": {
-                        "@type": {
-                          "type": "string"
-                        },
-                        "hydra:template": {
-                          "type": "string"
-                        },
-                        "hydra:variableRepresentation": {
-                          "type": "string"
-                        },
-                        "hydra:mapping": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "@type": {
-                                "type": "string"
-                              },
-                              "variable": {
-                                "type": "string"
-                              },
-                              "property": {
-                                "type": [
-                                  "string",
-                                  "null"
-                                ]
-                              },
-                              "required": {
-                                "type": "boolean"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "hydra:member"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "Retrieves the collection of Employee resources.",
-        "description": "Retrieves the collection of Employee resources.",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "The collection page number",
-            "required": false,
-            "deprecated": false,
-            "allowEmptyValue": true,
-            "schema": {
-              "type": "integer",
-              "default": 1
-            },
-            "style": "form",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/employees": {
       "get": {
@@ -1410,6 +1373,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee-employee.read"
+                  }
+                }
               }
             }
           }
@@ -1448,6 +1419,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Employee.jsonld-employee.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee-employee.read"
+                }
               }
             },
             "links": {}
@@ -1469,13 +1445,17 @@
               "schema": {
                 "$ref": "#/components/schemas/Employee.jsonld-employee.write"
               }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employee-employee.write"
+              }
             }
           },
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/employees/{id}": {
       "get": {
@@ -1490,6 +1470,11 @@
               "application/ld+json": {
                 "schema": {
                   "$ref": "#/components/schemas/Employee.jsonld-employee.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee-employee.read"
                 }
               }
             }
@@ -1564,6 +1549,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Employee.jsonld-employee.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee-employee.read"
+                }
               }
             },
             "links": {}
@@ -1608,8 +1598,7 @@
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/item_statuses": {
       "get": {
@@ -1713,6 +1702,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItemStatus-itemStatus.read"
+                  }
+                }
               }
             }
           }
@@ -1751,6 +1748,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ItemStatus.jsonld-itemStatus.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemStatus-itemStatus.read"
+                }
               }
             },
             "links": {}
@@ -1772,13 +1774,17 @@
               "schema": {
                 "$ref": "#/components/schemas/ItemStatus.jsonld-itemStatus.write"
               }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemStatus-itemStatus.write"
+              }
             }
           },
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/item_statuses/{id}": {
       "get": {
@@ -1793,6 +1799,11 @@
               "application/ld+json": {
                 "schema": {
                   "$ref": "#/components/schemas/ItemStatus.jsonld-itemStatus.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemStatus-itemStatus.read"
                 }
               }
             }
@@ -1867,6 +1878,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/ItemStatus.jsonld-itemStatus.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemStatus-itemStatus.read"
+                }
               }
             },
             "links": {}
@@ -1911,8 +1927,7 @@
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/items": {
       "get": {
@@ -2016,6 +2031,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item-item.read"
+                  }
+                }
               }
             }
           }
@@ -2054,6 +2077,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Item.jsonld-item.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item-item.read"
+                }
               }
             },
             "links": {}
@@ -2075,137 +2103,8 @@
               "schema": {
                 "$ref": "#/components/schemas/Item.jsonld-item.write"
               }
-            }
-          },
-          "required": true
-        },
-        "deprecated": false
-      },
-      "parameters": []
-    },
-    "/api/items/{id}": {
-      "get": {
-        "operationId": "api_items_id_get",
-        "tags": [
-          "Item"
-        ],
-        "responses": {
-          "200": {
-            "description": "Item resource",
-            "content": {
-              "application/ld+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Item.jsonld-item.read"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Resource not found"
-          }
-        },
-        "summary": "Retrieves a Item resource.",
-        "description": "Retrieves a Item resource.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Item identifier",
-            "required": true,
-            "deprecated": false,
-            "allowEmptyValue": false,
-            "schema": {
-              "type": "string"
             },
-            "style": "simple",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "deprecated": false
-      },
-      "delete": {
-        "operationId": "api_items_id_delete",
-        "tags": [
-          "Item"
-        ],
-        "responses": {
-          "204": {
-            "description": "Item resource deleted"
-          },
-          "404": {
-            "description": "Resource not found"
-          }
-        },
-        "summary": "Removes the Item resource.",
-        "description": "Removes the Item resource.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Item identifier",
-            "required": true,
-            "deprecated": false,
-            "allowEmptyValue": false,
-            "schema": {
-              "type": "string"
-            },
-            "style": "simple",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "deprecated": false
-      },
-      "patch": {
-        "operationId": "api_items_id_patch",
-        "tags": [
-          "Item"
-        ],
-        "responses": {
-          "200": {
-            "description": "Item resource updated",
-            "content": {
-              "application/ld+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Item.jsonld-item.read"
-                }
-              }
-            },
-            "links": {}
-          },
-          "400": {
-            "description": "Invalid input"
-          },
-          "404": {
-            "description": "Resource not found"
-          },
-          "422": {
-            "description": "Unprocessable entity"
-          }
-        },
-        "summary": "Updates the Item resource.",
-        "description": "Updates the Item resource.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Item identifier",
-            "required": true,
-            "deprecated": false,
-            "allowEmptyValue": false,
-            "schema": {
-              "type": "string"
-            },
-            "style": "simple",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "requestBody": {
-          "description": "The updated Item resource",
-          "content": {
-            "application/merge-patch+json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Item-item.write"
               }
@@ -2214,12 +2113,147 @@
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
-    "/api/items/{id}/complete": {
+    "/api/items/employees": {
       "get": {
-        "operationId": "app_items_complete",
+        "operationId": "app_get_items_employee",
+        "tags": [
+          "Item"
+        ],
+        "responses": {
+          "200": {
+            "description": "Item collection",
+            "content": {
+              "application/ld+json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "hydra:member": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Item.jsonld-item.employee.read"
+                      }
+                    },
+                    "hydra:totalItems": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "hydra:view": {
+                      "type": "object",
+                      "properties": {
+                        "@id": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:first": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:last": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:previous": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        },
+                        "hydra:next": {
+                          "type": "string",
+                          "format": "iri-reference"
+                        }
+                      },
+                      "example": {
+                        "@id": "string",
+                        "type": "string",
+                        "hydra:first": "string",
+                        "hydra:last": "string",
+                        "hydra:previous": "string",
+                        "hydra:next": "string"
+                      }
+                    },
+                    "hydra:search": {
+                      "type": "object",
+                      "properties": {
+                        "@type": {
+                          "type": "string"
+                        },
+                        "hydra:template": {
+                          "type": "string"
+                        },
+                        "hydra:variableRepresentation": {
+                          "type": "string"
+                        },
+                        "hydra:mapping": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "type": "string"
+                              },
+                              "variable": {
+                                "type": "string"
+                              },
+                              "property": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "hydra:member"
+                  ]
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item-item.employee.read"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Retrieves the collection of Item resources.",
+        "description": "Retrieves the collection of Item resources.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The collection page number",
+            "required": false,
+            "deprecated": false,
+            "allowEmptyValue": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "style": "form",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/api/items/noassigned": {
+      "get": {
+        "operationId": "app_get_items_no_assigned",
         "tags": [
           "Item"
         ],
@@ -2319,6 +2353,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Item-item.read"
+                  }
+                }
               }
             }
           }
@@ -2343,8 +2385,150 @@
           }
         ],
         "deprecated": false
+      }
+    },
+    "/api/items/{id}": {
+      "get": {
+        "operationId": "api_items_id_get",
+        "tags": [
+          "Item"
+        ],
+        "responses": {
+          "200": {
+            "description": "Item resource",
+            "content": {
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item.jsonld-item.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item-item.read"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Retrieves a Item resource.",
+        "description": "Retrieves a Item resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Item identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
       },
-      "parameters": []
+      "delete": {
+        "operationId": "api_items_id_delete",
+        "tags": [
+          "Item"
+        ],
+        "responses": {
+          "204": {
+            "description": "Item resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "summary": "Removes the Item resource.",
+        "description": "Removes the Item resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Item identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "deprecated": false
+      },
+      "patch": {
+        "operationId": "api_items_id_patch",
+        "tags": [
+          "Item"
+        ],
+        "responses": {
+          "200": {
+            "description": "Item resource updated",
+            "content": {
+              "application/ld+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item.jsonld-item.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item-item.read"
+                }
+              }
+            },
+            "links": {}
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "summary": "Updates the Item resource.",
+        "description": "Updates the Item resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Item identifier",
+            "required": true,
+            "deprecated": false,
+            "allowEmptyValue": false,
+            "schema": {
+              "type": "string"
+            },
+            "style": "simple",
+            "explode": false,
+            "allowReserved": false
+          }
+        ],
+        "requestBody": {
+          "description": "The updated Item resource",
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Item-item.write"
+              }
+            }
+          },
+          "required": true
+        },
+        "deprecated": false
+      }
     },
     "/api/login_check": {
       "post": {
@@ -2401,8 +2585,7 @@
           },
           "required": true
         }
-      },
-      "parameters": []
+      }
     },
     "/api/services": {
       "get": {
@@ -2506,6 +2689,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Service-service.read"
+                  }
+                }
               }
             }
           }
@@ -2544,6 +2735,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Service.jsonld-service.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service-service.read"
+                }
               }
             },
             "links": {}
@@ -2565,13 +2761,17 @@
               "schema": {
                 "$ref": "#/components/schemas/Service.jsonld-service.write"
               }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Service-service.write"
+              }
             }
           },
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/services/{id}": {
       "get": {
@@ -2586,6 +2786,11 @@
               "application/ld+json": {
                 "schema": {
                   "$ref": "#/components/schemas/Service.jsonld-service.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service-service.read"
                 }
               }
             }
@@ -2660,6 +2865,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/Service.jsonld-service.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Service-service.read"
+                }
               }
             },
             "links": {}
@@ -2704,8 +2914,7 @@
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/users": {
       "get": {
@@ -2809,6 +3018,14 @@
                     "hydra:member"
                   ]
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User-user.read"
+                  }
+                }
               }
             }
           }
@@ -2847,6 +3064,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/User.jsonld-user.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User-user.read"
+                }
               }
             },
             "links": {}
@@ -2868,13 +3090,17 @@
               "schema": {
                 "$ref": "#/components/schemas/User.jsonld-user.write"
               }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User-user.write"
+              }
             }
           },
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
+      }
     },
     "/api/users/{id}": {
       "get": {
@@ -2889,6 +3115,11 @@
               "application/ld+json": {
                 "schema": {
                   "$ref": "#/components/schemas/User.jsonld-user.read"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User-user.read"
                 }
               }
             }
@@ -2963,6 +3194,11 @@
                 "schema": {
                   "$ref": "#/components/schemas/User.jsonld-user.read"
                 }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User-user.read"
+                }
               }
             },
             "links": {}
@@ -3007,146 +3243,56 @@
           "required": true
         },
         "deprecated": false
-      },
-      "parameters": []
-    },
-    "/commandes/noassign": {
-      "get": {
-        "operationId": "app_get_commandes_no_assign",
-        "tags": [
-          "Commande"
-        ],
-        "responses": {
-          "200": {
-            "description": "Commande collection",
-            "content": {
-              "application/ld+json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "hydra:member": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Commande.jsonld-commande.read"
-                      }
-                    },
-                    "hydra:totalItems": {
-                      "type": "integer",
-                      "minimum": 0
-                    },
-                    "hydra:view": {
-                      "type": "object",
-                      "properties": {
-                        "@id": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "@type": {
-                          "type": "string"
-                        },
-                        "hydra:first": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:last": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:previous": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        },
-                        "hydra:next": {
-                          "type": "string",
-                          "format": "iri-reference"
-                        }
-                      },
-                      "example": {
-                        "@id": "string",
-                        "type": "string",
-                        "hydra:first": "string",
-                        "hydra:last": "string",
-                        "hydra:previous": "string",
-                        "hydra:next": "string"
-                      }
-                    },
-                    "hydra:search": {
-                      "type": "object",
-                      "properties": {
-                        "@type": {
-                          "type": "string"
-                        },
-                        "hydra:template": {
-                          "type": "string"
-                        },
-                        "hydra:variableRepresentation": {
-                          "type": "string"
-                        },
-                        "hydra:mapping": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "@type": {
-                                "type": "string"
-                              },
-                              "variable": {
-                                "type": "string"
-                              },
-                              "property": {
-                                "type": [
-                                  "string",
-                                  "null"
-                                ]
-                              },
-                              "required": {
-                                "type": "boolean"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "hydra:member"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "summary": "Retrieves the collection of Commande resources.",
-        "description": "Retrieves the collection of Commande resources.",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "The collection page number",
-            "required": false,
-            "deprecated": false,
-            "allowEmptyValue": true,
-            "schema": {
-              "type": "integer",
-              "default": 1
-            },
-            "style": "form",
-            "explode": false,
-            "allowReserved": false
-          }
-        ],
-        "deprecated": false
-      },
-      "parameters": []
+      }
     }
   },
   "components": {
     "schemas": {
+      "Category-category.list.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parent": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Category-category.list.read"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subcategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category-category.list.read"
+            }
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
       "Category-category.write": {
         "type": "object",
         "description": "",
         "deprecated": false,
         "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
           "name": {
             "type": "string"
           },
@@ -3165,6 +3311,48 @@
             "items": {
               "$ref": "#/components/schemas/Category-category.write"
             }
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "Category-service.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parent": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Category-service.read"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subcategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category-service.read"
+            }
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
@@ -3230,6 +3418,12 @@
             "items": {
               "$ref": "#/components/schemas/Category.jsonld-category.list.read"
             }
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
           }
         }
       },
@@ -3238,6 +3432,10 @@
         "description": "",
         "deprecated": false,
         "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
           "name": {
             "type": "string"
           },
@@ -3256,6 +3454,161 @@
             "items": {
               "$ref": "#/components/schemas/Category.jsonld-category.write"
             }
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "Category.jsonld-service.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@context": {
+            "readOnly": true,
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "@vocab": {
+                    "type": "string"
+                  },
+                  "hydra": {
+                    "type": "string",
+                    "enum": [
+                      "http://www.w3.org/ns/hydra/core#"
+                    ]
+                  }
+                },
+                "required": [
+                  "@vocab",
+                  "hydra"
+                ],
+                "additionalProperties": true
+              }
+            ]
+          },
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parent": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Category.jsonld-service.read"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "subcategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category.jsonld-service.read"
+            }
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "Client-client.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "clientNumber": {
+            "type": "string"
+          },
+          "Premium": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "commande": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Commande-client.read"
+            }
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "password": {
+            "type": "string"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "mobilephone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "phone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "dateborn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "numadrs": {
+            "type": "integer"
+          },
+          "adrs": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
           }
         }
       },
@@ -3293,6 +3646,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "password": {
+            "type": "string"
           },
           "firstname": {
             "type": "string"
@@ -3404,6 +3760,9 @@
               "type": "string"
             }
           },
+          "password": {
+            "type": "string"
+          },
           "firstname": {
             "type": "string"
           },
@@ -3481,6 +3840,9 @@
               "type": "string"
             }
           },
+          "password": {
+            "type": "string"
+          },
           "firstname": {
             "type": "string"
           },
@@ -3523,6 +3885,72 @@
           }
         }
       },
+      "Commande-client.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "filingDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "returnDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "paymentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "client": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Client-client.read"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "Commande-commande.item.read_commande.list.read_item.employee.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "filingDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "returnDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "paymentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "client": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          }
+        }
+      },
       "Commande-commande.write": {
         "type": "object",
         "description": "",
@@ -3542,6 +3970,14 @@
           "paymentDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "client": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
           }
         }
       },
@@ -3599,10 +4035,20 @@
           "paymentDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "client": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Client.jsonld-client.read"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         }
       },
-      "Commande.jsonld-commande.read": {
+      "Commande.jsonld-commande.item.read_commande.list.read_item.employee.read": {
         "type": "object",
         "description": "",
         "deprecated": false,
@@ -3690,6 +4136,91 @@
           "paymentDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "client": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          }
+        }
+      },
+      "Employee-employee.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "empNumber": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "iri-reference",
+              "example": "https://example.com/"
+            }
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "password": {
+            "type": "string"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "mobilephone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "phone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "dateborn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "numadrs": {
+            "type": "integer"
+          },
+          "adrs": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
           }
         }
       },
@@ -3724,6 +4255,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "password": {
+            "type": "string"
           },
           "firstname": {
             "type": "string"
@@ -3834,6 +4368,9 @@
               "type": "string"
             }
           },
+          "password": {
+            "type": "string"
+          },
           "firstname": {
             "type": "string"
           },
@@ -3908,6 +4445,9 @@
               "type": "string"
             }
           },
+          "password": {
+            "type": "string"
+          },
           "firstname": {
             "type": "string"
           },
@@ -3950,6 +4490,103 @@
           }
         }
       },
+      "Item-item.employee.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "service": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "commande": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "itemStatus": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "detailItem": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          }
+        }
+      },
+      "Item-item.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "service": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "commande": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "itemStatus": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "detailItem": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "price": {
+            "type": "number"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "employee": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          }
+        }
+      },
       "Item-item.write": {
         "type": "object",
         "description": "",
@@ -3965,7 +4602,7 @@
             "format": "iri-reference",
             "example": "https://example.com/"
           },
-          "ItemStatus": {
+          "itemStatus": {
             "type": "string",
             "format": "iri-reference",
             "example": "https://example.com/"
@@ -3978,6 +4615,76 @@
           },
           "price": {
             "type": "number"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "employee": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          }
+        }
+      },
+      "Item.jsonld-item.employee.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "@id": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "@type": {
+            "readOnly": true,
+            "type": "string"
+          },
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "service": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "commande": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "itemStatus": {
+            "type": "string",
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "detailItem": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
           }
         }
       },
@@ -4035,7 +4742,7 @@
             "format": "iri-reference",
             "example": "https://example.com/"
           },
-          "ItemStatus": {
+          "itemStatus": {
             "type": "string",
             "format": "iri-reference",
             "example": "https://example.com/"
@@ -4049,10 +4756,18 @@
           "price": {
             "type": "number"
           },
-          "Quantity": {
+          "quantity": {
             "type": "integer"
           },
           "employee": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "category": {
             "type": [
               "string",
               "null"
@@ -4077,7 +4792,7 @@
             "format": "iri-reference",
             "example": "https://example.com/"
           },
-          "ItemStatus": {
+          "itemStatus": {
             "type": "string",
             "format": "iri-reference",
             "example": "https://example.com/"
@@ -4090,6 +4805,39 @@
           },
           "price": {
             "type": "number"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "employee": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "iri-reference",
+            "example": "https://example.com/"
+          }
+        }
+      },
+      "ItemStatus-itemStatus.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -4161,6 +4909,46 @@
             "type": "string"
           }
         }
+      },
+      "Service-service.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "name": {
+            "maxLength": 100,
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "Category": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category-service.read"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "price"
+        ]
       },
       "Service-service.write": {
         "type": "object",
@@ -4258,6 +5046,12 @@
               "string",
               "null"
             ]
+          },
+          "Category": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category.jsonld-service.read"
+            }
           }
         },
         "required": [
@@ -4299,6 +5093,69 @@
           "price"
         ]
       },
+      "User-user.read": {
+        "type": "object",
+        "description": "",
+        "deprecated": false,
+        "properties": {
+          "id": {
+            "readOnly": true,
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "password": {
+            "type": "string"
+          },
+          "firstname": {
+            "type": "string"
+          },
+          "lastname": {
+            "type": "string"
+          },
+          "mobilephone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "phone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "dateborn": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "numadrs": {
+            "type": "integer"
+          },
+          "adrs": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "zipcode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      },
       "User-user.write": {
         "type": "object",
         "description": "",
@@ -4312,11 +5169,13 @@
             "type": "string"
           },
           "roles": {
-            "description": "The user roles",
             "type": "array",
             "items": {
               "type": "string"
             }
+          },
+          "password": {
+            "type": "string"
           },
           "firstname": {
             "type": "string"
@@ -4408,11 +5267,13 @@
             "type": "string"
           },
           "roles": {
-            "description": "The user roles",
             "type": "array",
             "items": {
               "type": "string"
             }
+          },
+          "password": {
+            "type": "string"
           },
           "firstname": {
             "type": "string"
@@ -4469,11 +5330,13 @@
             "type": "string"
           },
           "roles": {
-            "description": "The user roles",
             "type": "array",
             "items": {
               "type": "string"
             }
+          },
+          "password": {
+            "type": "string"
           },
           "firstname": {
             "type": "string"

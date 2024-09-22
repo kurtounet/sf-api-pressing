@@ -1,0 +1,46 @@
+Ressource,Méthode,Route,Groups Symfony
+Category,GET,/api/categories,
+Category,POST,/api/categories,"Category.jsonld-category.list.read, Category-category.write, Category-category.list.read, Category.jsonld-category.write"
+Category,GET,/api/categories/{id},"Category.jsonld-category.list.read, Category-category.list.read"
+Category,DELETE,/api/categories/{id},
+Category,PATCH,/api/categories/{id},"Category.jsonld-category.list.read, Category-category.list.read, Category-category.write"
+Client,GET,/api/clients,
+Client,POST,/api/clients,"Client-client.write, Client.jsonld-client.read, Client-client.read, Client.jsonld-client.write"
+Client,GET,/api/clients/commandes/{id},
+Client,GET,/api/clients/{id},"Client.jsonld-client.read, Client-client.read"
+Client,DELETE,/api/clients/{id},
+Client,PATCH,/api/clients/{id},"Client-client.write, Client.jsonld-client.read, Client-client.read"
+Commande,GET,/api/commandes,
+Commande,POST,/api/commandes,"Commande-commande.item.read_commande.list.read_item.employee.read, Commande-commande.write, Commande.jsonld-commande.item.read_commande.list.read_item.employee.read, Commande.jsonld-commande.write"
+Commande,GET,/api/commandes/{id},"Commande-commande.item.read_commande.list.read_item.employee.read, Commande.jsonld-commande.item.read_commande.list.read_item.employee.read"
+Commande,DELETE,/api/commandes/{id},
+Commande,PATCH,/api/commandes/{id},"Commande-commande.item.read_commande.list.read_item.employee.read, Commande-commande.write, Commande.jsonld-commande.item.read_commande.list.read_item.employee.read"
+User,GET,/api/currentuser,
+Employee,GET,/api/employees,
+Employee,POST,/api/employees,"Employee.jsonld-employee.write, Employee.jsonld-employee.read, Employee-employee.read, Employee-employee.write"
+Employee,GET,/api/employees/{id},"Employee.jsonld-employee.read, Employee-employee.read"
+Employee,DELETE,/api/employees/{id},
+Employee,PATCH,/api/employees/{id},"Employee.jsonld-employee.read, Employee-employee.read, Employee-employee.write"
+ItemStatus,GET,/api/item_statuses,
+ItemStatus,POST,/api/item_statuses,"ItemStatus.jsonld-itemStatus.read, ItemStatus.jsonld-itemStatus.write, ItemStatus-itemStatus.read, ItemStatus-itemStatus.write"
+ItemStatus,GET,/api/item_statuses/{id},"ItemStatus.jsonld-itemStatus.read, ItemStatus-itemStatus.read"
+ItemStatus,DELETE,/api/item_statuses/{id},
+ItemStatus,PATCH,/api/item_statuses/{id},"ItemStatus.jsonld-itemStatus.read, ItemStatus-itemStatus.write, ItemStatus-itemStatus.read"
+Item,GET,/api/items,
+Item,POST,/api/items,"Item.jsonld-item.read, Item-item.write, Item-item.read, Item.jsonld-item.write"
+Item,GET,/api/items/employees,
+Item,GET,/api/items/noassigned,
+Item,GET,/api/items/{id},"Item.jsonld-item.read, Item-item.read"
+Item,DELETE,/api/items/{id},
+Item,PATCH,/api/items/{id},"Item.jsonld-item.read, Item-item.write, Item-item.read"
+Login Check,POST,/api/login_check,
+Service,GET,/api/services,
+Service,POST,/api/services,"Service-service.write, Service.jsonld-service.read, Service-service.read, Service.jsonld-service.write"
+Service,GET,/api/services/{id},"Service.jsonld-service.read, Service-service.read"
+Service,DELETE,/api/services/{id},
+Service,PATCH,/api/services/{id},"Service-service.write, Service.jsonld-service.read, Service-service.read"
+User,GET,/api/users,
+User,POST,/api/users,"User.jsonld-user.write, User-user.read, User-user.write, User.jsonld-user.read"
+User,GET,/api/users/{id},"User-user.read, User.jsonld-user.read"
+User,DELETE,/api/users/{id},
+User,PATCH,/api/users/{id},"User-user.read, User-user.write, User.jsonld-user.read"

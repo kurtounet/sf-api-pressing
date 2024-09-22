@@ -33,17 +33,18 @@ class ItemStatus
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['itemStatus:read'])]
+    #[Groups(['itemStatus:read', 'item:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['itemStatus:read', 'itemStatus:write'])]
+    #[Groups(['itemStatus:read', 'itemStatus:write', 'item:read'])]
     private ?string $name = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
+
     public function getName(): ?string
     {
         return $this->name;
@@ -54,5 +55,10 @@ class ItemStatus
         $this->name = $name;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?: '';
     }
 }

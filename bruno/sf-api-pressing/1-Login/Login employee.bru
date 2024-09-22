@@ -5,15 +5,15 @@ meta {
 }
 
 post {
-  url: https://127.0.0.1:8000/api/login_check
+  url: http://127.0.0.1:8000/api/login_check
   body: json
   auth: bearer
 }
 
 body:json {
   {
-    "username": "admin@gmail.com",
-    "password": "Jean"
+    "username": "john.smith@gmail.com",
+    "password": "John"
   }
 }
 

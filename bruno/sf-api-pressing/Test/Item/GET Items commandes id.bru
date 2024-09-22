@@ -1,0 +1,15 @@
+meta {
+  name: GET Items commandes id
+  type: http
+  seq: 9
+}
+
+get {
+  url: http://127.0.0.1:8000/api/items/commande/83
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}

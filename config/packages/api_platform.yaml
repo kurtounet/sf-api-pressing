@@ -1,9 +1,8 @@
 api_platform:
-    title: Platform API Pressing
+    title: Hello API Platform
     version: 1.0.0
     formats:
         jsonld: ['application/ld+json']
-        #json: ['application/json']
     docs_formats:
         jsonld: ['application/ld+json']
         jsonopenapi: ['application/vnd.openapi+json']
@@ -16,6 +15,4 @@ api_platform:
             standard_put: true
             rfc_7807_compliant_errors: true
     keep_legacy_inflector: false
-    use_symfony_listeners: true 
-
- 
+    use_symfony_listeners: true

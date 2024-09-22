@@ -1,0 +1,69 @@
+meta {
+  name: POST commande client
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://127.0.0.1:8000/api/commandes/client
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/ld+json
+}
+
+auth:bearer {
+  token: {{jwt_token}}
+}
+
+body:json {
+  {
+    "filingDate": "2023-05-08T00:00:00+00:00",
+    "returnDate": "2023-05-15T00:00:00+00:00",
+    "paymentDate": "2023-05-08T14:00:00+00:00",
+    "client": "/api/clients/24",
+    "items": [
+      {      
+        "service": "/api/services/12",       
+        "detailItem": "Rien a signalé",      
+        "quantity": 5,      
+        "category": "/api/categories/12"
+      },
+      {      
+        "service": "/api/services/12",       
+        "detailItem": "Rien a signalé",      
+        "quantity": 5,      
+        "category": "/api/categories/12"
+      },
+      {      
+        "service": "/api/services/12",       
+        "detailItem": "Rien a signalé",      
+        "quantity": 5,      
+        "category": "/api/categories/12"
+      },
+      {      
+        "service": "/api/services/12",       
+        "detailItem": "Rien a signalé",      
+        "quantity": 5,      
+        "category": "/api/categories/12"
+      } 
+    ]
+  }
+  
+}
+
+body:text {
+  {
+    "@context": "/api/contexts/Article",
+    "@type": "Article",
+    "name": "chemise",
+    "urlimage": "https://via.placeholder.com/500x500",
+    "category": "/api/categories/17"
+  }
+}
+
+body:multipart-form {
+  : 
+}

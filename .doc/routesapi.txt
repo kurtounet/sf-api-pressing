@@ -1,5 +1,3 @@
-Article
-
 
 GET
 /api/articles
@@ -316,9 +314,7 @@ PUT
 Replaces the User resource.
 
 
-DELETE
-/api/users/{id}
-Removes the User resource.
+DELETE /api/users/{id} Removes the User resource.
 
 
 PATCH
@@ -348,3 +344,90 @@ ServiceStatus.jsonldExpand allobject
 UserExpand allobject
 User.jsonldExpand allobject
 Available formats: jsonld jsonopenapi html
+Other API docs: ReDoc GraphiQL
+
+
+
+# Define the routes and methods as provided by the user
+routes = [
+    {'method': 'GET', 'endpoint': '/api/articles', 'description': 'Retrieves the collection of Article resources.'},
+    {'method': 'POST', 'endpoint': '/api/articles', 'description': 'Creates a Article resource.'},
+    {'method': 'GET', 'endpoint': '/api/articles/{id}', 'description': 'Retrieves a Article resource.'},
+    {'method': 'PUT', 'endpoint': '/api/articles/{id}', 'description': 'Replaces the Article resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/articles/{id}', 'description': 'Removes the Article resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/articles/{id}', 'description': 'Updates the Article resource.'},
+    
+    {'method': 'GET', 'endpoint': '/api/categories', 'description': 'Retrieves the collection of Category resources.'},
+    {'method': 'POST', 'endpoint': '/api/categories', 'description': 'Creates a Category resource.'},
+    {'method': 'GET', 'endpoint': '/api/categories/{id}', 'description': 'Retrieves a Category resource.'},
+    {'method': 'PUT', 'endpoint': '/api/categories/{id}', 'description': 'Replaces the Category resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/categories/{id}', 'description': 'Removes the Category resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/categories/{id}', 'description': 'Updates the Category resource.'},
+    
+    {'method': 'GET', 'endpoint': '/api/commandes', 'description': 'Retrieves the collection of Commande resources.'},
+    {'method': 'POST', 'endpoint': '/api/commandes', 'description': 'Creates a Commande resource.'},
+    {'method': 'GET', 'endpoint': '/api/commandes/{id}', 'description': 'Retrieves a Commande resource.'},
+    {'method': 'PUT', 'endpoint': '/api/commandes/{id}', 'description': 'Replaces the Commande resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/commandes/{id}', 'description': 'Removes the Commande resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/commandes/{id}', 'description': 'Updates the Commande resource.'},
+    
+    {'method': 'GET', 'endpoint': '/api/item_etats', 'description': 'Retrieves the collection of ItemEtat resources.'},
+    {'method': 'POST', 'endpoint': '/api/item_etats', 'description': 'Creates a ItemEtat resource.'},
+    {'method': 'GET', 'endpoint': '/api/item_etats/{id}', 'description': 'Retrieves a ItemEtat resource.'},
+    {'method': 'PUT', 'endpoint': '/api/item_etats/{id}', 'description': 'Replaces the ItemEtat resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/item_etats/{id}', 'description': 'Removes the ItemEtat resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/item_etats/{id}', 'description': 'Updates the ItemEtat resource.'},
+    
+    {'method': 'GET', 'endpoint': '/api/items', 'description': 'Retrieves the collection of Item resources.'},
+    {'method': 'POST', 'endpoint': '/api/items', 'description': 'Creates a Item resource.'},
+    {'method': 'GET', 'endpoint': '/api/items/{id}', 'description': 'Retrieves a Item resource.'},
+    {'method': 'PUT', 'endpoint': '/api/items/{id}', 'description': 'Replaces the Item resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/items/{id}', 'description': 'Removes the Item resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/items/{id}', 'description': 'Updates the Item resource.'},
+    
+    {'method': 'POST', 'endpoint': '/api/login_check', 'description': 'Creates a user token.'},
+    
+    {'method': 'GET', 'endpoint': '/api/materials', 'description': 'Retrieves the collection of Material resources.'},
+    {'method': 'POST', 'endpoint': '/api/materials', 'description': 'Creates a Material resource.'},
+    {'method': 'GET', 'endpoint': '/api/materials/{id}', 'description': 'Retrieves a Material resource.'},
+    {'method': 'PUT', 'endpoint': '/api/materials/{id}', 'description': 'Replaces the Material resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/materials/{id}', 'description': 'Removes the Material resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/materials/{id}', 'description': 'Updates the Material resource.'},
+    
+    {'method': 'GET', 'endpoint': '/api/meansofpayments', 'description': 'Retrieves the collection of Meansofpayment resources.'},
+    {'method': 'POST', 'endpoint': '/api/meansofpayments', 'description': 'Creates a Meansofpayment resource.'},
+    {'method': 'GET', 'endpoint': '/api/meansofpayments/{id}', 'description': 'Retrieves a Meansofpayment resource.'},
+    {'method': 'PUT', 'endpoint': '/api/meansofpayments/{id}', 'description': 'Replaces the Meansofpayment resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/meansofpayments/{id}', 'description': 'Removes the Meansofpayment resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/meansofpayments/{id}', 'description': 'Updates the Meansofpayment resource.'},
+    
+    {'method': 'GET', 'endpoint': '/api/service_statuses', 'description': 'Retrieves the collection of ServiceStatus resources.'},
+    {'method': 'POST', 'endpoint': '/api/service_statuses', 'description': 'Creates a ServiceStatus resource.'},
+    {'method': 'GET', 'endpoint': '/api/service_statuses/{id}', 'description': 'Retrieves a ServiceStatus resource.'},
+    {'method': 'PUT', 'endpoint': '/api/service_statuses/{id}', 'description': 'Replaces the ServiceStatus resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/service_statuses/{id}', 'description': 'Removes the ServiceStatus resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/service_statuses/{id}', 'description': 'Updates the ServiceStatus resource.'},
+    
+    {'method': 'GET', 'endpoint': '/api/services', 'description': 'Retrieves the collection of Service resources.'},
+    {'method': 'POST', 'endpoint': '/api/services', 'description': 'Creates a Service resource.'},
+    {'method': 'GET', 'endpoint': '/api/services/{id}', 'description': 'Retrieves a Service resource.'},
+    {'method': 'PUT', 'endpoint': '/api/services/{id}', 'description': 'Replaces the Service resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/services/{id}', 'description': 'Removes the Service resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/services/{id}', 'description': 'Updates the Service resource.'},
+    
+    {'method': 'GET', 'endpoint': '/api/users', 'description': 'Retrieves the collection of User resources.'},
+    {'method': 'POST', 'endpoint': '/api/users', 'description': 'Creates a User resource.'},
+    {'method': 'GET', 'endpoint': '/api/users/{id}', 'description': 'Retrieves a User resource.'},
+    {'method': 'PUT', 'endpoint': '/api/users/{id}', 'description': 'Replaces the User resource.'},
+    {'method': 'DELETE', 'endpoint': '/api/users/{id}', 'description': 'Removes the User resource.'},
+    {'method': 'PATCH', 'endpoint': '/api/users/{id}', 'description': 'Updates the User resource.'}
+]
+
+import pandas as pd
+
+# Convert to DataFrame for better visualization
+df_routes = pd.DataFrame(routes)
+import ace_tools as tools; tools.display_dataframe_to_user(name="API Routes Table", dataframe=df_routes)
+
+df_routes
+

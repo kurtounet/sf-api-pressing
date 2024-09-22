@@ -23,7 +23,7 @@
     "id": 2,
     "email": "jane.doe@gmail.com",
     "roles": [
-      "ROLE_MANAGER"
+      "ROLE_ADMIN"
     ],
     "password": "Jane",
     "firstname": "Jane",
@@ -163,7 +163,7 @@
     "id": 9,
     "email": "liam.davis@gmail.com",
     "roles": [
-      "ROLE_USER"
+      "ROLE_CLIENT"
     ],
     "password": "Liam",
     "firstname": "Liam",
@@ -183,7 +183,7 @@
     "id": 10,
     "email": "sophia.moore@gmail.com",
     "roles": [
-      "ROLE_USER"
+      "ROLE_CLIENT"
     ],
     "password": "Sophia",
     "firstname": "Sophia",

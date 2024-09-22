@@ -2,35 +2,40 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Patch;
-use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Post;
+use App\Controller\GetCommandesClientController;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
-
-
-
+#[GetCollection(
+    uriTemplate: '/clients/commandes',
+    controller: GetCommandesClientController::class,
+    normalizationContext: ['groups' => ['item:employee:read']],
+    denormalizationContext: ['groups' => ['item:write']],
+    name: 'app_get_commandes_client',
+)
+]
 #[ApiResource(
-    normalizationContext: ['groups' => ['client:read']],
-    denormalizationContext: ['groups' => ['client:write']],
     operations: [
         new Get(),
         new GetCollection(),
-        new GetCollection(routeName: 'app_get_commandes_client', name: 'app_get_commandes_client'),
         new Post(),
         new Patch(),
         new Delete()
         // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
         // new Patch(security: "is_granted('ROLE_ADMIN')"),
         // new Delete(security: "is_granted('ROLE_ADMIN')")
-    ]
+    ],
+    normalizationContext: ['groups' => ['client:read']],
+    denormalizationContext: ['groups' => ['client:write']]
 
 )]
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
@@ -43,18 +48,17 @@ class Client extends User
     private ?int $id = null;
 */
     #[ORM\Column(length: 255)]
-    #[Groups(['client:read', 'client:write'])]
+    #[Groups(['client:read', 'client:write', 'user:read', 'user:write'])]
     private ?string $clientNumber = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['client:read', 'client:write'])]
+    #[Groups(['client:read', 'client:write', 'user:read', 'user:write'])]
     private ?bool $Premium = null;
 
     /**
      * @var Collection<int, Commande>
      */
     #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'client')]
-    #[Groups(['client:read', 'client:write'])]
     private Collection $commande;
 
     public function __construct()

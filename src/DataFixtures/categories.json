@@ -1,82 +1,218 @@
 [
   {
+    "id": 1,
     "name": "T-shirt",
-    "price": 5
+    "image": "t-shirt.png",
+    "parent_id": null
   },
   {
+    "id": 2,
     "name": "Chemise",
-    "price": 3
+    "image": "Chemise-homme.jpg",
+    "parent_id": null
   },
   {
+    "id": 3,
     "name": "Pantalon",
-    "price": 3
+    "image": "pantalon.png",
+    "parent_id": null
   },
   {
+    "id": 4,
     "name": "Jupe",
-    "price": 4
+    "image": "jupe.jpg",
+    "parent_id": null
   },
   {
+    "id": 5,
     "name": "Robe",
-    "price": 6
+    "image": "robe.jpg",
+    "parent_id": null
   },
   {
+    "id": 6,
     "name": "Short",
-    "price": 2.50
+    "image": "short.png",
+    "parent_id": null
   },
   {
-    "name": "Veste",
-    "price": 7
-  },
-  {
+    "id": 8,
     "name": "Manteau",
-    "price": 6.90
+    "image": "manteau.jpg",
+    "parent_id": null
   },
   {
+    "id": 9,
     "name": "Pull",
-    "price": 4.50
+    "image": "pull.png",
+    "parent_id": null
   },
   {
+    "id": 10,
     "name": "Cardigan",
-    "price": 5
+    "image": "cardigan.png",
+    "parent_id": null
   },
   {
-    "name": "Sweatshirt",
-    "price": 4.50
+    "id": 11,
+    "name": "Sweat-shirt",
+    "image": "sweat-shirt.png",
+    "parent_id": null
   },
   {
+    "id": 12,
     "name": "Polo",
-    "price": 3.50
+    "image": "pollo.png",
+    "parent_id": null
   },
   {
+    "id": 13,
     "name": "Blazer",
-    "price": 8
+    "image": "blazer.png",
+    "parent_id": null
   },
   {
+    "id": 14,
     "name": "Gilet",
-    "price": 4
+    "image": "blazer.png",
+    "parent_id": null
   },
   {
+    "id": 15,
     "name": "Pyjama",
-    "price": 3
+    "image": "pyjama.png",
+    "parent_id": null
   },
   {
-    "name": "Débardeur",
-    "price": 2.50
-  },
-  {
+    "id": 17,
     "name": "Chemisier",
-    "price": 3.50
+    "image": "blouse-chemisier.jpg",
+    "parent_id": null
   },
   {
+    "id": 18,
     "name": "Legging",
-    "price": 2.50
+    "image": "Legging.png",
+    "parent_id": null
   },
   {
+    "id": 19,
     "name": "Combinaison",
-    "price": 5.50
+    "image": "combinaison.jpg",
+    "parent_id": null
   },
   {
+    "id": 20,
     "name": "Trench-coat",
-    "price": 7
+    "image": "trench-coat.jpg",
+    "parent_id": null
+  },
+  {
+    "id": 21,
+    "name": "Blouson",
+    "image": "blouson.png",
+    "parent_id": null
+  },
+  {
+    "id": 22,
+    "name": "Chapeau",
+    "image": "chapeau.png",
+    "parent_id": null
+  },
+  {
+    "id": 23,
+    "name": "Combinaison de ski",
+    "image": "combinaison-de-ski.png",
+    "parent_id": null
+  },
+  {
+    "id": 24,
+    "name": "Costume 3 pièces",
+    "image": "costume-3-piece.png",
+    "parent_id": null
+  },
+  {
+    "id": 25,
+    "name": "Costume",
+    "image": "costume.png",
+    "parent_id": null
+  },
+  {
+    "id": 26,
+    "name": "Cravate",
+    "image": "cravate.jpg",
+    "parent_id": null
+  },
+  {
+    "id": 27,
+    "name": "Doudoune",
+    "image": "doudoune.jpg",
+    "parent_id": null
+  },
+  {
+    "id": 28,
+    "name": "Foulard",
+    "image": "foulard.jpg",
+    "parent_id": null
+  },
+  {
+    "id": 29,
+    "name": "Gants",
+    "image": "gants.png",
+    "parent_id": null
+  },
+  {
+    "id": 30,
+    "name": "Maillot de bain",
+    "image": "maillot-de-bain.png",
+    "parent_id": null
+  },
+  {
+    "id": 31,
+    "name": "Noisette",
+    "image": "noisette.png",
+    "parent_id": null
+  },
+  {
+    "id": 32,
+    "name": "Peignoir",
+    "image": "paignoire.png",
+    "parent_id": null
+  },
+  {
+    "id": 33,
+    "name": "Parka",
+    "image": "parka.png",
+    "parent_id": null
+  },
+  {
+    "id": 34,
+    "name": "Robe courte",
+    "image": "robe-coute.png",
+    "parent_id": null
+  },
+  {
+    "id": 35,
+    "name": "Robe longue",
+    "image": "robe-longue.png",
+    "parent_id": null
+  },
+  {
+    "id": 36,
+    "name": "Robe de mariée",
+    "image": "robe-mariee.png",
+    "parent_id": null
+  },
+  {
+    "id": 37,
+    "name": "Robe de soirée",
+    "image": "robe-soiree.png",
+    "parent_id": null
+  },
+  {
+    "id": 38,
+    "name": "Sac à main",
+    "image": "sac-a-main.png",
+    "parent_id": null
   }
 ]

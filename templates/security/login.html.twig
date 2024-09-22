@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <div class="d-flex align-items-center justify-content-center vh-100">
+        <div class="card w-100 max-w-md mx-3 p-4 shadow-sm">
+            <form method="post" class="d-flex flex-column gap-3">
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"
+                                                                                         class="text-primary">Déconnexion</a>
+                    </div>
+                {% endif %}
+
+                <h1 class="h4 text-dark">Veuillez vous connecter</h1>
+                <div class="form-group">
+                    <label for="username" class="form-label">Email</label>
+                    <input value="admin@gmail.com" type="email" value="{{ last_username }}" name="_username"
+                           id="username"
+                           class="form-control" autocomplete="email" required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input value="Jean" type="password" name="_password" id="password"
+                           class="form-control" autocomplete="current-password" required>
+                </div>
+
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                {#
+                Décommentez pour activer la fonctionnalité "se souvenir de moi"
+               <div class="form-check">
+                   <input type="checkbox" name="_remember_me" id="_remember_me" class="form-check-input">
+                   <label for="_remember_me" class="form-check-label">Se souvenir de moi</label>
+               </div>
+                #}
+
+                <button class="btn btn-primary w-100" type="submit">
+                    Se connecter
+                </button>
+            </form>
+            {# <a class="d-block text-center text-danger mt-3" href="{{ path('app_reset_password') }}">Mot de passe oublié</a> #}
+        </div>
+    </div>
+{% endblock %}
