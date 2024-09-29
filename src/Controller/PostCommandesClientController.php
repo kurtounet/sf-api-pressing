@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\Category;
+use App\Entity\Client;
 use App\Entity\Commande;
 use App\Entity\Item;
+use App\Entity\ItemStatus;
 use App\Entity\Service;
 use App\Repository\ClientRepository;
 use App\Repository\ItemStatusRepository;
@@ -24,43 +24,44 @@ class PostCommandesClientController extends AbstractController
         ValidatorInterface $validator,
         Security $security,
         ItemStatusRepository $itemStatusRepository,
-        ClientRepository $clientRepository // Ajout du repository client
+        ClientRepository $clientRepository
     ): JsonResponse {
         // Récupérer l'utilisateur authentifié
         $user = $security->getUser();
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }
-
-        // Décodage du JSON reçu dans la requête
+        // Décoder le JSON reçu dans la requête
         $data = json_decode($request->getContent(), true);
 
-        // Vérification de la validité du JSON
+        // Vérifier si le Json existe et si il y n'a pas d'érreur lors du Décodage 
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             return $this->json(['message' => 'Invalid JSON'], 400);
         }
 
-        // Vérification des champs obligatoires
+
+        // Vérifier que les champs ne soit pas vide 
         if (!isset($data['filingDate'], $data['returnDate'], $data['paymentDate'], $data['client'], $data['items'])) {
             return $this->json(['message' => 'Missing required fields'], 400);
         }
 
-        // Récupérer le client à partir de l'URL (exemple : /api/clients/24)
-        $clientId = (int) filter_var($data['client'], FILTER_SANITIZE_NUMBER_INT);
-        $client = $clientRepository->find($clientId);
-
+        // Vérifier si l'utilisateur est déjà un client
+        $client = $clientRepository->findOneBy(['id' => $user->getId()]);
         if (!$client) {
-            return $this->json(['message' => 'Client not found'], 404);
+            // Créer un nouveau client à partir de l'utilisateur
+            $client = new Client();
+            $entityManager->persist($client);
+            $entityManager->flush();
         }
 
         // Création d'une nouvelle commande
         $commande = new Commande();
-        $commande->setClient($client);
-        $commande->setFilingDate(new \DateTime($data['filingDate']));
-        $commande->setReturnDate(new \DateTime($data['returnDate']));
-        $commande->setPaymentDate(new \DateTime($data['paymentDate']));
+        $commande->setClient($client)
+            ->setFilingDate(new \DateTime($data['filingDate']))
+            ->setReturnDate(new \DateTime($data['returnDate']))
+            ->setPaymentDate(new \DateTime($data['paymentDate']));
 
-        // Valider la commande
+        // Valider la commande              
         $errors = $validator->validate($commande);
         if (count($errors) > 0) {
             $errorMessages = [];
@@ -70,29 +71,23 @@ class PostCommandesClientController extends AbstractController
             return $this->json(['errors' => $errorMessages], 400);
         }
 
-        // Recherche du statut "En attente"
-        // $itemStatus = $itemStatusRepository->findBy(['name' => 'En attente']);
-        // if (empty($itemStatus)) {
-        //     return $this->json(['message' => 'Status not found'], 404);
-        // }
-        // $idItemStatus = $itemStatus[0]->getId();
+        // Récupérer l'Id du premier statut "En attente"
+        $itemStatus = $itemStatusRepository->findBy(['name' => 'En attente']);
+        if (empty($itemStatus)) {
+            return $this->json(['message' => 'Status not found'], 404);
+        }
+        $idItemStatus = $itemStatus[0]->getId();
+
+
         // Traitement et persistance des items associés à la commande
         foreach ($data['items'] as $itemData) {
             $item = new Item();
-            $item->setCommande($commande); // Associer l'item à la commande
-            $item->setService($entityManager->getRepository(Service::class)->find(
-                (int) filter_var($itemData['service'], FILTER_SANITIZE_NUMBER_INT)
-            ));
-            $item->setCategory($entityManager->getRepository(Category::class)->find(
-                (int) filter_var($itemData['category'], FILTER_SANITIZE_NUMBER_INT)
-            ));
-            // if (!$itemData['itemStatus']) {
-            //     $item->setItemStatus($itemStatusRepository->find(
-            //         $idItemStatus
-            //     ));
-            // }
-            $item->setDetailItem($itemData['detailItem']);
-            $item->setQuantity($itemData['quantity']);
+            $item->setCommande($commande)
+                ->setService($entityManager->getRepository(Service::class)->find((int) $itemData['service']))
+                ->setCategory($entityManager->getRepository(Category::class)->find((int) $itemData['category']))
+                ->setItemStatus($entityManager->getRepository(ItemStatus::class)->find($idItemStatus))
+                ->setDetailItem($itemData['detailItem'])
+                ->setQuantity($itemData['quantity']);
 
             // Valider chaque item
             $itemErrors = $validator->validate($item);
@@ -114,7 +109,6 @@ class PostCommandesClientController extends AbstractController
 
         // Retourner une réponse de succès
         return $this->json([
-            'message' => 'Commande and items successfully created',
             'commandeId' => $commande->getId()
         ], 201);
     }
