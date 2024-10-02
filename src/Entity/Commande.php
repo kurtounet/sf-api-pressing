@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Controller\PostCommandesClientController;
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -66,6 +67,11 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commande')]
     #[Groups(['commande:item:read', 'commande:list:read', 'commande:write', 'client:read'])]
     private ?Client $client = null;
+
+    #[ORM\OneToMany(targetEntity: Item::class, mappedBy: 'commande', cascade: ['remove'], orphanRemoval: true)]
+    #[Groups(['commande:item:read'])]
+    private Collection $items;
+
 
 
     public function getId(): ?int

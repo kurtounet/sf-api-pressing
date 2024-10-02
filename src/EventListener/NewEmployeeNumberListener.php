@@ -37,7 +37,7 @@ class NewEmployeeNumberListener
     {
         $lastEmployee = $this->employeeRepository->findOneBy([], ['id' => 'DESC']);
         if ($lastEmployee) {
-            $number = (int) $lastEmployee->getEmployeeNumber() + 1;
+            $number = (int) $lastEmployee->getEmpNumber() + 1;
             return strval($number);
         }
         return '1';

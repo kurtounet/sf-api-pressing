@@ -1,5 +1,4 @@
 <?php
-
 namespace App\EventListener;
 use App\Entity\Commande;
 use App\Repository\CommandeRepository;
@@ -7,17 +6,13 @@ use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Doctrine\ORM\Events;
-
 #[AsDoctrineListener(Events::prePersist)]
-#[AsDoctrineListener(Events::preUpdate)]
-//#[AsDoctrineListener(Events::prePersist, entity: User::class)]
 class NewCommandeNumberListener
 {
     public function __construct(
         private CommandeRepository $commandeRepository
     ) {
     }
-
     public function prePersist(PrePersistEventArgs $event): void
     {
         $entity = $event->getObject();

@@ -26,8 +26,7 @@ class AppFixtures extends Fixture
 
     public function __construct(
         private SerializerInterface $serializer
-    )
-    {
+    ) {
 
     }
 
@@ -95,24 +94,13 @@ class AppFixtures extends Fixture
         //$items = $this->serializer->deserialize($content, User::class . '[]', 'json');
         $allClients = [];
         $allEmployees = [];
+        $iclient = 1000;
+        $iemploy = 1000;
         foreach ($usersData as $item) {
             if ($item['roles'][0] === "ROLE_CLIENT") {
                 $user = new Client();
-                /*
-                $client->setClientNumber($faker->numberBetween(100000, 999999));
-                $client->setPremium(true);
-                $manager->persist($client);
-                $clients[] = $client;*/
             } else {
-                // echo "\n" . "ROLE_EMPLOYEE" . "\n";
                 $user = new Employee();
-                /*
-                $employee->setEmpNumber($faker->numberBetween(100000, 999999));
-                $employee->setRoles($item['roles']);
-                $manager->persist($employee);
-                $employees[] = $employee;
-                */
-
             }
 
             // echo $item['email'];
@@ -137,12 +125,13 @@ class AppFixtures extends Fixture
 
             if ($item['roles'][0] === "ROLE_CLIENT") {
                 //echo "\n" . "ROLE_CLIENT" . "\n";
-                $user->setClientNumber($faker->numberBetween(100000, 999999));
-                $user->setPremium(true);
+                $user->setClientNumber(strval($iclient++));
+                $user->setPremium(false);
+
                 $allClients[] = $user;
             } else {
                 // echo "\n" . "ROLE_EMPLOYEE" . "\n";
-                $user->setEmpNumber(rand(100000, 999999));
+                $user->setEmpNumber(strval($iemploy++));
                 $allEmployees[] = $user;
 
             }
@@ -162,11 +151,12 @@ class AppFixtures extends Fixture
         */
         $fileContent = file_get_contents(self::PATH . 'commandes.json');
         $commandeData = json_decode($fileContent, true);
+        $i = 1000;
         foreach ($commandeData as $item) {
-            // var_dump($clients);
+
             $commande = new Commande();
             $commande
-                ->setRef($item['ref'])
+                ->setRef((strval($i++)))
                 ->setClient($allClients[rand(0, count($allClients) - 1)])
                 ->setFilingDate(new \DateTime($item['filingDate']))
                 ->setReturnDate(new \DateTime($item['returnDate']))

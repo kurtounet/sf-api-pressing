@@ -71,8 +71,8 @@ class Item
     #[Groups(['item:read', 'item:write', 'employee:items', 'item:employee:read'])]
     private ?Service $service = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'items')]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     #[Groups(['item:read', 'item:write', 'item:employee:read'])]
     private ?Commande $commande = null;
 
