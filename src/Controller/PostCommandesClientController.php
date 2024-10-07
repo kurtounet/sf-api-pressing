@@ -20,9 +20,9 @@ class PostCommandesClientController extends AbstractController
 {
     public function __invoke(
         Request $request,
-        EntityManagerInterface $entityManager,
         ValidatorInterface $validator,
         Security $security,
+        EntityManagerInterface $entityManager,
         ItemStatusRepository $itemStatusRepository,
         ClientRepository $clientRepository
     ): JsonResponse {
@@ -31,36 +31,32 @@ class PostCommandesClientController extends AbstractController
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }
-        // Décoder le JSON reçu dans la requête
+        // Décoder le JSON reçu dans le corps de la requête
         $data = json_decode($request->getContent(), true);
 
-        // Vérifier si le Json existe et si il y n'a pas d'érreur lors du Décodage 
+        // Vérifier si le Json existe et si il y n'a pas d'érreur lors du Décodage         
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             return $this->json(['message' => 'Invalid JSON'], 400);
         }
-
-
-        // Vérifier que les champs ne soit pas vide 
+        // Vérifier que tout les champs obligatoire pour créér une commande, ne soit pas vide.. 
         if (!isset($data['filingDate'], $data['returnDate'], $data['paymentDate'], $data['client'], $data['items'])) {
             return $this->json(['message' => 'Missing required fields'], 400);
         }
-
-        // Vérifier si l'utilisateur est déjà un client
+        //Récupère le client avec l'id égale à la valeur de $user->getId(), si il existe déjà.
         $client = $clientRepository->findOneBy(['id' => $user->getId()]);
+        // Si le client n'existe pas dans la base de donnée
         if (!$client) {
-            // Créer un nouveau client à partir de l'utilisateur
+            // Créer un nouveau client à partir de l'utilisateur authentifié
             $client = new Client();
             $entityManager->persist($client);
             $entityManager->flush();
         }
-
         // Création d'une nouvelle commande
         $commande = new Commande();
         $commande->setClient($client)
             ->setFilingDate(new \DateTime($data['filingDate']))
             ->setReturnDate(new \DateTime($data['returnDate']))
             ->setPaymentDate(new \DateTime($data['paymentDate']));
-
         // Valider la commande              
         $errors = $validator->validate($commande);
         if (count($errors) > 0) {
@@ -70,15 +66,12 @@ class PostCommandesClientController extends AbstractController
             }
             return $this->json(['errors' => $errorMessages], 400);
         }
-
         // Récupérer l'Id du premier statut "En attente"
         $itemStatus = $itemStatusRepository->findBy(['name' => 'En attente']);
         if (empty($itemStatus)) {
             return $this->json(['message' => 'Status not found'], 404);
         }
         $idItemStatus = $itemStatus[0]->getId();
-
-
         // Traitement et persistance des items associés à la commande
         foreach ($data['items'] as $itemData) {
             $item = new Item();
@@ -88,7 +81,6 @@ class PostCommandesClientController extends AbstractController
                 ->setItemStatus($entityManager->getRepository(ItemStatus::class)->find($idItemStatus))
                 ->setDetailItem($itemData['detailItem'])
                 ->setQuantity($itemData['quantity']);
-
             // Valider chaque item
             $itemErrors = $validator->validate($item);
             if (count($itemErrors) > 0) {
@@ -98,15 +90,12 @@ class PostCommandesClientController extends AbstractController
                 }
                 return $this->json(['errors' => $errorMessages], 400);
             }
-
             // Persister chaque item
             $entityManager->persist($item);
         }
-
         // Persister la commande et ses items en base de données
         $entityManager->persist($commande);
         $entityManager->flush();
-
         // Retourner une réponse de succès
         return $this->json([
             'commandeId' => $commande->getId()

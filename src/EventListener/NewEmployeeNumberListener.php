@@ -15,10 +15,8 @@ use Doctrine\ORM\Events;
 //#[AsDoctrineListener(Events::prePersist, entity: User::class)]
 class NewEmployeeNumberListener
 {
-    public function __construct(
-        private EmployeeRepository $employeeRepository
-    ) {
-
+    public function __construct(private EmployeeRepository $employeeRepository)
+    {
     }
     public function prePersist(PrePersistEventArgs $event): void
     {
@@ -26,13 +24,9 @@ class NewEmployeeNumberListener
         if (!$entity instanceof Employee) {
             return;
         }
-
         $entity->setEmpNumber($this->generateEmployeeNumber());
     }
-    // public function preUpdate(PreUpdateEventArgs $args)
-    // {
-    //      
-    // }
+
     private function generateEmployeeNumber(): string|null
     {
         $lastEmployee = $this->employeeRepository->findOneBy([], ['id' => 'DESC']);

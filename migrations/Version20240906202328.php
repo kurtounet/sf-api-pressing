@@ -20,11 +20,28 @@ final class Version20240906202328 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(50) NOT NULL, image VARCHAR(255) DEFAULT NULL, parent_id INT DEFAULT NULL, INDEX IDX_64C19C1727ACA70 (parent_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
-        $this->addSql('CREATE TABLE client (client_number VARCHAR(255) NOT NULL, premium TINYINT(1) DEFAULT NULL, id INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
-        $this->addSql('CREATE TABLE commande (id INT AUTO_INCREMENT NOT NULL, ref VARCHAR(10) NOT NULL, filing_date DATETIME NOT NULL, return_date DATETIME NOT NULL, payment_date DATETIME NOT NULL, client_id INT DEFAULT NULL, INDEX IDX_6EEAA67D19EB6921 (client_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
-        $this->addSql('CREATE TABLE employee (emp_number VARCHAR(255) DEFAULT NULL, id INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
-        $this->addSql('CREATE TABLE item (id INT AUTO_INCREMENT NOT NULL, detail_item LONGTEXT DEFAULT NULL, price DOUBLE PRECISION NOT NULL, quantity SMALLINT NOT NULL, service_id INT DEFAULT NULL, commande_id INT DEFAULT NULL, item_status_id INT DEFAULT NULL, employee_id INT DEFAULT NULL, category_id INT DEFAULT NULL, INDEX IDX_1F1B251EED5CA9E6 (service_id), INDEX IDX_1F1B251E82EA2E54 (commande_id), INDEX IDX_1F1B251E672D164D (item_status_id), INDEX IDX_1F1B251E8C03F15C (employee_id), INDEX IDX_1F1B251E12469DE2 (category_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
+        $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, 
+        name VARCHAR(50) NOT NULL,image VARCHAR(255) DEFAULT NULL,parent_id INT DEFAULT NULL, 
+        INDEX IDX_64C19C1727ACA70 (parent_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
+
+        $this->addSql('CREATE TABLE client (client_number VARCHAR(255) NOT NULL, 
+        premium TINYINT(1) DEFAULT NULL, id INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
+
+        $this->addSql('CREATE TABLE commande (id INT AUTO_INCREMENT NOT NULL, ref VARCHAR(10) NOT NULL,
+        filing_date DATETIME NOT NULL, return_date DATETIME NOT NULL, payment_date DATETIME NOT NULL, 
+        client_id INT DEFAULT NULL, 
+        INDEX IDX_6EEAA67D19EB6921 (client_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
+        $this->addSql('CREATE TABLE employee (emp_number VARCHAR(255) DEFAULT NULL, 
+        id INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
+
+        $this->addSql('CREATE TABLE item (id INT AUTO_INCREMENT NOT NULL, detail_item LONGTEXT DEFAULT NULL, 
+        price DOUBLE PRECISION NOT NULL, quantity SMALLINT NOT NULL, service_id INT DEFAULT NULL, 
+        commande_id INT DEFAULT NULL, item_status_id INT DEFAULT NULL, employee_id INT DEFAULT NULL, 
+        category_id INT DEFAULT NULL, INDEX IDX_1F1B251EED5CA9E6 (service_id), 
+        INDEX IDX_1F1B251E82EA2E54 (commande_id), INDEX IDX_1F1B251E672D164D (item_status_id), 
+        INDEX IDX_1F1B251E8C03F15C (employee_id), INDEX IDX_1F1B251E12469DE2 (category_id), 
+        PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
+        
         $this->addSql('CREATE TABLE item_status (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(100) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
         $this->addSql('CREATE TABLE service (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(100) NOT NULL, price DOUBLE PRECISION DEFAULT NULL, description LONGTEXT DEFAULT NULL, image VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4');
         $this->addSql('CREATE TABLE service_category (service_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_FF3A42FCED5CA9E6 (service_id), INDEX IDX_FF3A42FC12469DE2 (category_id), PRIMARY KEY(service_id, category_id)) DEFAULT CHARACTER SET utf8mb4');

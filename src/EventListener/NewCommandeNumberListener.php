@@ -9,9 +9,8 @@ use Doctrine\ORM\Events;
 #[AsDoctrineListener(Events::prePersist)]
 class NewCommandeNumberListener
 {
-    public function __construct(
-        private CommandeRepository $commandeRepository
-    ) {
+    public function __construct(private CommandeRepository $commandeRepository)
+    {
     }
     public function prePersist(PrePersistEventArgs $event): void
     {
@@ -30,11 +29,5 @@ class NewCommandeNumberListener
         }
         return '1';
     }
-    public function preUpdate(PreUpdateEventArgs $event): void
-    {
-        $entity = $event->getObject();
-        if (!$entity instanceof Commande) {
-            return;
-        }
-    }
+
 }

@@ -59,14 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $email = null;
 
 

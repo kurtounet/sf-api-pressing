@@ -8,29 +8,28 @@ use Doctrine\ORM\Events;
 #[AsDoctrineListener(Events::prePersist)]
 class NewClientNumberListener
 {
-    public function __construct(
-        private ClientRepository $clientRepository
-    ) {
-    }
+    public function __construct(private ClientRepository $clientRepository){}
     public function prePersist(PrePersistEventArgs $event): void
     {
         $entity = $event->getObject();
         if (!$entity instanceof Client) {
             return;
         }
+        //On génére un numéro client pour le nouveau client
         $entity->setClientNumber($this->generateClientNumber());
     }
     private function generateClientNumber(): string
     {
-        // Récupérer le dernier client (ou null si aucun client n'existe)
-        $lastClient = $this->clientRepository->findBy([], ['id' => 'DESC']);
-
-        // Si un client existe, on incrémente le numéro, sinon on retourne "1"
+        // Récupérer le dernier enregistrement (le dernier client ou null si aucun client n'existe)
+        $lastClient = $this->clientRepository->findOneBy([], ['id' => 'DESC']);
+        // Si au moins un client existe, on incrémente le numéro du dernier , 
         if ($lastClient) {
+            // On ajoute 1 au dernier numéro client
             $number = (int) $lastClient->getClientNumber() + 1;
+            // On retourne le numéro client du nouveau client
             return strval($number);
         }
-        // Aucun client n'existe encore, donc on commence à 1
+        // Si aucun client n'existe encore on retourne 1
         return '1';
     }
 }

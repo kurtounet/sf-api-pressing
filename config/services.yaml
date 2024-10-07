@@ -4,14 +4,16 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+  app.admin_email: "pressingprestige@gmail.com"   
   dir.services.images: /uploads/images/services
   dir.categories.images: /uploads/images/categories
 
 services:
   # default configuration for services in *this* file
-  App\EventListener\HashUserPasswordListener:
-    tags:
-      - { name: kernel.event_listener, event: kernel.response, method: prePersist }
+  # App\EventListener\HashUserPasswordListener:
+  #   tags:
+  #     #- { name: doctrine.event_listener, event: prePersist }
+  #     - { name: kernel.event_listener, event: kernel.response, method: prePersist }
   _defaults:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
@@ -27,4 +29,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    
+  App\Service\EmailNotificationService:
+    arguments:
+      $adminEmail: '%app.admin_email%' 
+
+  
