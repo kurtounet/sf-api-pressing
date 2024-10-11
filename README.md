@@ -19,6 +19,7 @@ php bin/console lexik:jwt:generate-keypair --overwrite
 
 ## À FAIRE
 
+Stripe : composer require stripe/stripe-php
 API
 
 - created et update entity
@@ -30,7 +31,7 @@ API
 - Faire une route pour Employé qui indique qu'il a fini l' item Employee:api/item/{id}/complete
 - Faire avec les catégories parent
 -
-    -
+  -
 
 ### Authentification
 
@@ -285,9 +286,9 @@ composer require easycorp/easyadmin-bundle
 php bin/console make:admin:dashboard
 
 - Admin
-    - liste de commande
+  - liste de commande
   > routes: /api/commandes
-    - liste des users
+  - liste des users
   > routes: /api/user
-    - employer
-    - client
+  - employer
+  - client

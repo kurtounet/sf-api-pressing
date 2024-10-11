@@ -36,7 +36,8 @@ class DashboardController extends AbstractDashboardController
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
         if ($this->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($adminUrlGenerator->setController(CommandeCrudController::class)->generateUrl());;
+            return $this->redirect($adminUrlGenerator->setController(CommandeCrudController::class)->generateUrl());
+            ;
         } else if ($this->isGranted('ROLE_EMPLOYEE')) {
             return $this->redirect($adminUrlGenerator->setController(ItemCrudController::class)->generateUrl());
         } else {
@@ -100,7 +101,7 @@ class DashboardController extends AbstractDashboardController
         if ($this->isGranted('ROLE_EMPLOYEE')) {
             return Actions::new()
                 ->addBatchAction(Action::BATCH_DELETE)
-                ->add(Crud::PAGE_INDEX, Action::NEW)
+                ->add(Crud::PAGE_INDEX, Action::NEW )
                 ->add(Crud::PAGE_INDEX, Action::EDIT)
                 ->add(Crud::PAGE_INDEX, Action::DELETE)
                 ->add(Crud::PAGE_DETAIL, Action::EDIT)
@@ -114,7 +115,7 @@ class DashboardController extends AbstractDashboardController
         if ($this->isGranted('ROLE_ADMIN')) {
             return Actions::new()
                 ->addBatchAction(Action::BATCH_DELETE)
-                ->add(Crud::PAGE_INDEX, Action::NEW)
+                ->add(Crud::PAGE_INDEX, Action::NEW )
                 ->add(Crud::PAGE_INDEX, Action::EDIT)
                 ->add(Crud::PAGE_INDEX, Action::DELETE)
                 ->add(Crud::PAGE_DETAIL, Action::EDIT)
