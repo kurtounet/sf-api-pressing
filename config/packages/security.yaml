@@ -57,9 +57,9 @@ security:
      - { path: ^/api/categories, roles: PUBLIC_ACCESS}
      - { path: ^/api/clients, roles: PUBLIC_ACCESS}
      - { path: ^/api/users, roles: PUBLIC_ACCESS}
-     - { path: ^/api/docs, roles: PUBLIC_ACCESS }
-     - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
+     - { path: ^/api/docs, roles: PUBLIC_ACCESS }     
      - { path: ^/api/admin, roles: ROLE_ADMIN }
+     - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
  
 
 
