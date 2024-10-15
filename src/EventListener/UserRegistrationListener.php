@@ -1,7 +1,7 @@
 <?php
 namespace App\EventListener;
 use App\Entity\Client;
-use App\Service\EmailNotificationService;
+use App\Services\EmailNotificationService;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PostPersistEventArgs;
 use Doctrine\ORM\Events;
