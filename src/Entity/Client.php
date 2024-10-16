@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\GetClientCommandesController;
 use App\Controller\GetCommandesClientController;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -17,10 +18,10 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 #[GetCollection(
     uriTemplate: '/clients/commandes',
-    controller: GetCommandesClientController::class,
-    normalizationContext: ['groups' => ['item:employee:read']],
+    controller: GetClientCommandesController::class,
+    normalizationContext: ['groups' => ['item:read']],
     denormalizationContext: ['groups' => ['item:write']],
-    name: 'app_get_commandes_client',
+    name: 'app_get_clients_commandes',
 )
 ]
 #[ApiResource(

@@ -10,14 +10,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\Security;
 
-class GetCommandesClientController extends AbstractController
+class GetClientCommandesController extends AbstractController
 {
-    #[Route('/api/clients/commandes/{id}', name: 'app_get_commandes_client', methods: ['GET'])]
-    public function index(
+    //#[Route('/api/clients/commandes', name: 'app_get_clients_commandes', methods: ['GET'])]
+    public function __invoke(
         CommandeRepository $commandeRepository,
         Security $security,
     ): JsonResponse {
         $user = $security->getUser();
+
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }

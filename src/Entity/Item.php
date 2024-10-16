@@ -43,18 +43,18 @@ use Symfony\Component\Serializer\Attribute\Groups;
 )
 ]
 #[ApiResource(
-    // operations: [
-    //     new GetCollection(),
-    //     new Get(),
-    //     new Patch(),
-    //     new Post(),
-    //     new Delete(),
-    //     // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    //     // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    //     // new Patch(security: "is_granted('ROLE_ADMIN')"),
-    //     // new Delete(security: "is_granted('ROLE_ADMIN')")
+    operations: [
+        new GetCollection(),
+        new Get(),
+        new Patch(),
+        new Post(),
+        new Delete(),
+        // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        // new Patch(security: "is_granted('ROLE_ADMIN')"),
+        // new Delete(security: "is_granted('ROLE_ADMIN')")
 
-    // ],
+    ],
     normalizationContext: ['groups' => ['item:read', 'item:commande:read']],
     denormalizationContext: ['groups' => ['item:write']]
 )]
