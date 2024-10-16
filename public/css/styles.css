@@ -1,0 +1,53 @@
+ .dashboard-container {
+     padding: 20px;
+     background-color: #f5f5f5;
+     /* Couleur de fond générale */
+ }
+
+ /* Style pour les cartes de KPI */
+ .kpi-cards .kpi-card {
+     background-color: #fff;
+     border: 1px solid #ddd;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     margin-bottom: 20px;
+ }
+
+ .kpi-card .kpi-value {
+     font-size: 2rem;
+     font-weight: bold;
+     color: #4e73df;
+     /* Couleur personnalisée pour les valeurs */
+ }
+
+ /* Style pour les cartes de graphiques */
+ .charts-row .chart-card {
+     background-color: #fff;
+     border: 1px solid #ddd;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     margin-bottom: 20px;
+ }
+
+ /* Style pour les titres de cartes */
+ .card-title {
+     font-size: 1.2rem;
+     color: #343a40;
+     margin-bottom: 15px;
+ }
+
+ /* Customisation des graphiques */
+ canvas {
+     max-height: 200px;
+
+
+ }
+
+ /* Responsive design pour ajuster les éléments */
+ @media (max-width: 768px) {
+     .kpi-cards .kpi-card {
+         margin-bottom: 15px;
+     }
+
+     .charts-row .chart-card {
+         margin-bottom: 15px;
+     }
+ }

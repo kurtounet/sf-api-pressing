@@ -1,3 +1,5 @@
 easy_admin:
-  default_design:
-    locale: fr
+  design:
+    skin: dark     
+  locale: fr
+
