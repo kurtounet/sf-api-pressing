@@ -11,8 +11,12 @@ use App\Entity\ItemStatus;
 use App\Entity\Profile;
 use App\Entity\Service;
 use App\Entity\User;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -23,9 +27,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+    public function __construct(
+        private EntityManagerInterface $entityManager
+    ) {
+    }
     #[Route('/admin', name: 'admin')]
-    public function index(): Response
-    {
+    public function index(
+
+    ): Response {
         //return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
@@ -36,20 +45,80 @@ class DashboardController extends AbstractDashboardController
         // Option 2. You can make your dashboard redirect to different pages depending on the user
         //
         if ($this->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($adminUrlGenerator->setController(CommandeCrudController::class)->generateUrl());
-            ;
+
+            $allCategories = $this->entityManager->getRepository(Category::class)->findAll();
+            shuffle($allCategories);
+
+            $topSellingProduct = array_slice($allCategories, 0, 1)[0]->getName();
+
+            $fourRandomcategories = array_slice($allCategories, 0, 4);
+            foreach ($fourRandomcategories as $category) {
+                $categories[] = $category->getName();
+            }
+
+            $employees = $this->entityManager->getRepository(Employee::class)->findAll();
+            shuffle($employees);
+
+
+            foreach ($employees as $employee) {
+                $employeeName[] = $employee->getFirstname() . ' ' . (string) $employee->getLastname();
+                $employeeCota[] = random_int(30, 100);
+            }
+
+            $monthsLabels = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Dec'];
+            //données pour les graphiques
+            $salesData = [];
+            for ($i = 0; $i < count($monthsLabels); $i++) {
+                $salesData[] = random_int(200, 1000);
+            }
+            $ordersByCategoryData = [];
+            for ($i = 0; $i < 4; $i++) {
+                $ordersByCategoryData[] =
+                    random_int(100, 500);
+            }
+            $visitorsData = [];
+            for ($i = 0; $i < 6; $i++) {
+                $visitorsData[] = random_int(0, 1000);
+
+            }
+            //$totalSales = $totalOrders = $totalVisitors = 0;
+            $totalSales = array_sum($salesData);
+            $totalOrders = array_sum($ordersByCategoryData);
+            $totalVisitors = array_sum($visitorsData);
+
+
+            // $categories = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
+            return $this->render('dashboard_admin/index.html.twig', [
+                'total_sales' => $totalSales,
+                'total_orders' => $totalOrders,
+                'total_visitors' => $totalVisitors,
+                'month_labels' => $monthsLabels,
+                'categories_data' => $categories,
+                'top_selling_product' => $topSellingProduct,
+                'sales_data' => $salesData,
+                'orders_by_category_data' => $ordersByCategoryData,
+                'visitors_data' => $visitorsData,
+                'employee_cota_data' => $employeeCota,
+                'employee_name' => $employeeName,
+
+
+
+            ]);
+
         } else if ($this->isGranted('ROLE_EMPLOYEE')) {
             return $this->redirect($adminUrlGenerator->setController(ItemCrudController::class)->generateUrl());
         } else {
             return $this->redirectToRoute('app_login');
         }
 
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
+
     }
 
+
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addCssFile('css/styles.css');
+    }
     public function configureDashboard(): Dashboard
     {
         $user = $this->getUser();
@@ -73,6 +142,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
+
         if ($this->isGranted('ROLE_ADMIN')) {
             yield MenuItem::subMenu('Utilisateurs', 'fa fa-users')->setSubItems([
                 MenuItem::linkToCrud('Liste des utilisateurs', 'fas fa-users', User::class),
@@ -85,12 +155,12 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('Liste des Services', 'fas fa-concierge-bell', Service::class);
             yield MenuItem::linkToCrud('Liste des Vêtements', 'fas fa-tshirt', Category::class);
             yield MenuItem::linkToCrud('Liste des Statuts', 'fas fa-info-circle', ItemStatus::class);
-            yield MenuItem::linkToCrud('Mon Profil', 'fas fa-user', User::class);
+
         }
 
         if ($this->isGranted('ROLE_EMPLOYEE')) {
             yield MenuItem::linkToCrud('Mes tâches', 'fas fa-list', Item::class);
-            yield MenuItem::linkToCrud('Mon Profile', 'fas fa-list', User::class);
+
         }
 
 

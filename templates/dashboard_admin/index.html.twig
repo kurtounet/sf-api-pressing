@@ -1,0 +1,192 @@
+ 
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{#
+{% block head_stylesheets %}     
+   <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> 
+{% endblock %}
+#}
+{% block content %}
+<section> 
+    <div class="container-fluid dashboard-container">
+        <!-- KPI Cards -->
+        <div class="row kpi-cards">
+            <div class="col-md-3">
+                <div class="card kpi-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Chiffre d'affaires</h5>
+                        <p class="card-text kpi-value">{{ total_sales }} €</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card kpi-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Commandes</h5>
+                        <p class="card-text kpi-value">{{ total_orders }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card kpi-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Visiteurs</h5>
+                        <p class="card-text kpi-value">{{ total_visitors }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card kpi-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Produit le plus vendu</h5>
+                        <p class="card-text kpi-value">{{ top_selling_product }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales Chart -->
+        <div class="row charts-row">
+            <div class="col-md-6">
+                <div class="card chart-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Évolution des ventes</h5>
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card chart-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Répartition des commandes par catégories</h5>
+                        <canvas id="ordersByCategoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visitors Chart -->
+        <div class="row charts-row">
+            <div class="col-md-6">
+                <div class="card chart-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Progression des visiteurs</h5>
+                        <canvas id="visitorsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card chart-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Répartition des commandes par employée</h5>
+                        <canvas id="employeeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Passer les données PHP vers le JavaScript
+        const salesChartData = {{ sales_data|json_encode|raw }};
+        const ordersByCategoryData = {{ orders_by_category_data|json_encode|raw }};
+        const visitorsChartData = {{ visitors_data|json_encode|raw }};
+        const months = {{ month_labels|json_encode|raw }};
+        const categories = {{ categories_data|json_encode|raw }};
+        const employeeCotaData = {{ employee_cota_data|json_encode|raw }};
+        console.log(employeeCotaData);
+        const employeeName = {{ employee_name|json_encode|raw }};
+        console.log(employeeName);
+        // Graphique des ventes 
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(salesCtx, {
+            type: 'line',
+            data: {
+                labels: months,   
+                datasets: [{
+                    label: 'Ventes (€)',
+                    data: salesChartData,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+             
+        });
+ 
+        // Graphique des commandes par catégories (camembert)
+        const ordersCategoryCtx = document.getElementById('ordersByCategoryChart').getContext('2d');
+        const ordersByCategoryChart = new Chart(ordersCategoryCtx, {
+            type: 'pie',
+            data: {
+                labels: categories,
+                datasets: [{ 
+                    label: 'Répartition des commandes',
+                    data: ordersByCategoryData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+
+        // Graphique du cota par employer (camembert)
+        const employeeCota = document.getElementById('employeeChart').getContext('2d');
+        const employeeChart = new Chart(employeeCota, {
+            type: 'pie',
+            data: {
+                labels:  employeeName , 
+                 
+                datasets: [{
+                    label: 'Répartition des commandes',
+                    data:  employeeCotaData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }] 
+            }
+        });
+ 
+        // Graphique des visiteurs (ligne)
+        const visitorsCtx = document.getElementById('visitorsChart').getContext('2d');
+        const visitorsChart = new Chart(visitorsCtx, {
+            type: 'line',
+            data: {
+                labels: months, 
+                datasets: [{
+                    label: 'Visiteurs',
+                    data: visitorsChartData,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },             
+        }); 
+    </script>
+</section>
+{% endblock %}
