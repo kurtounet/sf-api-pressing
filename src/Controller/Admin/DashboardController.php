@@ -155,12 +155,12 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('Liste des Services', 'fas fa-concierge-bell', Service::class);
             yield MenuItem::linkToCrud('Liste des Vêtements', 'fas fa-tshirt', Category::class);
             yield MenuItem::linkToCrud('Liste des Statuts', 'fas fa-info-circle', ItemStatus::class);
-            yield MenuItem::linkToCrud('Mon Profil', 'fas fa-user', User::class);
+
         }
 
         if ($this->isGranted('ROLE_EMPLOYEE')) {
             yield MenuItem::linkToCrud('Mes tâches', 'fas fa-list', Item::class);
-            yield MenuItem::linkToCrud('Mon Profile', 'fas fa-list', User::class);
+
         }
 
 

@@ -8,9 +8,12 @@ use App\Entity\Employee;
 use App\Entity\Item;
 use App\Entity\ItemStatus;
 use App\Entity\Service;
-use App\Repository\CategoryRepository;
+
 use App\Repository\ItemRepository;
 use Doctrine\ORM\QueryBuilder;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\Filter;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -23,6 +26,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+
+
+use EasyCorp\Bundle\EasyAdminBundle\Filter\NumericFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\TextFilter;
 use Symfony\Component\Security\Core\Security;
 
 class ItemCrudController extends AbstractCrudController
@@ -46,21 +53,22 @@ class ItemCrudController extends AbstractCrudController
             ->setPageTitle(Crud::PAGE_INDEX, 'Liste des tâches');
     }
 
+
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $qb = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
 
-        // Récupérer l'utilisateur connecté
-        $user = $this->security->getUser();
-
-        // Filtrer les items en fonction de l'utilisateur connecté
-        if ($this->isGranted('ROLE_EMPLOYEE')) {
-            $qb->andWhere('entity.employee = :user')
-                ->setParameter('user', $user);
-        }
+        // Ajout du filtre sur le statut
+        // Filtrer sur l'ID ou le nom de itemStatus.name (relation)
+        $qb->join('entity.itemStatus', 'status')
+            // 'status' est un alias pour la relation
+            ->andWhere('status.name IN (:statuses)')
+            ->setParameter('statuses', ['En attente', 'En cours']);
 
         return $qb;
+
     }
+
 
     public function configureActions(Actions $actions): Actions
     {
@@ -121,8 +129,6 @@ class ItemCrudController extends AbstractCrudController
 
 
         if ($this->isGranted('ROLE_EMPLOYEE')) {
-
-
             return [
                 TextField::new('commande')
                     ->setLabel('Commande')
@@ -165,6 +171,8 @@ class ItemCrudController extends AbstractCrudController
 
         return [];
     }
+
+
 }
 
 
