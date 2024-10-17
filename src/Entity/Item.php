@@ -8,6 +8,8 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\PatchFormatsConfig;
 use App\Controller\GetItemsCommandeIdController;
 use App\Controller\GetItemsEmployeesController;
 use App\Controller\GetItemsNoAssignController;
@@ -15,6 +17,7 @@ use App\Repository\ItemRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
+
 
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
@@ -46,7 +49,8 @@ use Symfony\Component\Serializer\Attribute\Groups;
     operations: [
         new GetCollection(),
         new Get(),
-        new Patch(),
+        new Put(),
+        new Patch(inputFormats: ['json' => ['application/merge-patch+json']]),
         new Post(),
         new Delete(),
         // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),

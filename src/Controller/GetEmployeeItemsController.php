@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Security; // Correct namespace for Security
 
 class GetEmployeeItemsController extends AbstractController
 {
-    #[Route('/api/items/employee', name: 'app_get_items_employee', methods: ['GET'])]
+    //#[Route('/api/items/employee', name: 'app_get_items_employee', methods: ['GET'])]
     public function __invoke(
         ItemRepository $itemRepository,
         Security $security
@@ -28,6 +28,6 @@ class GetEmployeeItemsController extends AbstractController
             context: ['groups' => ['item:read']],
             status: 200
         );
-        return $this->json(['message' => 'ok'], 200);
+
     }
 }

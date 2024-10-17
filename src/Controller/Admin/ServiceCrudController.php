@@ -36,11 +36,7 @@ class ServiceCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/images/services')
             ,
         ];
-        // return [
-        //     IdField::new('id'),
-        //     TextField::new('title'),
-        //     TextEditorField::new('description'),
-        // ];
+
     }
 
 }

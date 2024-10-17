@@ -35,7 +35,7 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['category:list:read', 'category:write', 'service:read'])]
+    #[Groups(['category:list:read', 'category:write', 'service:read', 'item:read',])]
     private ?int $id = null;
 
 

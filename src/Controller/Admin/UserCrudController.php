@@ -92,6 +92,7 @@ class UserCrudController extends AbstractCrudController
                 TextField::new('country', 'Pays'),
             ];
         }
+        return [];
 
     }
 }

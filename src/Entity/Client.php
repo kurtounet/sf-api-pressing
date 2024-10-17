@@ -59,7 +59,7 @@ class Client extends User
     /**
      * @var Collection<int, Commande>
      */
-    #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'client')]
+    #[ORM\OneToMany(targetEntity: Commande::class, mappedBy: 'client', cascade: ['remove'])]
     private Collection $commande;
 
     public function __construct()
