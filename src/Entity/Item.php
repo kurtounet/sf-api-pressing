@@ -13,6 +13,8 @@ use ApiPlatform\Metadata\PatchFormatsConfig;
 use App\Controller\GetItemsCommandeIdController;
 use App\Controller\GetItemsEmployeesController;
 use App\Controller\GetItemsNoAssignController;
+use App\Controller\PostCommandesAmountController;
+use App\Controller\PostItemsAmountController;
 use App\Repository\ItemRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -45,6 +47,14 @@ use Symfony\Component\Serializer\Attribute\Groups;
     name: 'app_get_items_commandes_id',
 )
 ]
+#[Post(
+    uriTemplate: '/items/amount',
+    controller: PostItemsAmountController::class,
+    normalizationContext: ['groups' => ['item:amount']],
+    denormalizationContext: ['groups' => ['item:amount']],
+    name: 'app_post_items_amount',
+)
+]
 #[ApiResource(
     operations: [
         new GetCollection(),
@@ -72,7 +82,7 @@ class Item
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
-    #[Groups(['item:read', 'item:write', 'employee:items', 'item:employee:read'])]
+    #[Groups(['item:read', 'item:write', 'employee:items', 'item:employee:read', 'item:amount'])]
     private ?Service $service = null;
 
     #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'items')]
@@ -94,7 +104,7 @@ class Item
     private ?float $price = 0.0;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    #[Groups(['item:read', 'item:write', 'item:employee:read'])]
+    #[Groups(['item:read', 'item:write', 'item:employee:read', 'item:amount'])]
     private ?int $quantity = 0;
 
     #[ORM\ManyToOne(inversedBy: 'items')]

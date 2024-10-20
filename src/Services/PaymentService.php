@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
-use Stripe\StripeClient;
-use Stripe\Exception\ApiErrorException;
+
+
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class StripePaymentService
+class PaymentService
 {
+    /*
     private StripeClient $stripeClient;
 
     public function __construct(string $stripeSecretKey)
@@ -40,4 +41,5 @@ class StripePaymentService
             return new JsonResponse(['error' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
+        */
 }

@@ -8,10 +8,7 @@ parameters:
   dir.services.images: /uploads/images/services
   dir.categories.images: /uploads/images/categories
 
-services:
-
-  
-  
+services: 
 
   _defaults:
     autowire: true      # Automatically injects dependencies in your services.
@@ -30,7 +27,7 @@ services:
     # please note that last definitions always *replace* previous ones
   App\Services\EmailNotificationService:
     arguments:
-      $adminEmail: '%app.admin_email%' 
+      $adminEmail: '%app.admin_email%'   
 
   # Listener Doctrine pour réagir après la persistance d'une entité Client
   App\EventListener\UserPersistListener:
