@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use App\Controller\PostCommandesAmountController;
 use App\Controller\PostCommandesClientController;
 use App\Repository\CommandeRepository;
 use Doctrine\Common\Collections\Collection;
@@ -24,6 +25,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
     name: 'app_post_commandes_client',
 )
 ]
+ 
 #[ApiResource(
     operations: [
         new Get(),

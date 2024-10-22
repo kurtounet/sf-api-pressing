@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Security;
 
 class GetCommandesNoAssignController extends AbstractController
 {
-    #[Route('/api/commandes/noassign', name: 'app_get_commandes_no_assign', methods: ['GET'])]
+    //#[Route('/api/commandes/noassign', name: 'app_get_commandes_no_assign', methods: ['GET'])]
     public function __invoke(
         Security $security,
         CommandeRepository $commandeRepository

@@ -5,7 +5,7 @@
     "roles": [
       "ROLE_ADMIN"
     ],
-    "password": "Jean",
+    "password": "admin",
     "firstname": "Jean",
     "lastname": "Dupont",
     "mobilephone": "0612345678",
@@ -41,11 +41,11 @@
   },
   {
     "id": 3,
-    "email": "john.smith@gmail.com",
+    "email": "employee@gmail.com",
     "roles": [
       "ROLE_EMPLOYEE"
     ],
-    "password": "John",
+    "password": "employee",
     "firstname": "John",
     "lastname": "Smith",
     "mobilephone": "0634567890",

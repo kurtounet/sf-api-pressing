@@ -1,19 +1,19 @@
 meta {
-  name: Login admin
+  name: Login new client hostinger
   type: http
-  seq: 1
+  seq: 7
 }
 
 post {
-  url: http://127.0.0.1:8725/api/login_check
+  url: https://ab-web.fr:9000/api/login_check
   body: json
   auth: bearer
 }
 
 body:json {
   {
-    "username": "admin@gmail.com",
-    "password": "Jean"
+    "username": "anthony@gmail.com",
+    "password": "nirvana"
   }
 }
 

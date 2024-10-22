@@ -8,12 +8,8 @@ parameters:
   dir.services.images: /uploads/images/services
   dir.categories.images: /uploads/images/categories
 
-services:
-  # default configuration for services in *this* file
-  # App\EventListener\HashUserPasswordListener:
-  #   tags:
-  #     #- { name: doctrine.event_listener, event: prePersist }
-  #     - { name: kernel.event_listener, event: kernel.response, method: prePersist }
+services: 
+
   _defaults:
     autowire: true      # Automatically injects dependencies in your services.
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
@@ -29,8 +25,21 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-  App\Service\EmailNotificationService:
+  App\Services\EmailNotificationService:
     arguments:
-      $adminEmail: '%app.admin_email%' 
+      $adminEmail: '%app.admin_email%'   
+
+  # Listener Doctrine pour réagir après la persistance d'une entité Client
+  App\EventListener\UserPersistListener:
+    tags:
+      - { name: 'doctrine.event_listener', event: 'postPersist' }
+  
+  # Listener Symfony pour écouter l'événement 'user.registered'
+  App\EventListener\UserRegisteredListener:
+    public: true
+    tags:
+      - { name: 'kernel.event_listener', event: 'user.registered', method: 'onUserRegistered' }
+
+  
 
   

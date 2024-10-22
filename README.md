@@ -86,7 +86,7 @@ composer require lexik/jwt-authentication-bundle
 ```
 
 ```bash
-php bin/console lexik:jwt:generate-keypair
+P
 ```
 
 ### CREATION DES ENTITEES

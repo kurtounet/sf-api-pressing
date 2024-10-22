@@ -5,12 +5,12 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\Options;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
+use App\Controller\GetCurrentUserController;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
@@ -31,11 +31,18 @@ use Symfony\Component\Serializer\Attribute\Groups;
     'client' => Client::class,
     'employee' => Employee::class
 ])]
+#[GetCollection(
+    uriTemplate: '/users/currentuser',
+    controller: GetCurrentUserController::class,
+    normalizationContext: ['groups' => ['user:read']],
+    denormalizationContext: ['groups' => ['user:write']],
+    name: 'app_current_user',
+)
+]
 #[ApiResource(
     operations: [
         new Get(),
         new GetCollection(),
-        new GetCollection(routeName: 'app_current_user', name: 'app_current_user'),
         new Post(),
         new Patch(),
         new Put(),

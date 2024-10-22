@@ -1,7 +1,5 @@
 <?php
-
 namespace App\EventListener;
-
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ORM\Event\PrePersistEventArgs;

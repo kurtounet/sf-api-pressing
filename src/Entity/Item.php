@@ -8,13 +8,18 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\PatchFormatsConfig;
 use App\Controller\GetItemsCommandeIdController;
 use App\Controller\GetItemsEmployeesController;
 use App\Controller\GetItemsNoAssignController;
+ 
+use App\Controller\PostItemsAmountController;
 use App\Repository\ItemRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
+
 
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
@@ -42,19 +47,28 @@ use Symfony\Component\Serializer\Attribute\Groups;
     name: 'app_get_items_commandes_id',
 )
 ]
+#[Post(
+    uriTemplate: '/items/amount',
+    controller: PostItemsAmountController::class,
+    normalizationContext: ['groups' => ['item:amount']],
+    denormalizationContext: ['groups' => ['item:amount']],
+    name: 'app_post_items_amount',
+)
+]
 #[ApiResource(
-    // operations: [
-    //     new GetCollection(),
-    //     new Get(),
-    //     new Patch(),
-    //     new Post(),
-    //     new Delete(),
-    //     // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    //     // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    //     // new Patch(security: "is_granted('ROLE_ADMIN')"),
-    //     // new Delete(security: "is_granted('ROLE_ADMIN')")
+    operations: [
+        new GetCollection(),
+        new Get(),
+        new Put(),
+        new Patch(inputFormats: ['json' => ['application/merge-patch+json']]),
+        new Post(),
+        new Delete(),
+        // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        // new Patch(security: "is_granted('ROLE_ADMIN')"),
+        // new Delete(security: "is_granted('ROLE_ADMIN')")
 
-    // ],
+    ],
     normalizationContext: ['groups' => ['item:read', 'item:commande:read']],
     denormalizationContext: ['groups' => ['item:write']]
 )]
@@ -68,7 +82,7 @@ class Item
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
-    #[Groups(['item:read', 'item:write', 'employee:items', 'item:employee:read'])]
+    #[Groups(['item:read', 'item:write', 'employee:items', 'item:employee:read', 'item:amount'])]
     private ?Service $service = null;
 
     #[ORM\ManyToOne(targetEntity: Commande::class, inversedBy: 'items')]
@@ -90,7 +104,7 @@ class Item
     private ?float $price = 0.0;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    #[Groups(['item:read', 'item:write', 'item:employee:read'])]
+    #[Groups(['item:read', 'item:write', 'item:employee:read', 'item:amount'])]
     private ?int $quantity = 0;
 
     #[ORM\ManyToOne(inversedBy: 'items')]

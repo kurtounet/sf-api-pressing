@@ -8,26 +8,35 @@ use App\Entity\ItemStatus;
 use App\Entity\Service;
 use App\Repository\ClientRepository;
 use App\Repository\ItemStatusRepository;
+use App\Services\CalculateTotalAmountService;
+use App\Services\StripePaymentService;
+use App\Services\CalculateTotalAmount;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class PostCommandesClientController extends AbstractController
 {
+    public function __construct(
+        //  private StripePaymentService $stripePaymentService
+    ) {
+
+    }
     public function __invoke(
         Request $request,
         ValidatorInterface $validator,
         Security $security,
         EntityManagerInterface $entityManager,
         ItemStatusRepository $itemStatusRepository,
-        ClientRepository $clientRepository
+        ClientRepository $clientRepository,
+        CalculateTotalAmountService $amountService
     ): JsonResponse {
         // Récupérer l'utilisateur authentifié
         $user = $security->getUser();
+
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }
@@ -42,6 +51,24 @@ class PostCommandesClientController extends AbstractController
         if (!isset($data['filingDate'], $data['returnDate'], $data['paymentDate'], $data['client'], $data['items'])) {
             return $this->json(['message' => 'Missing required fields'], 400);
         }
+
+        // Récupérer l' id du service et la quantité de chaque items pour 
+        // calculer le montant
+        /*
+        $items = [];
+        foreach ($data['items'] as $itemData) {
+            if (!isset($itemData['id'], $itemData['quantity'])) {
+                return $this->json(['message' => 'Missing required fields'], 400);
+            }
+            $items[] = [
+                'id' => $itemData['id'],
+                'quantity' => $itemData['quantity'],
+            ];
+        }
+        */
+        //Calculer le montant de la commande
+        // $amout = $amountService->calculateTotalAmount($data['items']);
+
         //Récupère le client avec l'id égale à la valeur de $user->getId(), si il existe déjà.
         $client = $clientRepository->findOneBy(['id' => $user->getId()]);
         // Si le client n'existe pas dans la base de donnée
@@ -90,6 +117,7 @@ class PostCommandesClientController extends AbstractController
                 }
                 return $this->json(['errors' => $errorMessages], 400);
             }
+
             // Persister chaque item
             $entityManager->persist($item);
         }

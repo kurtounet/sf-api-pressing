@@ -31,11 +31,7 @@ class CommandeCrudController extends AbstractCrudController
             TextField::new('client'),
 
         ];
-        // return [
-        //     IdField::new('id'),
-        //     TextField::new('title'),
-        //     TextEditorField::new('description'),
-        // ];
+
     }
 
 }
