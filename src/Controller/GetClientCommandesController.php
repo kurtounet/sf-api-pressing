@@ -22,8 +22,10 @@ class GetClientCommandesController extends AbstractController
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }
+        $commandes = $commandeRepository->findBy(['client' => $user->getId()]);
+
         return $this->json(
-            $commandeRepository->findBy(['client' => $user->getId()]),
+            $commandes,
             200,
             context: ['groups' => ['commande:item:read', 'item:read']]
         );

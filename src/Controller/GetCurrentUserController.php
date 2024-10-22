@@ -10,12 +10,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class GetCurrentUserController extends AbstractController
 {
-    #[Route('/api/currentuser', name: 'app_current_user', methods: ['GET'])]
-    public function __invoke(
-        SerializerInterface $serializer,
-        Security $security
-    ): JsonResponse {
-        $user = $security->getUser();
+    // #[Route('/api/currentuser', name: 'app_current_user', methods: ['GET'])]
+    public function __invoke(): JsonResponse
+    {
+
+        $user = $this->getUser();
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }

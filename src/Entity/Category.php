@@ -20,14 +20,18 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource(
-    // operations: [
-    //     new Get(),
-    //     new GetCollection(),
-    //     new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-    //     new Patch(security: "is_granted('ROLE_ADMIN')"),
-    //     new Delete(security: "is_granted('ROLE_ADMIN')")
-    // ],
-    normalizationContext: ['groups' => ['category:list:read']],
+    operations: [
+        new Get(),
+        new GetCollection(
+            paginationEnabled: true,
+            paginationItemsPerPage: 50,
+            paginationMaximumItemsPerPage: 50
+        ),
+        new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+        new Patch(security: "is_granted('ROLE_ADMIN')"),
+        new Delete(security: "is_granted('ROLE_ADMIN')")
+    ],
+    normalizationContext: ['groups' => ['category:read']],
     denormalizationContext: ['groups' => ['category:write']]
 )]
 class Category
@@ -35,12 +39,12 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['category:list:read', 'category:write', 'service:read', 'item:read',])]
+    #[Groups(['category:read', 'category:write', 'service:read', 'item:read',])]
     private ?int $id = null;
 
 
     #[ORM\Column(length: 50)]
-    #[Groups(['category:list:read', 'category:write', 'service:read', 'item:read'])]
+    #[Groups(['category:read', 'category:write', 'service:read', 'item:read'])]
     private ?string $name = null;
 
     //  #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
@@ -49,14 +53,14 @@ class Category
 
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]
-    #[Groups(['category:list:read', 'category:write', 'service:read'])]
+    #[Groups(['category:read', 'category:write', 'service:read'])]
     private ?self $parent = null;
 
     /**
      * @var Collection<int, self>
      */
     #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
-    #[Groups(['category:list:read', 'category:write', 'service:read'])]
+    #[Groups(['category:read', 'category:write', 'service:read'])]
     private Collection $subcategories;
 
     /**
@@ -69,7 +73,7 @@ class Category
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['category:list:read', 'category:write', 'service:read', 'item:read'])]
+    #[Groups(['category:read', 'category:write', 'service:read', 'item:read'])]
     private ?string $image = null;
 
 
