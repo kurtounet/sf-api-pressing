@@ -30,8 +30,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 use EasyCorp\Bundle\EasyAdminBundle\Filter\NumericFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\TextFilter;
-use Symfony\Component\Security\Core\Security;
-
+use Symfony\Bundle\SecurityBundle\Security;
 class ItemCrudController extends AbstractCrudController
 {
 

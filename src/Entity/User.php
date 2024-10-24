@@ -71,136 +71,51 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     #[ORM\Column]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private array $roles = [];
 
 
     #[ORM\Column]
-    //#[ORM\PrePersist]
-    //#[ORM\PreUpdate]
-    #[Groups([
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:write", "employee:write", "client:write"])]
     private ?string $password = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 13, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $mobilephone = null;
 
-
     #[ORM\Column(length: 13, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $phone = null;
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateborn = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?int $numadrs = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $adrs = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $city = null;
 
     #[ORM\Column(length: 6, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $zipcode = null;
 
     #[ORM\Column(length: 6, nullable: true)]
-    #[Groups([
-        "user:read",
-        "employee:read",
-        "client:read",
-        "user:write",
-        "employee:write",
-        "client:write"
-    ])]
+    #[Groups(["user:read", "employee:read", "client:read", "user:write", "employee:write", "client:write"])]
     private ?string $country = null;
 
     public function __construct()
