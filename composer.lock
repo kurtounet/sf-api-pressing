@@ -8,16 +8,16 @@
   "packages": [
     {
       "name": "api-platform/core",
-      "version": "v3.4.3",
+      "version": "v3.4.4",
       "source": {
         "type": "git",
         "url": "https://github.com/api-platform/core.git",
-        "reference": "a11c21335297b6026aa2b12fbe11a77e888481d7"
+        "reference": "77d3ff3e8ddf88546eaf288a399d11f130553606"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/api-platform/core/zipball/a11c21335297b6026aa2b12fbe11a77e888481d7",
-        "reference": "a11c21335297b6026aa2b12fbe11a77e888481d7",
+        "url": "https://api.github.com/repos/api-platform/core/zipball/77d3ff3e8ddf88546eaf288a399d11f130553606",
+        "reference": "77d3ff3e8ddf88546eaf288a399d11f130553606",
         "shasum": ""
       },
       "require": {
@@ -223,9 +223,9 @@
       ],
       "support": {
         "issues": "https://github.com/api-platform/core/issues",
-        "source": "https://github.com/api-platform/core/tree/v3.4.3"
+        "source": "https://github.com/api-platform/core/tree/v3.4.4"
       },
-      "time": "2024-10-11T12:19:54+00:00"
+      "time": "2024-10-19T10:05:07+00:00"
     },
     {
       "name": "doctrine/cache",
@@ -1395,16 +1395,16 @@
     },
     {
       "name": "doctrine/sql-formatter",
-      "version": "1.5.0",
+      "version": "1.5.1",
       "source": {
         "type": "git",
         "url": "https://github.com/doctrine/sql-formatter.git",
-        "reference": "16ca9e39877369d664f06dacde468548298bdc40"
+        "reference": "b784cbde727cf806721451dde40eff4fec3bbe86"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/doctrine/sql-formatter/zipball/16ca9e39877369d664f06dacde468548298bdc40",
-        "reference": "16ca9e39877369d664f06dacde468548298bdc40",
+        "url": "https://api.github.com/repos/doctrine/sql-formatter/zipball/b784cbde727cf806721451dde40eff4fec3bbe86",
+        "reference": "b784cbde727cf806721451dde40eff4fec3bbe86",
         "shasum": ""
       },
       "require": {
@@ -1445,22 +1445,22 @@
       ],
       "support": {
         "issues": "https://github.com/doctrine/sql-formatter/issues",
-        "source": "https://github.com/doctrine/sql-formatter/tree/1.5.0"
+        "source": "https://github.com/doctrine/sql-formatter/tree/1.5.1"
       },
-      "time": "2024-09-11T07:29:40+00:00"
+      "time": "2024-10-21T18:21:57+00:00"
     },
     {
       "name": "easycorp/easyadmin-bundle",
-      "version": "v4.13.2",
+      "version": "v4.13.5",
       "source": {
         "type": "git",
         "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-        "reference": "286bbcc988ecca75faf10122a977c66b0c5aba68"
+        "reference": "7e3f69bbd05f42afb7af65812f63e467db5459a5"
       },
       "dist": {
         "type": "zip",
-        "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/286bbcc988ecca75faf10122a977c66b0c5aba68",
-        "reference": "286bbcc988ecca75faf10122a977c66b0c5aba68",
+        "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/7e3f69bbd05f42afb7af65812f63e467db5459a5",
+        "reference": "7e3f69bbd05f42afb7af65812f63e467db5459a5",
         "shasum": ""
       },
       "require": {
@@ -1534,7 +1534,7 @@
       ],
       "support": {
         "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-        "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.13.2"
+        "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.13.5"
       },
       "funding": [
         {
@@ -1542,7 +1542,7 @@
           "type": "github"
         }
       ],
-      "time": "2024-10-15T17:47:04+00:00"
+      "time": "2024-10-23T06:15:53+00:00"
     },
     {
       "name": "egulias/email-validator",
