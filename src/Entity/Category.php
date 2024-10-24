@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -45,11 +45,15 @@ class Category
 
     #[ORM\Column(length: 50)]
     #[Groups(['category:read', 'category:write', 'service:read', 'item:read'])]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le nom de la catégorie')]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom de la catégorie doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le nom de la catégorie ne doit pas contenir plus de {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
-    //  #[ORM\OneToMany(targetEntity: Article::class, mappedBy: 'relation')]
-    // #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children', fetch: 'relation')]
-    // private ?category $parent = null;
 
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'subcategories')]

@@ -43,8 +43,13 @@ class Service
 
     #[ORM\Column(length: 100)]
     #[Groups(['service:read', 'service:write', 'category:list:read', 'item:read'])]
-    #[Assert\NotBlank]
-    #[Assert\Length(max: 100)]
+    #[Assert\NotBlank(message: 'Veuillez renseigner le champ')]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Le nom doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le nom ne doit pas contenir plus de {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
     #[ORM\Column(nullable: true, )]
