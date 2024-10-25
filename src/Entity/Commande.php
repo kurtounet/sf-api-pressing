@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 #[Post(
     uriTemplate: '/commandes/client',
@@ -25,7 +25,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
     name: 'app_post_commandes_client',
 )
 ]
- 
+
 #[ApiResource(
     operations: [
         new Get(),
@@ -51,6 +51,7 @@ class Commande
     private ?int $id = null;
 
     #[ORM\Column(length: 10)]
+
     #[Groups(['commande:client:write', 'commande:item:read', 'commande:list:read', 'commande:write', 'client:read', 'commande:employee:read'])]
     private ?string $ref = null;
 

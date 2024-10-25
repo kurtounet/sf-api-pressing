@@ -11,7 +11,7 @@ use ApiPlatform\Metadata\Post;
 use App\Repository\ItemStatusRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ItemStatusRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['itemStatus:read']],
@@ -38,6 +38,13 @@ class ItemStatus
 
     #[ORM\Column(length: 100)]
     #[Groups(['itemStatus:read', 'itemStatus:write', 'item:read'])]
+    #[Assert\NotBlank(message: 'Veuillez renseigner ce champ')]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Le nom doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le nom ne doit pas contenir plus de {{ limit }} caractères',
+    )]
     private ?string $name = null;
 
     public function getId(): ?int
