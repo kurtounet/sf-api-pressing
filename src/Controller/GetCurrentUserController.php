@@ -5,16 +5,26 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class GetCurrentUserController extends AbstractController
 {
-    // #[Route('/api/currentuser', name: 'app_current_user', methods: ['GET'])]
-    public function __invoke(): JsonResponse
-    {
 
-        $user = $this->getUser();
+    // #[Route('/api/currentuser', name: 'app_current_user', methods: ['GET'])]
+    public function __invoke(
+        Request $request,
+        Security $security
+    ): JsonResponse {
+
+        return $this->json(['token' => $request->headers->get('Authorization')], 200);
+        $token = $security->getToken();
+        $user = $security->getUser();
+
+        if (!$token) {
+            return $this->json(['token' => 'No token provided'], 404);
+        }
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }
