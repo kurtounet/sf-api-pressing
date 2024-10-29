@@ -99,14 +99,23 @@ class ItemCrudController extends AbstractCrudController
                         'choice_label' => 'name'
                     ]),
 
+                TextField::new('category')
+                    ->setLabel('Categorie')
+                    ->setDisabled(true),
+                // ->setFormTypeOptions([
+                //     'class' => Category::class,
+                //     'choice_label' => 'name'
+                // ]),
                 AssociationField::new('commande')
                     ->setLabel('Commande')
                     ->setFormTypeOptions([
                         'class' => Commande::class,
-                        'choice_label' => 'ref'
-                    ]),
 
-                NumberField::new('quantity'),
+                        //'choice_label' => 'ref'
+                    ]),
+                NumberField::new('quantity')
+                    ->setLabel('quantité')
+                    ->setDisabled(true),
 
                 AssociationField::new('itemStatus')
                     ->setLabel('statut de la tâche')
@@ -114,7 +123,6 @@ class ItemCrudController extends AbstractCrudController
                         'class' => ItemStatus::class,
                         'choice_label' => 'name'
                     ]),
-
                 TextEditorField::new('detailItem'),
 
                 AssociationField::new('employee')

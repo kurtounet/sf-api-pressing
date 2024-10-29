@@ -23,7 +23,7 @@ class GetItemsEmployeesController extends AbstractController
             return $this->json(['message' => 'User not found'], 404);
         }
 
-        $criteriaStatus = $itemStatusRepository->findBy(['name' => 'En attente']);
+        $criteriaStatus = $itemStatusRepository->findBy(['name' => ['En attente', 'En cours']]);
 
         // Vérifiez si le tableau n'est pas vide
         if (!empty($criteriaStatus)) {

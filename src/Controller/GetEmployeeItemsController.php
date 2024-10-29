@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ItemRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse; 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\SecurityBundle\Security; // Correct namespace for Security
 
 class GetEmployeeItemsController extends AbstractController
@@ -14,18 +14,22 @@ class GetEmployeeItemsController extends AbstractController
         ItemRepository $itemRepository,
         Security $security
     ): JsonResponse {
-        $user = $security->getUser();
+        $user = $this->getUser();
+
+
         if (!$user) {
             return $this->json(['message' => 'User not found'], 404);
         }
-
+        return $this->json(['items' => $user], 200);
         // Récupération des articles spécifiques à l'employé connecté
-        $items = $itemRepository->findBy(['employee' => $user->getId()]);
-        return $this->json(
-            data: $items,
-            context: ['groups' => ['item:read']],
-            status: 200
-        );
+        //$items = $itemRepository->findBy(['employee' => $user->getId()]);
+        // $items = $itemRepository->findAll();
+        // return $this->json(['items' => $user], 200);
+        // return $this->json(
+        //     data: '$items',
+        //     context: ['groups' => ['item:employee:read']],
+        //     status: 200
+        // );
 
     }
 }

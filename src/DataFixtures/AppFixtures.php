@@ -121,11 +121,14 @@ class AppFixtures extends Fixture
         $fileContent = file_get_contents(self::PATH . 'commandes.json');
         $commandeData = json_decode($fileContent, true);
         $i = 1000;
+        // commenter : $entity->setRef($this->generateCommandeNumber());
+        // dans NewCommandeNumberListener
         foreach ($commandeData as $item) {
-
+            $i++;
+            echo $i . "\n";
             $commande = new Commande();
             $commande
-                ->setRef((strval($i++)))
+                ->setRef(strval($i))
                 ->setClient($allClients[rand(0, count($allClients) - 1)])
                 ->setFilingDate(new \DateTime($item['filingDate']))
                 ->setReturnDate(new \DateTime($item['returnDate']))

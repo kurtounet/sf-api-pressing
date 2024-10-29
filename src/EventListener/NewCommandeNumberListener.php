@@ -29,5 +29,4 @@ class NewCommandeNumberListener
         }
         return '1';
     }
-
 }
