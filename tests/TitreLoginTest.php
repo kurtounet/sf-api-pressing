@@ -3,15 +3,16 @@
 namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\Attributes\Test;
 
-class WebTestCaseTest extends WebTestCase
+class TitreLoginTest extends WebTestCase
 {
-    public function testSomething(): void
+    #[Test]
+    public function testTitreLogin(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/login');
+        $client->request('GET', '/login');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Veuillez vous connecter');
-
     }
 }

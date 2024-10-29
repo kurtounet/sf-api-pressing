@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PaymentService
 {
+    public function execute(array $Commandes): JsonResponse
+    {
+
+
+        return new JsonResponse(['paymentDate' => $Commandes], Response::HTTP_OK);
+    }
     /*
     private StripeClient $stripeClient;
 
