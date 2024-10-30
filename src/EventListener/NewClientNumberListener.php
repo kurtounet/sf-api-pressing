@@ -8,7 +8,9 @@ use Doctrine\ORM\Events;
 #[AsDoctrineListener(Events::prePersist)]
 class NewClientNumberListener
 {
-    public function __construct(private ClientRepository $clientRepository){}
+    public function __construct(private ClientRepository $clientRepository)
+    {
+    }
     public function prePersist(PrePersistEventArgs $event): void
     {
         $entity = $event->getObject();

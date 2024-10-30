@@ -6,7 +6,8 @@ class UserRegisteredListener
 {
     public function __construct(
         private EmailNotificationService $emailNotificationService
-    ) {}
+    ) {
+    }
     public function onUserRegistered(UserRegisteredEvent $event): void
     {
         $user = $event->getUser();
