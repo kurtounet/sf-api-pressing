@@ -56,13 +56,28 @@ class ItemCrudController extends AbstractCrudController
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $qb = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
+        // Récupération des rôles de l'utilisateur
+        $user = $this->security->getUser();
+        $userId = $user->getId();
+        $roles = $user->getRoles();
+        if (in_array('ROLE_ADMIN', $roles)) {
+            $qb->join('entity.itemStatus', 'status')
+                ->andWhere('status.name IN (:statuses)')
+                ->setParameter('statuses', ['En attente', 'En cours', 'Terminé']);
+        } elseif (in_array('ROLE_EMPLOYEE', $roles)) {
 
-        // Ajout du filtre sur le statut
-        // Filtrer sur l'ID ou le nom de itemStatus.name (relation)
-        $qb->join('entity.itemStatus', 'status')
-            // 'status' est un alias pour la relation
-            ->andWhere('status.name IN (:statuses)')
-            ->setParameter('statuses', ['En attente', 'En cours']);
+            $qb->andWhere('entity.employee = :userId')
+                ->setParameter('userId', $userId);
+
+
+
+            // Ajout du filtre sur le statut
+            // Filtrer sur l'ID ou le nom de itemStatus.name (relation)
+            $qb->join('entity.itemStatus', 'status')
+                // 'status' est un alias pour la relation
+                ->andWhere('status.name IN (:statuses)')
+                ->setParameter('statuses', ['En attente', 'En cours']);
+        }
 
         return $qb;
 
