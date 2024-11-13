@@ -1,6 +1,8 @@
 <?php
 namespace App\Tests;
+
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
 class ApiAuthentificationTest extends WebTestCase
 {
     public function testLoginWithValidCredentials(): void
@@ -8,9 +10,9 @@ class ApiAuthentificationTest extends WebTestCase
         $email = 'admin@gmail.com';
         $password = 'admin';
         // Afficher les identifiants
-        fwrite(STDOUT, "\nIdentifiant: " .
-         $email . "\nPassword: " . $password . "\n");
-        // Creer le client HTTP
+        fwrite(STDOUT, "\nIdentifiant : " . $email . 
+        "\nMot de passe : " . $password . "\n");
+        // Créer le client HTTP
         $client = static::createClient();
         // Envoyer la requête de connexion
         $client->request(
@@ -26,31 +28,16 @@ class ApiAuthentificationTest extends WebTestCase
         );
         // Vérifier si la réponse est réussie
         $this->assertResponseIsSuccessful();
-        // Recupérer le contenu de la requête          
+        // Récupérer le contenu de la réponse
         $data = json_decode($client->getResponse()->getContent(),
          true);
-        // Vérifier la présence des token dans la réponse
+        // Vérifier la présence des tokens dans la réponse
         $this->assertArrayHasKey('token', $data);
         $this->assertArrayHasKey('refresh_token', $data);
-        // Afficher le contenu des token
-        fwrite(STDOUT, "\n[x]Token: " . 
+        // Afficher le contenu des tokens
+        fwrite(STDOUT, "\n[x] Token : " . 
         $data['token'] . "\n");
-        fwrite(STDOUT, "\n[x]refresh_token: " .
-        $data['refresh_token'] . "\n");       
+        fwrite(STDOUT, "\n[x] Refresh Token : " .
+         $data['refresh_token'] . "\n");
     }
 }
- // Utiliser le token pour accéder à une ressource protégée
-        // $token = $data['token'];
-        // $client->request('GET', '/api/protected_resource', [], [], [
-        //     'HTTP_AUTHORIZATION' => 'Bearer ' . $token,
-        // ]);
-
-        // // Vérifier que l'accès est autorisé
-        // $this->assertResponseIsSuccessful();
-        // $this->assertSelectorTextContains('h1', 'Ressource protégée'); // Vérifiez le contenu attendu
-    
-    // $crawler = $client->request('GET', '/');
-
-    // $this->assertResponseIsSuccessful();
-    // $this->assertSelectorTextContains('h1', 'Hello World');
-

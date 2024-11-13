@@ -16,6 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -35,6 +36,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[GetCollection(
     uriTemplate: '/users/currentuser',
     controller: GetCurrentUserController::class,
+    //security: "is_granted('ROLE_ADMIN')",
     normalizationContext: ['groups' => ['user:read']],
     denormalizationContext: ['groups' => ['user:write']],
     name: 'app_current_user',
@@ -48,7 +50,6 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new Put(),
         new Delete()
-
         // new Post(security: "is_granted('ROLE_ADMIN')"),
         // new Patch(security: "is_granted('ROLE_ADMIN')"),
         // new Delete(security: "is_granted('ROLE_ADMIN')")

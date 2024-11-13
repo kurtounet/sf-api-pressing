@@ -1,9 +1,7 @@
 <?php
 namespace App\Services;
 use App\Entity\Service;
-
 use Doctrine\ORM\EntityManagerInterface;
-
 class CalculateTotalAmountService
 {
     public function __construct(
@@ -18,7 +16,8 @@ class CalculateTotalAmountService
         }
         foreach ($items as $itemData) {
             $id = explode('/', $itemData['service']);
-            $service = $this->entityManager->getRepository(Service::class)->find((int) end($id));
+            $service = $this->entityManager->getRepository(Service::class)
+            ->find((int) end($id));
             if (!$service) {
                 throw new \InvalidArgumentException('Service not found for item');
             }
@@ -26,5 +25,4 @@ class CalculateTotalAmountService
         }
         return $totalAmount;
     }
-
 }

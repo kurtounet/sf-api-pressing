@@ -60,18 +60,20 @@ use Symfony\Component\Serializer\Attribute\Groups;
         new GetCollection(),
         new Get(),
         new Put(),
-        new Patch(inputFormats: ['json' => ['application/merge-patch+json']]),
+        new Patch(inputFormats: ['json' =>
+         ['application/merge-patch+json']]),
         new Post(),
-        new Delete(),
-        // new GetCollection(routeName: 'app_items_complete', name: 'app_items_complete', security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-        // new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
-        // new Patch(security: "is_granted('ROLE_ADMIN')"),
-        // new Delete(security: "is_granted('ROLE_ADMIN')")
-
+        new Delete()
     ],
-    normalizationContext: ['groups' => ['item:read', 'item:commande:read']],
-    denormalizationContext: ['groups' => ['item:write']]
+    normalizationContext: ['groups' =>
+     ['item:read', 'item:commande:read']],
+    denormalizationContext: ['groups' =>
+     ['item:write']]
 )]
+
+// new Post(security: "is_granted('ROLE_ADMIN') or is_granted('ROLE_MANAGER')"),
+// new Patch(security: "is_granted('ROLE_ADMIN')"),
+// new Delete(security: "is_granted('ROLE_ADMIN')")
 class Item
 {
     #[ORM\Id]
@@ -79,6 +81,17 @@ class Item
     #[ORM\Column]
     #[Groups(['item:read', 'employee:items', 'item:employee:read'])]
     private ?int $id = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['item:read', 'item:write', 'item:employee:read'])]
+    private ?string $detailItem = null;
+
+    #[ORM\Column]
+    #[Groups(['item:read', 'item:write'])]
+    private ?float $price = 0.0;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    #[Groups(['item:read', 'item:write', 'item:employee:read', 'item:amount'])]
+    private ?int $quantity = 0;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true)]
@@ -94,18 +107,6 @@ class Item
     #[ORM\JoinColumn(nullable: true)]
     #[Groups(['item:read', 'item:write', 'item:employee:read', 'item:employee:write'])]
     private ?ItemStatus $itemStatus = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['item:read', 'item:write', 'item:employee:read'])]
-    private ?string $detailItem = null;
-
-    #[ORM\Column]
-    #[Groups(['item:read', 'item:write'])]
-    private ?float $price = 0.0;
-
-    #[ORM\Column(type: Types::SMALLINT)]
-    #[Groups(['item:read', 'item:write', 'item:employee:read', 'item:amount'])]
-    private ?int $quantity = 0;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
     #[Groups(['item:read', 'item:write'])]

@@ -24,36 +24,18 @@ class AppFixtures extends Fixture
     private const PARENT_CATEGORY = [];
 
 
-    public function __construct(
-        private SerializerInterface $serializer
-    ) {
-
-    }
-
+    public function __construct(private SerializerInterface $serializer) {}
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-
-        //SERVICES STATUS
         $content = file_get_contents(self::PATH . 'itemStatus.json');
-        // echo $content . "\n";
-        $allServiceStatus = $this->serializer->deserialize(
-            $content,
-            ItemStatus::class . '[]',
-            'json'
-        );
+        $allServiceStatus = $this->serializer->deserialize($content,ItemStatus::class . '[]','json');
         foreach ($allServiceStatus as $item) {
             $manager->persist($item);
         }
         echo 'ITEMS STATUS OK' . "\n";
-        //SERVICES
         $content = file_get_contents(self::PATH . 'services.json');
-        // echo $content . "\n";
-        $allServices = $this->serializer->deserialize(
-            $content,
-            Service::class . '[]',
-            'json'
-        );
+        $allServices = $this->serializer->deserialize( $content,Service::class . '[]','json');
         foreach ($allServices as $item) {
             $manager->persist($item);
         }

@@ -1,6 +1,5 @@
 <?php
 namespace App\Services;
-
 use App\Entity\Category;
 use App\Entity\Commande;
 use App\Entity\Item;
@@ -40,14 +39,16 @@ class CreateNewCommandeService
             return new JsonResponse(['message' => 'Status not found'], 404);
         }
         $idItemStatus = $itemStatus[0]->getId();
-
         // Création des items
         foreach ($data['items'] as $itemData) {
             $item = new Item();
             $item->setCommande($commande)
-                ->setService($this->entityManager->getRepository(className: Service::class)->find((int) $itemData['service']))
-                ->setCategory($this->entityManager->getRepository(Category::class)->find((int) $itemData['category']))
-                ->setItemStatus($this->entityManager->getRepository(ItemStatus::class)->find($idItemStatus))
+                ->setService($this->entityManager->getRepository(className: Service::class)->find(
+                    (int) $itemData['service']))
+                ->setCategory($this->entityManager->getRepository(Category::class)->find(
+                    (int) $itemData['category']))
+                ->setItemStatus($this->entityManager->getRepository(ItemStatus::class)->find(
+                    $idItemStatus))
                 ->setDetailItem($itemData['detailItem'])
                 ->setQuantity($itemData['quantity']);
 
@@ -65,7 +66,6 @@ class CreateNewCommandeService
         // retourne lea commande
         return $commande;
     }
-
     private function getErrorMessages($errors)
     {
         $errorMessages = [];

@@ -39,14 +39,12 @@ class PaymentService
         $productsStripe = [];
         $items = $Commande['items'];
         $currency = $this->params->get('app.currency');
-
         foreach ($items as $itemData) {
             $id = explode('/', $itemData['service']);
             $service = $this->entityManager->getRepository(Service::class)->find((int) end($id));
             if (!$service) {
                 throw new \InvalidArgumentException('Service not found for item');
             }
-
             $productsStripe[] = [
                 'price_data' => [
                     'currency' => $currency,
@@ -58,7 +56,6 @@ class PaymentService
                 'quantity' => $itemData['quantity'],
             ];
         }
-
         try {
             $checkout_session = $this->stripeClient->checkout->sessions->create([
                 'payment_method_types' => ['card'],
@@ -73,7 +70,6 @@ class PaymentService
             return ['error' => $e->getMessage()];
         }
     }
-
 }
 /* 
 $checkout_session = $this->stripeClient->checkout->sessions->create([
