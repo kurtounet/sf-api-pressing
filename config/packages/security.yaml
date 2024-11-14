@@ -3,6 +3,11 @@ security:
   password_hashers:
     Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: "auto"
   # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+  role_hierarchy:
+        ROLE_ADMIN: [ ROLE_EMPLOYEE ]           
+        ROLE_EMPLOYEE: [ ROLE_USER ]            
+        ROLE_CLIENT: [ ROLE_USER ] 
+            
   providers:
     # used to reload user from session & other features (e.g. switch_user)
     app_user_provider:
@@ -57,7 +62,7 @@ security:
      - { path: ^/api/currentusers, roles: PUBLIC_ACCESS} 
      - { path: ^/api/users, roles: PUBLIC_ACCESS}
      - { path: ^/api/docs, roles: PUBLIC_ACCESS }     
-     - { path: ^/api/admin, roles: ROLE_ADMIN }
+     - { path: ^/api/admin, roles: [ROLE_ADMIN, ROLE_EMPLOYEE] }
      - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
  
 

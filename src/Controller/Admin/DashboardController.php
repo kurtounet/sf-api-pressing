@@ -32,23 +32,14 @@ class DashboardController extends AbstractDashboardController
     ) {
     }
     #[Route('/admin', name: 'admin')]
-    public function index(
-
-    ): Response {
-        //return parent::index();
-
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
+    public function index(): Response {
+       
+        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);        
         if ($this->isGranted('ROLE_ADMIN')) {
 
+            // Code pour la page d'acceuil de l'administrateur
             $allCategories = $this->entityManager->getRepository(Category::class)->findAll();
             shuffle($allCategories);
-
             $topSellingProduct = array_slice($allCategories, 0, 1)[0]->getName();
 
             $fourRandomcategories = array_slice($allCategories, 0, 4);
@@ -58,7 +49,6 @@ class DashboardController extends AbstractDashboardController
 
             $employees = $this->entityManager->getRepository(Employee::class)->findAll();
             shuffle($employees);
-
 
             foreach ($employees as $employee) {
                 $employeeName[] = $employee->getFirstname() . ' ' . (string) $employee->getLastname();

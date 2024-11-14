@@ -11,10 +11,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class PostCommandesClientController extends AbstractController
 {
-    public function __construct(
-        private PaymentService $paymentService
-    ) {
-    }
+    public function __construct(private PaymentService $paymentService){}
     public function __invoke(
         Request $request,
         Security $security,
@@ -27,42 +24,22 @@ class PostCommandesClientController extends AbstractController
         }
         // Décoder le JSON reçu dans le corps de la requête
         $data = json_decode($request->getContent(), true);
-
-        // Vérifier si le Json existe et si il y n'a pas d'érreur lors du Décodage         
+        // Vérifier si le JSON existe et s'il n'y a pas d'erreur lors du décodage         
         if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
             return $this->json(['message' => 'Invalid JSON'], 400);
         }
-        // Vérifier les champs obligatoires
-        if (!isset($data['filingDate'], $data['returnDate'], $data['paymentDate'], $data['client'], $data['items'])) {
-            return new JsonResponse(['message' => 'Missing required fields'], 400);
-        }
         // Appel au service de création de commande
-        $NewCommande = $createNewCommandeService->execute($data, $user);
-        if (!$NewCommande instanceof Commande) {
-            return $this->json(['message' => 'Failed creation order'], 422);
+        $newCommande = $createNewCommandeService->execute($data, $user);
+        if (!$newCommande instanceof Commande) {
+            return $this->json(['message' => 'Failed to create order'], 422);
         }
-        // Retourne la commande comme confirmation de création.
-        return $this->json([
-            'commande' => $NewCommande,
-        ], 201);
-
+        // Retourner la commande comme confirmation de création
+        return $this->json(['commande' => $newCommande,], 201);
     }
 }
 
 
-
-
-// Retourner une réponse de succès
-//return $this->json([$NewCommande], 201);
-
-// return $this->json([
-//     'commande' => $NewCommande,
-//     'payment_session_id' => $payment['id']
-// ], 201);
-
-
-// Appel au service de paiement pour créer la session de paiement
-// $payment = $this->paymentService->createCheckoutSession($data);
-// if (isset($payment['error'])) {
-//     return $this->json(['message' => $payment['error']], 400);
+// Vérifier les champs obligatoires
+// if (!isset($data['filingDate'], $data['returnDate'], $data['paymentDate'], $data['client'], $data['items'])) {
+//     return new JsonResponse(['message' => 'Missing required fields'], 400);
 // }

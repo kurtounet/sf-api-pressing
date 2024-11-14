@@ -24,18 +24,20 @@ class AppFixtures extends Fixture
     private const PARENT_CATEGORY = [];
 
 
-    public function __construct(private SerializerInterface $serializer) {}
+    public function __construct(private SerializerInterface $serializer)
+    {
+    }
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
         $content = file_get_contents(self::PATH . 'itemStatus.json');
-        $allServiceStatus = $this->serializer->deserialize($content,ItemStatus::class . '[]','json');
+        $allServiceStatus = $this->serializer->deserialize($content, ItemStatus::class . '[]', 'json');
         foreach ($allServiceStatus as $item) {
             $manager->persist($item);
         }
         echo 'ITEMS STATUS OK' . "\n";
         $content = file_get_contents(self::PATH . 'services.json');
-        $allServices = $this->serializer->deserialize( $content,Service::class . '[]','json');
+        $allServices = $this->serializer->deserialize($content, Service::class . '[]', 'json');
         foreach ($allServices as $item) {
             $manager->persist($item);
         }
@@ -107,7 +109,6 @@ class AppFixtures extends Fixture
         // dans NewCommandeNumberListener
         foreach ($commandeData as $item) {
             $i++;
-            echo $i . "\n";
             $commande = new Commande();
             $commande
                 ->setRef(strval($i))
