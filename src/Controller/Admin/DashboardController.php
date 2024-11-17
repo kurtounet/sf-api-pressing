@@ -32,9 +32,10 @@ class DashboardController extends AbstractDashboardController
     ) {
     }
     #[Route('/admin', name: 'admin')]
-    public function index(): Response {
-       
-        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);        
+    public function index(): Response
+    {
+
+        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         if ($this->isGranted('ROLE_ADMIN')) {
 
             // Code pour la page d'acceuil de l'administrateur
@@ -90,9 +91,6 @@ class DashboardController extends AbstractDashboardController
                 'visitors_data' => $visitorsData,
                 'employee_cota_data' => $employeeCota,
                 'employee_name' => $employeeName,
-
-
-
             ]);
 
         } else if ($this->isGranted('ROLE_EMPLOYEE')) {
@@ -152,7 +150,6 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('Mes tâches', 'fas fa-list', Item::class);
 
         }
-
 
     }
 
