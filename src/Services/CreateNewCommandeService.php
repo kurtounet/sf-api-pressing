@@ -25,7 +25,7 @@ class CreateNewCommandeService
     ) {
     }
 
-    public function execute(array $data, $user) 
+    public function execute(array $data, $user)
     {
         // Vérifier les champs obligatoires
         if (!isset($data['filingDate'], $data['returnDate'], $data['paymentDate'], $data['client'], $data['items'])) {

@@ -13,9 +13,8 @@ class GetCurrentUserController extends AbstractController
 {
 
     // #[Route('/api/currentuser', name: 'app_current_user', methods: ['GET'])]
-    public function __invoke(
-        Security $security
-    ): JsonResponse {
+    public function __invoke(Security $security): JsonResponse
+    {
         $user = $security->getUser();
 
         if (!$user) {
