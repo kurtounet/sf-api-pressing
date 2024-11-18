@@ -17,6 +17,8 @@ class CreateNewCommandeService
         private ValidatorInterface $validator
     ) {
     }
+
+    public function execute(array $data, $user)
     public function execute(array $data, $user)
     {
         // Création de la commande

@@ -14,6 +14,9 @@ class CalculateTotalAmountService
         if (empty($items)) {
             return $totalAmount;
         }
+
+        // requete sql  pour calculer le montant total
+
         foreach ($items as $itemData) {
             $id = explode('/', $itemData['service']);
             $service = $this->entityManager->getRepository(Service::class)
@@ -25,4 +28,24 @@ class CalculateTotalAmountService
         }
         return $totalAmount;
     }
+    // public function getItem()
+    // {
+    //     $stmt = $this->entityManager
+    //         ->getConnection()
+    //         ->prepare('SELECT SUM(montant) INTO total
+    // FROM item
+    // WHERE id IN (id1, id2, id3);
+
+    // RETURN total;);
+
+    //     // SELECT SUM(price) AS prix_total
+    //     // FROM items
+    //     // WHERE facture_id = 1
+
+    //     $stmt->setParameter('mid', 1);    //     
+    //     $stmt->execute();
+    //     return totalAmount;
+
+    // }
+
 }

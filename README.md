@@ -1,5 +1,7 @@
 # PROJET DU BUSINESS CASE POUR L'EXAMEN DE FORMATION DEVELOPPEUR WEB/WEB MOBILE
 
+docker run -d --name=mailtrap -p 8940:80 -p 7321:25 eaudeweb/mailtrap
+
 curl -H "Accept: application/vnd.github.v3+json" <https://api.github.com/repos/kurtonuet/sf-api-pressing/commits>
 
 # easyadmin upload file
