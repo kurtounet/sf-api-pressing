@@ -19,7 +19,6 @@ class CreateNewCommandeService
     }
 
     public function execute(array $data, $user)
-    public function execute(array $data, $user)
     {
         // Création de la commande
         $commande = new Commande();
