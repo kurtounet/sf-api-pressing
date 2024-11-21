@@ -54,7 +54,7 @@ class UserCrudController extends AbstractCrudController
                     ->allowMultipleChoices(),
 
 
-                // TextField::new('password', 'Password')->onlyOnForms(), // Ne montrer que dans les formulaires
+                // TextField::new('password', 'Password')->onlyOnForms(),  
                 FormField::addFieldset('Adresse'),
                 NumberField::new('numadrs', 'Nb de rue')->hideOnIndex(),
                 TextField::new('adrs', 'Addresse')->hideOnIndex(),

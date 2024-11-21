@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class GetItemsNoAssignController extends AbstractController
 {
-    // #[Route('/api/items/noassigned', name: 'app_get_items_no_assign')]
+     
     public function __invoke(
         ItemRepository $itemRepository,
         Security $security

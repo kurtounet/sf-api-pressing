@@ -13,7 +13,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 
 class GetClientCommandesController extends AbstractController
 {
-    //#[Route('/api/clients/commandes', name: 'app_get_clients_commandes', methods: ['GET'])]
+     
     public function __invoke(
         CommandeRepository $commandeRepository,
         Security $security,

@@ -86,15 +86,15 @@ class ItemCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        // Get the current actions configuration
+         
 
 
-        // If the user has the ROLE_EMPLOYEE role
+         
         if ($this->isGranted('ROLE_EMPLOYEE')) {
-            // Disable the delete and new actions for employees
+            
             $actions = $actions
                 ->remove(Crud::PAGE_INDEX, Action::NEW )
-                // ->remove(Crud::PAGE_EDIT, Action::DELETE)
+                
                 ->remove(Crud::PAGE_INDEX, Action::DELETE);
         }
 
@@ -117,16 +117,13 @@ class ItemCrudController extends AbstractCrudController
                 TextField::new('category')
                     ->setLabel('Categorie')
                     ->setDisabled(true),
-                // ->setFormTypeOptions([
-                //     'class' => Category::class,
-                //     'choice_label' => 'name'
-                // ]),
+                 
                 AssociationField::new('commande')
                     ->setLabel('Commande')
                     ->setFormTypeOptions([
                         'class' => Commande::class,
 
-                        //'choice_label' => 'ref'
+                         
                     ]),
                 NumberField::new('quantity')
                     ->setLabel('quantité')

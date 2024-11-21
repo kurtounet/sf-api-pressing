@@ -37,9 +37,4 @@ class PostCommandesClientController extends AbstractController
         return $this->json(['commande' => $newCommande,], 201);
     }
 }
-
-
-// Vérifier les champs obligatoires
-// if (!isset($data['filingDate'], $data['returnDate'], $data['paymentDate'], $data['client'], $data['items'])) {
-//     return new JsonResponse(['message' => 'Missing required fields'], 400);
-// }
+ 

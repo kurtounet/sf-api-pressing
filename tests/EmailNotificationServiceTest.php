@@ -18,9 +18,9 @@ class EmailNotificationServiceTest extends KernelTestCase
         $container = static::getContainer();
 
         $this->assertSame('test', $kernel->getEnvironment());
-        // $routerService = static::getContainer()->get('router');
+         
         $emailNotificationService = $container->get(EmailNotificationService::class);
         $emailNotificationService->sendConfirmationEmail($user);
-        //$this->assertInstanceOf(EmailNotificationService::class, $EmailNotificationService);
+         
     }
 }

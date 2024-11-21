@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 #[AsController]
 class GetItemsEmployeesController extends AbstractController
 {
-    //#[Route('/api/employees/{id}/items', name: 'app_get_employees_items', methods: ['GET'])]
+     
     public function __invoke(
         ItemRepository $itemRepository,
         ItemStatusRepository $itemStatusRepository,

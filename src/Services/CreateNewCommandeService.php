@@ -76,16 +76,4 @@ class CreateNewCommandeService
         return ['errors' => $errorMessages];
     }
 }
-
-// Récupérer ou créer le client
-//$client = $this->clientRepository->findOneBy(['id' => $user->getId()]);
-// if (!$client) {
-//     $client = new Client();
-//     $this->entityManager->persist($client);
-//     $this->entityManager->flush();
-// }
-
-// $payment = $this->paymentService->execute($data);
-// if ($payment instanceof JsonResponse) {
-//     return $payment;
-// }
+ 

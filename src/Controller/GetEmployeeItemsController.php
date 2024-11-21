@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Repository\ItemRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Bundle\SecurityBundle\Security; // Correct namespace for Security
+use Symfony\Bundle\SecurityBundle\Security; 
 
 class GetEmployeeItemsController extends AbstractController
 {
-    //#[Route('/api/items/employee', name: 'app_get_items_employee', methods: ['GET'])]
+     
     public function __invoke(
         ItemRepository $itemRepository,
         Security $security
@@ -30,6 +30,5 @@ class GetEmployeeItemsController extends AbstractController
         //     context: ['groups' => ['item:employee:read']],
         //     status: 200
         // );
-
     }
 }

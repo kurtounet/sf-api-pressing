@@ -19,23 +19,13 @@ class RoutesTest extends WebTestCase
     public function testRoutes(string $route): void
     {
         $httpClient = static::createClient();
-        $httpClient->request('GET', "/api/" . $route);
-        // Ajoute une sorte de "log" via une assertion comptée
+        $httpClient->request('GET', "/api/" . $route);         
         $this->addToAssertionCount(2);
         fwrite(STDOUT, "\nTesting route: /api/" . $route . "\n");
-
-        $response = $httpClient->getResponse();
-
-        // Pour afficher le contenu de la réponse
+        $response = $httpClient->getResponse();         
         $this->assertJson($response->getContent());
-        fwrite(STDOUT, "\data\n" . $response->getContent());
-        // $data = json_decode($response->getContent(), true);
-        // fwrite(STDOUT, "\data\n" . $data);
+        fwrite(STDOUT, "\data\n" . $response->getContent());       
 
-        // Vérifiez si la réponse est réussie (code HTTP 200)
-        //$this->assertSame(200, $response->getStatusCode(), '*****Request failed******');
-
-        // Vérifier la présence d'un token JWT dans la réponse (si nécessaire)
-        // $this->assertArrayHasKey('token', $data);
+        
     }
 }

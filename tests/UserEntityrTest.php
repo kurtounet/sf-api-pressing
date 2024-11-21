@@ -9,10 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class UserEntityrTest extends KernelTestCase
 {
-    // public function __construct(
-    //     private ObjectManager $manager
-    //     )
-    // {} 
+     
     public function testSomething(): void
     {
 
@@ -25,15 +22,12 @@ class UserEntityrTest extends KernelTestCase
             ->setPassword('test')
             ->setRoles(['ROLE_USER']);
 
-        // $this->manager->persist($user);
-        // $this->manager->flush();
+        
         $error = $container->get('validator')->validate($user);
 
         $this->assertCount(0, $error);
 
-        //$this->assertSame('test', $kernel->getEnvironment());
-        // $routerService = static::getContainer()->get('router');
-        // $myCustomService = static::getContainer()->get(CustomService::class);
+         
     }
 
     public function testGetUser(): void

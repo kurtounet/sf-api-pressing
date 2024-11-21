@@ -13,7 +13,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 
 class GetItemsCommandeIdController extends AbstractController
 {
-    // Route: /items/commande/{id}
+     
     public function __invoke(
         int $id,
         ItemRepository $itemRepository,
